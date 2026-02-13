@@ -14,7 +14,7 @@ Packet definitions (v1):
   - byte7: checksum (simple sum & 0xFF)
 
 Packet definitions (v1.1):
-- SENSOR_PKT (CAN ID 0x180): 10 bytes (version 2)
+- SENSOR_PKT (CAN ID 0x200): 10 bytes (version 2)
   - byte0: version (2)
   - byte1: sensor_id
   - byte2-3: temperature_raw (16-bit, signed)
@@ -37,4 +37,4 @@ Interrupts
 Change log
 ----------
 - v1.0 - initial baseline
- - v1.1 - added humidity field in SENSOR_PKT (version 2) and extended packet length to 10 bytes
+ - v1.1 - added humidity field in SENSOR_PKT (version 2) and extended packet length to 10 bytes; CAN ID updated to 0x200

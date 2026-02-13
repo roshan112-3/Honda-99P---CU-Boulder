@@ -11,12 +11,19 @@ void CANBus::init(int baud)
 
 void CANBus::send(const std::vector<uint8_t> &payload)
 {
-    // Simulated: print to stdout
-    std::cout << "CAN TX [ID=0x180] ";
+    // Simulated: print to stdout using configured TX id
+    uint16_t id = tx_id ? tx_id : 0x180;
+    std::cout << "CAN TX [ID=0x" << std::hex << id << "] " << std::dec;
     for (auto b : payload) {
         printf("%02X ", b);
     }
     std::cout << "\n";
+}
+
+void CANBus::set_tx_id(uint16_t id)
+{
+    tx_id = id;
+    std::cout << "CANBus set_tx_id to 0x" << std::hex << tx_id << std::dec << "\n";
 }
 
 std::vector<uint8_t> CANBus::receive()

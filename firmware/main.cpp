@@ -94,6 +94,8 @@ int main(int argc, char **argv)
 
     sensor_mgr.init();
     can.init(500000);
+    // HSI updated: new CAN ID 0x200
+    can.set_tx_id(0x200);
     irq.init();
 
     // Register hardware interrupt callbacks

@@ -68,7 +68,20 @@ class Ingestor:
             raise ValueError("v2 packet too short")
         # checksum is over bytes 0..8; status_flags is at byte 8 and is not encrypted
         checksum = raw[9]
-        calc = (sum(raw[:9]) & 0xFF)
+        # CRC-8 (poly 0x07) to validate payload for v2.1
+        def crc8(data: bytes) -> int:
+            crc = 0
+            poly = 0x07
+            for b in data:
+                crc ^= b
+                for _ in range(8):
+                    if crc & 0x80:
+                        crc = ((crc << 1) & 0xFF) ^ poly
+                    else:
+                        crc = (crc << 1) & 0xFF
+            return crc
+
+        calc = crc8(bytes(raw[:9]))
         if checksum != calc:
             raise ValueError(f"checksum mismatch {checksum} != {calc}")
         status_flags = raw[8]

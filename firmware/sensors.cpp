@@ -2,6 +2,21 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <cstddef>
+
+static uint8_t crc8(const uint8_t *data, size_t len)
+{
+    uint8_t crc = 0x00;
+    const uint8_t poly = 0x07;
+    for (size_t i = 0; i < len; ++i) {
+        crc ^= data[i];
+        for (int b = 0; b < 8; ++b) {
+            if (crc & 0x80) crc = (uint8_t)((crc << 1) ^ poly);
+            else crc <<= 1;
+        }
+    }
+    return crc;
+}
 
 SensorManager::SensorManager()
     : sampling_rate_hz(50), adc_resolution_bits(14), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
@@ -53,9 +68,9 @@ std::vector<uint8_t> SensorManager::pack_latest()
         // encrypt bytes 0..7 (leave status_flags index 8 unencrypted)
         for (size_t i = 0; i < work.size() - 2; ++i) work[i] ^= KEY; // up to index 7
     }
-    uint8_t sum = 0;
-    for (int i = 0; i < 9; ++i) sum += work[i];
-    pkt[9] = sum & 0xFF;
+    // Use CRC-8 for checksum (v2.1)
+    uint8_t c = crc8(work.data(), 9);
+    pkt[9] = c;
     if (encrypt) {
         // store encrypted payload in packet bytes 0..8
         for (size_t i = 0; i < 9; ++i) pkt[i] = work[i];

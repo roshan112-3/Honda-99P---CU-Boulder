@@ -23,9 +23,13 @@ Packet definitions (v1.1):
   - byte8: status_flags
   - byte9: checksum (simple sum & 0xFF)
 
-Encryption
+- Encryption
 ----------
 - status_flags bit 7 (0x80) indicates the payload (bytes 0..n-2) is XOR-encrypted with a single-byte key. Checksum is computed over the post-encryption bytes. Cloud must detect the flag and decrypt using the agreed key (0x5A) before interpreting numeric fields.
+
+Checksum Algorithm
+------------------
+- v2.1: SENSOR_PKT checksum moved from simple sum to CRC-8 (poly 0x07, initial 0x00) computed over bytes 0..n-2 (post-encryption if present). Cloud and firmware MUST implement CRC-8 to validate v2.1 packets.
 
 Sampling and ADC
 ----------------

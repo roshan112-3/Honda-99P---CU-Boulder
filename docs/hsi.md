@@ -29,6 +29,13 @@ Sampling and ADC
 - Default sensor sampling rate: 100 Hz
 - CAN bus: 500000 bps
 
+Heartbeat
+---------
+- HEARTBEAT_PKT (CAN ID 0x300): 2 bytes
+  - byte0: opcode (0xAA)
+  - byte1: status (0x00 = ok)
+  - Interval: 1000ms
+
 Interrupts
 ----------
 - IRQ_ADC: triggered on ADC conversion complete (priority 2)

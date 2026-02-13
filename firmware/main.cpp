@@ -135,6 +135,15 @@ int main(int argc, char **argv)
         diag_running.store(false);
     });
 
+    // Heartbeat thread to comply with HSI
+    std::thread hb([&](){
+        while (running.load()) {
+            std::vector<uint8_t> pkt = {0xAA, 0x00};
+            can.send_with_id(0x300, pkt);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        }
+    });
+
     // Main loop: poll for events and simulate ADC conversions
     for (int i = 0; i < 2000 && running.load(); ++i) {
         // Simulate ADC conversions every 10ms
@@ -159,6 +168,7 @@ int main(int argc, char **argv)
     running.store(false);
     t.join();
     if (diag.joinable()) diag.join();
+    if (hb.joinable()) hb.join();
 
     std::cout << "Firmware shutting down\n";
     return 0;

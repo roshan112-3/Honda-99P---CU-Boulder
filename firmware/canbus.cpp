@@ -26,6 +26,15 @@ void CANBus::set_tx_id(uint16_t id)
     std::cout << "CANBus set_tx_id to 0x" << std::hex << tx_id << std::dec << "\n";
 }
 
+void CANBus::send_with_id(uint16_t id, const std::vector<uint8_t> &payload)
+{
+    std::cout << "CAN TX [ID=0x" << std::hex << id << "] " << std::dec;
+    for (auto b : payload) {
+        printf("%02X ", b);
+    }
+    std::cout << "\n";
+}
+
 std::vector<uint8_t> CANBus::receive()
 {
     std::lock_guard<std::mutex> g(rx_mutex);

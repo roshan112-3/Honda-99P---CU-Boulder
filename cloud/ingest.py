@@ -166,6 +166,18 @@ def run_end_to_end_demo():
     ing.stop()
 
 
+def record_heartbeat(can_id, payload):
+    """Process a heartbeat frame (simulation).
+    can_id: integer
+    payload: bytes
+    """
+    if can_id == 0x300 and len(payload) >= 2 and payload[0] == 0xAA:
+        status = payload[1]
+        print(f"Heartbeat received: status={status} from CAN ID=0x{can_id:X}")
+        return True
+    return False
+
+
 if __name__ == '__main__':
     # allow using either demo
     print('Running end-to-end demo')

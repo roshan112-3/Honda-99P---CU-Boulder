@@ -103,5 +103,71 @@ def main_demo():
     time.sleep(1)
     ing.stop()
 
+
+class RemoteStorageClient:
+    """Simulated remote storage client with retry/backoff."""
+    def __init__(self):
+        self.fail_rate = 0.1
+
+    def upload_bulk(self, items):
+        # randomly fail to simulate transient issues
+        if random.random() < self.fail_rate:
+            raise RuntimeError("simulated remote failure")
+        # pretend to upload
+        print(f"Uploaded {len(items)} items to remote storage")
+
+
+def reliable_upload(client, items, retries=3):
+    attempt = 0
+    while attempt <= retries:
+        try:
+            client.upload_bulk(items)
+            return True
+        except Exception as e:
+            attempt += 1
+            backoff = 0.1 * (2 ** attempt)
+            print(f"Upload failed (attempt {attempt}): {e}, backoff={backoff:.2f}s")
+            time.sleep(backoff)
+    return False
+
+
+def run_end_to_end_demo():
+    ing = Ingestor()
+    ing.start()
+    client = RemoteStorageClient()
+    # generate a mix of v1 and v2 packets
+    pkts = []
+    for i in range(100):
+        if i % 5 == 0:
+            # v2 packet
+            temp = int((25 + random.uniform(-2,2)) * 16)
+            pres = int(1013 + random.randint(-5,5))
+            hum = int((45 + random.uniform(-5,5)) * 100)
+            pkt = struct.pack('>BBhHHBB', 2, 1, temp, pres, hum, 0, 0)
+            chk = sum(pkt[:9]) & 0xFF
+            pkt = pkt[:9] + bytes([chk])
+        else:
+            temp = int((25 + random.uniform(-1,1)) * 16)
+            pres = int(1013 + random.randint(-2,2))
+            pkt = struct.pack('>BBhHBB', 1, 1, temp, pres, 0, 0)
+            chk = sum(pkt[:7]) & 0xFF
+            pkt = pkt[:7] + bytes([chk])
+        ing.push_raw(pkt)
+        pkts.append(pkt)
+
+    # allow processing to complete
+    time.sleep(2)
+
+    # attempt to upload everything to remote storage
+    success = reliable_upload(client, ing.storage, retries=4)
+    print('Upload success:', success)
+    ing.stop()
+
+
+if __name__ == '__main__':
+    # allow using either demo
+    print('Running end-to-end demo')
+    run_end_to_end_demo()
+
 if __name__ == '__main__':
     main_demo()

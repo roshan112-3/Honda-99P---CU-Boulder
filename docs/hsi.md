@@ -35,7 +35,7 @@ Sampling and ADC
 ----------------
 - ADC resolution: 14 bits (firmware and cloud must adjust scaling of temperature representation)
 - Default sensor sampling rate: 50 Hz
-- CAN bus: 500000 bps
+ - CAN bus: 1000000 bps
 
 Heartbeat
 ---------

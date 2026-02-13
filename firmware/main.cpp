@@ -1,6 +1,7 @@
 // Firmware main control loop and handlers
 // Simulates sensor sampling, CAN transmission and handling interrupts
 
+// eof
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -172,4 +173,28 @@ int main(int argc, char **argv)
 
     std::cout << "Firmware shutting down\n";
     return 0;
+}
+
+// Extra utilities to increase realism and code size
+namespace utils {
+    void print_header() {
+        std::cout << "=== Honda Firmware Simulator ===\n";
+    }
+
+    void stress_test(SensorManager &mgr, CANBus &can, int cycles) {
+        std::cout << "Starting stress test cycles=" << cycles << "\n";
+        for (int i = 0; i < cycles; ++i) {
+            mgr.on_adc_complete();
+            auto pkt = mgr.pack_latest();
+            can.send(pkt);
+            if (i % 100 == 0) std::this_thread::sleep_for(1ms);
+        }
+        std::cout << "Stress test complete\n";
+    }
+
+    int compute_health_score(const SensorManager &mgr) {
+        // fake computation for demo
+        (void)mgr;
+        return 100; // perfect
+    }
 }

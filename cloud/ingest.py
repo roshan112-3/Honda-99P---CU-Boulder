@@ -41,11 +41,24 @@ class Ingestor:
                 print("Parse error:", e)
 
     def parse_sensor_packet(self, raw):
-        # HSI v1.1: support both v1 and v2 packets and handle optional XOR encryption
+        # HSI: support v1 (8 bytes), v2 (10 bytes), v3 (12 bytes) with optional XOR encryption for payload bytes
         if len(raw) < 8:
             raise ValueError("packet too short")
 
-        # detect v1 by checking length and first byte (v1 uses unencrypted small packet)
+        # helper CRC-8
+        def crc8(data: bytes) -> int:
+            crc = 0
+            poly = 0x07
+            for b in data:
+                crc ^= b
+                for _ in range(8):
+                    if crc & 0x80:
+                        crc = ((crc << 1) & 0xFF) ^ poly
+                    else:
+                        crc = (crc << 1) & 0xFF
+            return crc
+
+        # v1 (legacy)
         if raw[0] == 1 and len(raw) >= 8:
             version, sensor_id, temp_raw, pressure_raw, status_flags, checksum = struct.unpack('>BBhHBB', raw[:8])
             calc = (sum(raw[:7]) & 0xFF)
@@ -63,24 +76,40 @@ class Ingestor:
             data['pressure_hpa'] = pressure_raw
             return data
 
-        # assume v2 if length matches
+        # v3 (12 bytes)
+        if raw[0] == 3 and len(raw) >= 12:
+            checksum = raw[11]
+            calc = crc8(bytes(raw[:11]))
+            if checksum != calc:
+                raise ValueError(f"checksum mismatch {checksum} != {calc}")
+            status_flags = raw[10]
+            encrypted = bool(status_flags & 0x80)
+            payload = bytearray(raw[:11])
+            if encrypted:
+                KEY = 0x5A
+                for i in range(0, 10):
+                    payload[i] ^= KEY
+            version, sensor_id, temp_raw, pressure_raw, humidity_raw, fuel_raw, status_flags = struct.unpack('>BBhHHHB', bytes(payload))
+            data = {
+                'version': version,
+                'sensor_id': sensor_id,
+                'temperature_raw': temp_raw,
+                'pressure_raw': pressure_raw,
+                'humidity_raw': humidity_raw,
+                'fuel_raw': fuel_raw,
+                'status_flags': status_flags,
+                'timestamp': time.time()
+            }
+            data['temperature_c'] = (temp_raw / 64.0)
+            data['pressure_hpa'] = pressure_raw
+            data['humidity_pct'] = humidity_raw / 100.0
+            data['fuel_pct'] = fuel_raw / 100.0
+            return data
+
+        # v2 (10 bytes) fallback
         if len(raw) < 10:
             raise ValueError("v2 packet too short")
-        # checksum is over bytes 0..8; status_flags is at byte 8 and is not encrypted
         checksum = raw[9]
-        # CRC-8 (poly 0x07) to validate payload for v2.1
-        def crc8(data: bytes) -> int:
-            crc = 0
-            poly = 0x07
-            for b in data:
-                crc ^= b
-                for _ in range(8):
-                    if crc & 0x80:
-                        crc = ((crc << 1) & 0xFF) ^ poly
-                    else:
-                        crc = (crc << 1) & 0xFF
-            return crc
-
         calc = crc8(bytes(raw[:9]))
         if checksum != calc:
             raise ValueError(f"checksum mismatch {checksum} != {calc}")
@@ -91,8 +120,6 @@ class Ingestor:
             KEY = 0x5A
             for i in range(0, 8):
                 payload[i] ^= KEY
-
-        # now unpack: version(1) sensor(1) temp(2) pressure(2) humidity(2) status(1)
         version, sensor_id, temp_raw, pressure_raw, humidity_raw, status_flags = struct.unpack('>BBhHHB', bytes(payload))
         data = {
             'version': version,
@@ -107,6 +134,38 @@ class Ingestor:
         data['pressure_hpa'] = pressure_raw
         data['humidity_pct'] = humidity_raw / 100.0
         return data
+
+        # v3 support (12 bytes)
+        if len(raw) >= 12 and raw[0] == 3:
+            checksum = raw[11]
+            # CRC over bytes 0..10
+            calc = crc8(bytes(raw[:11]))
+            if checksum != calc:
+                raise ValueError(f"checksum mismatch {checksum} != {calc}")
+            status_flags = raw[10]
+            encrypted = bool(status_flags & 0x80)
+            payload = bytearray(raw[:11])
+            if encrypted:
+                KEY = 0x5A
+                for i in range(0, 10):
+                    payload[i] ^= KEY
+            # unpack: version, sensor, temp, pressure, humidity, fuel, status
+            version, sensor_id, temp_raw, pressure_raw, humidity_raw, fuel_raw, status_flags = struct.unpack('>BBhHHHB', bytes(payload))
+            data = {
+                'version': version,
+                'sensor_id': sensor_id,
+                'temperature_raw': temp_raw,
+                'pressure_raw': pressure_raw,
+                'humidity_raw': humidity_raw,
+                'fuel_raw': fuel_raw,
+                'status_flags': status_flags,
+                'timestamp': time.time()
+            }
+            data['temperature_c'] = (temp_raw / 64.0)
+            data['pressure_hpa'] = pressure_raw
+            data['humidity_pct'] = humidity_raw / 100.0
+            data['fuel_pct'] = fuel_raw / 100.0
+            return data
 
 def main_demo():
     ing = Ingestor()

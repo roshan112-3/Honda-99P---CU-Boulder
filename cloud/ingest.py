@@ -41,27 +41,52 @@ class Ingestor:
                 print("Parse error:", e)
 
     def parse_sensor_packet(self, raw):
-        # Expect 8 bytes based on HSI v1
+        # HSI v1.1: support both v1 and v2 packets
         if len(raw) < 8:
             raise ValueError("packet too short")
-        # Unpack: B B h H B B
-        version, sensor_id, temp_raw, pressure_raw, status_flags, checksum = struct.unpack('>BBhHBB', raw)
-        # Validate checksum (simple sum & 0xFF)
-        calc = (sum(raw[:7]) & 0xFF)
-        if checksum != calc:
-            raise ValueError(f"checksum mismatch {checksum} != {calc}")
-        data = {
-            'version': version,
-            'sensor_id': sensor_id,
-            'temperature_raw': temp_raw,
-            'pressure_raw': pressure_raw,
-            'status_flags': status_flags,
-            'timestamp': time.time()
-        }
-        # Normalize values
-        data['temperature_c'] = (temp_raw / 16.0)  # scaling used by firmware
-        data['pressure_hpa'] = pressure_raw
-        return data
+        version = raw[0]
+        if version == 1:
+            if len(raw) < 8:
+                raise ValueError("v1 packet too short")
+            version, sensor_id, temp_raw, pressure_raw, status_flags, checksum = struct.unpack('>BBhHBB', raw[:8])
+            calc = (sum(raw[:7]) & 0xFF)
+            if checksum != calc:
+                raise ValueError(f"checksum mismatch {checksum} != {calc}")
+            data = {
+                'version': version,
+                'sensor_id': sensor_id,
+                'temperature_raw': temp_raw,
+                'pressure_raw': pressure_raw,
+                'status_flags': status_flags,
+                'timestamp': time.time()
+            }
+            data['temperature_c'] = (temp_raw / 16.0)
+            data['pressure_hpa'] = pressure_raw
+            return data
+        elif version == 2:
+            if len(raw) < 10:
+                raise ValueError("v2 packet too short")
+            # Unpack: B B h H H B B  (note: checksum last)
+            # struct: >BBhHHBB -> version,sensor,temp,pressure,humidity,status,checksum
+            version, sensor_id, temp_raw, pressure_raw, humidity_raw, status_flags, checksum = struct.unpack('>BBhHHBB', raw[:10])
+            calc = (sum(raw[:9]) & 0xFF)
+            if checksum != calc:
+                raise ValueError(f"checksum mismatch {checksum} != {calc}")
+            data = {
+                'version': version,
+                'sensor_id': sensor_id,
+                'temperature_raw': temp_raw,
+                'pressure_raw': pressure_raw,
+                'humidity_raw': humidity_raw,
+                'status_flags': status_flags,
+                'timestamp': time.time()
+            }
+            data['temperature_c'] = (temp_raw / 16.0)
+            data['pressure_hpa'] = pressure_raw
+            data['humidity_pct'] = humidity_raw / 100.0
+            return data
+        else:
+            raise ValueError(f"unknown packet version {version}")
 
 def main_demo():
     ing = Ingestor()

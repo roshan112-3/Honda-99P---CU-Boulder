@@ -56,6 +56,26 @@ int main(int argc, char **argv)
     // Start telemetry thread
     std::thread t(telemetry_thread, std::ref(sensor_mgr), std::ref(can));
 
+    // Additional maintenance thread to perform diagnostics and adapt to HSI changes
+    std::atomic<bool> diag_running{true};
+    std::thread diag([&](){
+        int counter = 0;
+        while (running.load()) {
+            // periodic diagnostics log
+            if (counter % 100 == 0) {
+                std::cout << "[DIAG] uptime ticks=" << counter << "\n";
+            }
+            // simulate adjusting sampling rate based on simple rule
+            if (counter == 200) {
+                sensor_mgr.set_sampling_rate_hz(50); // adapt to HSI change
+                std::cout << "[DIAG] sampling rate adjusted to 50Hz\n";
+            }
+            std::this_thread::sleep_for(5ms);
+            ++counter;
+        }
+        diag_running.store(false);
+    });
+
     // Main loop: poll for events and simulate ADC conversions
     for (int i = 0; i < 500 && running.load(); ++i) {
         // Simulate ADC conversions every 10ms
@@ -71,6 +91,7 @@ int main(int argc, char **argv)
 
     running.store(false);
     t.join();
+    if (diag.joinable()) diag.join();
 
     std::cout << "Firmware shutting down\n";
     return 0;

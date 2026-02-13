@@ -14,5 +14,6 @@ private:
     int adc_resolution_bits;
     int16_t last_temperature_raw;
     uint16_t last_pressure_raw;
+    uint16_t last_humidity_raw;
     uint8_t status_flags;
 };

@@ -4,7 +4,7 @@
 #include <iostream>
 
 SensorManager::SensorManager()
-    : sampling_rate_hz(100), adc_resolution_bits(12), last_temperature_raw(0), last_pressure_raw(0), status_flags(0)
+    : sampling_rate_hz(100), adc_resolution_bits(12), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
@@ -24,22 +24,26 @@ void SensorManager::on_adc_complete()
     int noise = (std::rand() % 50) - 25;
     last_temperature_raw = static_cast<int16_t>((25 << 4) + noise); // scaled representation
     last_pressure_raw = static_cast<uint16_t>((1013 + (std::rand() % 10)));
+    last_humidity_raw = static_cast<uint16_t>(50 + (std::rand() % 10));
     status_flags = 0; // all good
 }
 
 std::vector<uint8_t> SensorManager::pack_latest()
 {
-    std::vector<uint8_t> pkt(8, 0);
-    pkt[0] = 1; // version
+    // Emit version 2 packets by default (HSI v1.1)
+    std::vector<uint8_t> pkt(10, 0);
+    pkt[0] = 2; // version v1.1
     pkt[1] = 0x01; // sensor id
     pkt[2] = static_cast<uint8_t>((last_temperature_raw >> 8) & 0xFF);
     pkt[3] = static_cast<uint8_t>(last_temperature_raw & 0xFF);
     pkt[4] = static_cast<uint8_t>((last_pressure_raw >> 8) & 0xFF);
     pkt[5] = static_cast<uint8_t>(last_pressure_raw & 0xFF);
-    pkt[6] = status_flags;
+    pkt[6] = static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF);
+    pkt[7] = static_cast<uint8_t>(last_humidity_raw & 0xFF);
+    pkt[8] = status_flags;
     uint8_t sum = 0;
-    for (int i = 0; i < 7; ++i) sum += pkt[i];
-    pkt[7] = sum & 0xFF;
+    for (int i = 0; i < 9; ++i) sum += pkt[i];
+    pkt[9] = sum & 0xFF;
     return pkt;
 }
 

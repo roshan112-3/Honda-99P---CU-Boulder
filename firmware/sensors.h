@@ -9,6 +9,9 @@ public:
     void on_adc_complete();
     std::vector<uint8_t> pack_latest();
     void set_sampling_rate_hz(int hz);
+    // test hooks
+    void inject_fault_temperature(int16_t val);
+    void inject_fault_pressure(uint16_t val);
 private:
     int sampling_rate_hz;
     int adc_resolution_bits;

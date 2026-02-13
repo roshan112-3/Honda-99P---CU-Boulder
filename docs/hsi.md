@@ -54,7 +54,10 @@ Interrupt priorities: lower number -> higher priority. Firmware should support r
 Change log
 ----------
 - v1.0 - initial baseline
-- v1.1 - added humidity field in SENSOR_PKT (version 2) and extended packet length to 10 bytes; CAN ID updated to 0x200
+ - v1.1 - added humidity field in SENSOR_PKT (version 2) and extended packet length to 10 bytes; CAN ID updated to 0x200
+ - v2.1 - switched checksum to CRC-8
+ - v1.2 - extended SENSOR_PKT to include fuel_level (version 3) -> 12 bytes
+ - v1.3 - added firmware fault-injection hooks for testing and CI
  - v2.1 - switched checksum to CRC-8
  - v1.2 - extended SENSOR_PKT to include fuel_level (version 3) -> 12 bytes
 

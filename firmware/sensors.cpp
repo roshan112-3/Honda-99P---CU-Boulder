@@ -45,6 +45,18 @@ void SensorManager::on_adc_complete()
     status_flags = 0; // all good
 }
 
+void SensorManager::inject_fault_temperature(int16_t val)
+{
+    last_temperature_raw = val;
+    status_flags |= 0x01; // mark temp fault
+}
+
+void SensorManager::inject_fault_pressure(uint16_t val)
+{
+    last_pressure_raw = val;
+    status_flags |= 0x02; // mark pressure fault
+}
+
 std::vector<uint8_t> SensorManager::pack_latest()
 {
     // Emit version 3 packets by default (HSI v1.2)

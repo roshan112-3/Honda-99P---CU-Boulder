@@ -4,7 +4,7 @@
 #include <iostream>
 
 SensorManager::SensorManager()
-    : sampling_rate_hz(100), adc_resolution_bits(14), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
+    : sampling_rate_hz(50), adc_resolution_bits(14), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 }

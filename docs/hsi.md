@@ -31,8 +31,10 @@ Sampling and ADC
 
 Interrupts
 ----------
-- IRQ_ADC: triggered on ADC conversion complete
-- IRQ_CAN_RX: triggered when a CAN frame is received
+- IRQ_ADC: triggered on ADC conversion complete (priority 2)
+- IRQ_CAN_RX: triggered when a CAN frame is received (priority 3)
+
+Interrupt priorities: lower number -> higher priority. Firmware should support registering handlers with explicit priority to ensure timely handling of ADC data.
 
 Change log
 ----------

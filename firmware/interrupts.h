@@ -9,7 +9,8 @@ class InterruptController {
 public:
     using Handler = std::function<void()>;
     void init();
-    void register_handler(IRQLine line, Handler h);
+    // register with priority (lower means higher priority)
+    void register_handler(IRQLine line, Handler h, int priority = 10);
     void raise(IRQLine line);
 private:
     std::map<IRQLine, Handler> handlers;

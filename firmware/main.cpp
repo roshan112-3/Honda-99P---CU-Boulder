@@ -101,7 +101,7 @@ int main(int argc, char **argv)
     // Register hardware interrupt callbacks
     irq.register_handler(IRQ_ADC, [&sensor_mgr]() {
         sensor_mgr.on_adc_complete();
-    });
+    }, 2);
 
     irq.register_handler(IRQ_CAN_RX, [&can]() {
         auto frame = can.receive();
@@ -110,7 +110,7 @@ int main(int argc, char **argv)
             uint16_t id = can.extract_id(frame);
             std::cout << "CAN RX ID=" << std::hex << id << std::dec << " size=" << frame.size() << "\n";
         }
-    });
+    }, 3);
 
     // Start telemetry thread
     std::thread t(telemetry_thread, std::ref(sensor_mgr), std::ref(can));

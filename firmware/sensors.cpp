@@ -41,10 +41,25 @@ std::vector<uint8_t> SensorManager::pack_latest()
     pkt[5] = static_cast<uint8_t>(last_pressure_raw & 0xFF);
     pkt[6] = static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF);
     pkt[7] = static_cast<uint8_t>(last_humidity_raw & 0xFF);
-    pkt[8] = status_flags;
+    // occasionally mark packet as encrypted
+    bool encrypt = (std::rand() % 20) == 0; // ~5% encrypted
+    if (encrypt) pkt[8] = status_flags | 0x80;
+    else pkt[8] = status_flags;
+
+    // If encrypted, XOR payload bytes with key before checksum
+    const uint8_t KEY = 0x5A;
+    std::vector<uint8_t> work = pkt;
+    if (encrypt) {
+        // encrypt bytes 0..7 (leave status_flags index 8 unencrypted)
+        for (size_t i = 0; i < work.size() - 2; ++i) work[i] ^= KEY; // up to index 7
+    }
     uint8_t sum = 0;
-    for (int i = 0; i < 9; ++i) sum += pkt[i];
+    for (int i = 0; i < 9; ++i) sum += work[i];
     pkt[9] = sum & 0xFF;
+    if (encrypt) {
+        // store encrypted payload in packet bytes 0..8
+        for (size_t i = 0; i < 9; ++i) pkt[i] = work[i];
+    }
     return pkt;
 }
 

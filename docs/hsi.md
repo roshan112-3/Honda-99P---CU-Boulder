@@ -23,6 +23,10 @@ Packet definitions (v1.1):
   - byte8: status_flags
   - byte9: checksum (simple sum & 0xFF)
 
+Encryption
+----------
+- status_flags bit 7 (0x80) indicates the payload (bytes 0..n-2) is XOR-encrypted with a single-byte key. Checksum is computed over the post-encryption bytes. Cloud must detect the flag and decrypt using the agreed key (0x5A) before interpreting numeric fields.
+
 Sampling and ADC
 ----------------
 - ADC resolution: 14 bits (firmware and cloud must adjust scaling of temperature representation)

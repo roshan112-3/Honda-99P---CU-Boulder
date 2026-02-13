@@ -41,13 +41,12 @@ class Ingestor:
                 print("Parse error:", e)
 
     def parse_sensor_packet(self, raw):
-        # HSI v1.1: support both v1 and v2 packets
+        # HSI v1.1: support both v1 and v2 packets and handle optional XOR encryption
         if len(raw) < 8:
             raise ValueError("packet too short")
-        version = raw[0]
-        if version == 1:
-            if len(raw) < 8:
-                raise ValueError("v1 packet too short")
+
+        # detect v1 by checking length and first byte (v1 uses unencrypted small packet)
+        if raw[0] == 1 and len(raw) >= 8:
             version, sensor_id, temp_raw, pressure_raw, status_flags, checksum = struct.unpack('>BBhHBB', raw[:8])
             calc = (sum(raw[:7]) & 0xFF)
             if checksum != calc:
@@ -60,35 +59,41 @@ class Ingestor:
                 'status_flags': status_flags,
                 'timestamp': time.time()
             }
-            # ADC scaling changed to 14 bits -> 6 fractional bits
             data['temperature_c'] = (temp_raw / 64.0)
             data['pressure_hpa'] = pressure_raw
             return data
-        elif version == 2:
-            if len(raw) < 10:
-                raise ValueError("v2 packet too short")
-            # Unpack: B B h H H B B  (note: checksum last)
-            # struct: >BBhHHBB -> version,sensor,temp,pressure,humidity,status,checksum
-            version, sensor_id, temp_raw, pressure_raw, humidity_raw, status_flags, checksum = struct.unpack('>BBhHHBB', raw[:10])
-            calc = (sum(raw[:9]) & 0xFF)
-            if checksum != calc:
-                raise ValueError(f"checksum mismatch {checksum} != {calc}")
-            data = {
-                'version': version,
-                'sensor_id': sensor_id,
-                'temperature_raw': temp_raw,
-                'pressure_raw': pressure_raw,
-                'humidity_raw': humidity_raw,
-                'status_flags': status_flags,
-                'timestamp': time.time()
-            }
-            # ADC scaling changed to 14 bits -> 6 fractional bits
-            data['temperature_c'] = (temp_raw / 64.0)
-            data['pressure_hpa'] = pressure_raw
-            data['humidity_pct'] = humidity_raw / 100.0
-            return data
-        else:
-            raise ValueError(f"unknown packet version {version}")
+
+        # assume v2 if length matches
+        if len(raw) < 10:
+            raise ValueError("v2 packet too short")
+        # checksum is over bytes 0..8; status_flags is at byte 8 and is not encrypted
+        checksum = raw[9]
+        calc = (sum(raw[:9]) & 0xFF)
+        if checksum != calc:
+            raise ValueError(f"checksum mismatch {checksum} != {calc}")
+        status_flags = raw[8]
+        encrypted = bool(status_flags & 0x80)
+        payload = bytearray(raw[:9])
+        if encrypted:
+            KEY = 0x5A
+            for i in range(0, 8):
+                payload[i] ^= KEY
+
+        # now unpack: version(1) sensor(1) temp(2) pressure(2) humidity(2) status(1)
+        version, sensor_id, temp_raw, pressure_raw, humidity_raw, status_flags = struct.unpack('>BBhHHB', bytes(payload))
+        data = {
+            'version': version,
+            'sensor_id': sensor_id,
+            'temperature_raw': temp_raw,
+            'pressure_raw': pressure_raw,
+            'humidity_raw': humidity_raw,
+            'status_flags': status_flags,
+            'timestamp': time.time()
+        }
+        data['temperature_c'] = (temp_raw / 64.0)
+        data['pressure_hpa'] = pressure_raw
+        data['humidity_pct'] = humidity_raw / 100.0
+        return data
 
 def main_demo():
     ing = Ingestor()

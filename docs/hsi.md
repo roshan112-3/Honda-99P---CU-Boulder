@@ -25,7 +25,7 @@ Packet definitions (v1.1):
 
 Sampling and ADC
 ----------------
-- ADC resolution: 12 bits
+- ADC resolution: 14 bits (firmware and cloud must adjust scaling of temperature representation)
 - Default sensor sampling rate: 100 Hz
 - CAN bus: 500000 bps
 

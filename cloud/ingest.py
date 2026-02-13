@@ -60,7 +60,8 @@ class Ingestor:
                 'status_flags': status_flags,
                 'timestamp': time.time()
             }
-            data['temperature_c'] = (temp_raw / 16.0)
+            # ADC scaling changed to 14 bits -> 6 fractional bits
+            data['temperature_c'] = (temp_raw / 64.0)
             data['pressure_hpa'] = pressure_raw
             return data
         elif version == 2:
@@ -81,7 +82,8 @@ class Ingestor:
                 'status_flags': status_flags,
                 'timestamp': time.time()
             }
-            data['temperature_c'] = (temp_raw / 16.0)
+            # ADC scaling changed to 14 bits -> 6 fractional bits
+            data['temperature_c'] = (temp_raw / 64.0)
             data['pressure_hpa'] = pressure_raw
             data['humidity_pct'] = humidity_raw / 100.0
             return data

@@ -4,7 +4,7 @@
 #include <iostream>
 
 SensorManager::SensorManager()
-    : sampling_rate_hz(100), adc_resolution_bits(12), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
+    : sampling_rate_hz(100), adc_resolution_bits(14), last_temperature_raw(0), last_pressure_raw(0), last_humidity_raw(0), status_flags(0)
 {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 }
@@ -22,7 +22,8 @@ void SensorManager::on_adc_complete()
 {
     // Simulate ADC reading
     int noise = (std::rand() % 50) - 25;
-    last_temperature_raw = static_cast<int16_t>((25 << 4) + noise); // scaled representation
+    // scaled representation: temperature stored with 6 fractional bits for ADC resolution of 14
+    last_temperature_raw = static_cast<int16_t>((25 << 6) + noise); // scaled representation
     last_pressure_raw = static_cast<uint16_t>((1013 + (std::rand() % 10)));
     last_humidity_raw = static_cast<uint16_t>(50 + (std::rand() % 10));
     status_flags = 0; // all good

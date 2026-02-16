@@ -4,6 +4,8 @@
 
 This tool analyzes the Honda automotive codebase using parsing techniques to extract **functions**, **relationships**, and **HSI (Hardware-Software Interface) traceability** — producing a structured knowledge base for further analysis.
 
+The output from this tool (`knowledge_base.json`) can be merged with git metadata using `merge_knowledge.py` (at root level) to create an enriched knowledge base.
+
 ---
 
 ## What This Tool Does
@@ -52,8 +54,14 @@ py analyze.py
 
 | File | Description |
 |------|-------------|
-| `knowledge_base.json` | Structured JSON with all extracted data |
+| `knowledge_base.json` | Tree-sitter extracted code structure |
 | Console output | Human-readable report |
+
+To merge with git metadata, run from the Honda root:
+```powershell
+cd Honda
+py merge_knowledge.py
+```
 
 ---
 

@@ -1,2 +1,0 @@
-# Tree-sitter analysis dependencies
-tree-sitter==0.21.3

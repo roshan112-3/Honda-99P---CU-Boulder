@@ -149,16 +149,21 @@ class GitParser:
         commit = self.repo.commit(commit_sha)
 
         if not commit.parents:
-            # Root commit: diff against empty tree
-            parent_tree = git.Tree(self.repo, git.NULL_TREE)
-            diffs = commit.diff(parent_tree, create_patch=create_patch)
+            # Root commit: diff against empty tree using the proper method
+            diffs = commit.diff(git.NULL_TREE, create_patch=create_patch)
         else:
             parent = commit.parents[0]
             diffs = commit.diff(parent, create_patch=create_patch)
 
         changes = []
         for diff in diffs:
-            path = diff.a_path if diff.a_path != "/dev/null" else diff.b_path
+            # Handle None paths gracefully
+            a_path = diff.a_path if diff.a_path else ""
+            b_path = diff.b_path if diff.b_path else ""
+            path = a_path if a_path and a_path != "/dev/null" else b_path
+            if not path:
+                continue
+                
             ext = Path(path).suffix
             if file_extensions and ext not in file_extensions:
                 continue
@@ -373,18 +378,155 @@ def blame_line_to_dict(bl: BlameLine) -> dict:
     }
 
 
+def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> dict:
+    """
+    Generate a knowledge base output compatible with tree-sitter output.
+    
+    This extracts the most valuable git metadata for knowledge enrichment:
+    - File ownership (who owns which files based on commits/blame)
+    - Change history (when files were modified)
+    - Commit context (why changes were made - from messages)
+    - Change frequency (hotspots for potential bugs)
+    """
+    from datetime import datetime as dt
+    from collections import defaultdict
+    
+    # Collect all commits
+    commits = list(parser.iter_commits(max_count=max_commits))
+    
+    # File-level aggregations
+    file_authors = defaultdict(lambda: defaultdict(int))  # file -> author -> count
+    file_commits = defaultdict(list)  # file -> list of commit summaries
+    file_last_modified = {}  # file -> {timestamp, author, message}
+    
+    # Process commits and their diffs
+    for commit in commits:
+        changes = parser.get_commit_diff(commit.sha, create_patch=False)
+        for fc in changes:
+            file_authors[fc.path][commit.author] += 1
+            file_commits[fc.path].append({
+                "sha": commit.short_sha,
+                "author": commit.author,
+                "timestamp_iso": commit.timestamp_iso,
+                "message": commit.message_subject[:100]
+            })
+            # Track most recent modification
+            if fc.path not in file_last_modified or commit.timestamp > file_last_modified[fc.path]["timestamp"]:
+                file_last_modified[fc.path] = {
+                    "timestamp": commit.timestamp,
+                    "timestamp_iso": commit.timestamp_iso,
+                    "author": commit.author,
+                    "message": commit.message_subject
+                }
+    
+    # Calculate file ownership (primary author per file)
+    file_ownership = {}
+    for filepath, authors in file_authors.items():
+        if authors:
+            primary_author = max(authors.items(), key=lambda x: x[1])
+            file_ownership[filepath] = {
+                "primary_author": primary_author[0],
+                "commit_count": primary_author[1],
+                "all_contributors": dict(authors)
+            }
+    
+    # Get blame for key source files
+    blame_by_file = {}
+    source_files = [
+        "firmware/sensors.cpp",
+        "firmware/canbus.cpp",
+        "firmware/gps.cpp",
+        "cloud/ingest.py",
+        "cloud/utils.py"
+    ]
+    for filepath in source_files:
+        try:
+            blame = parser.get_blame(filepath)
+            if blame:
+                # Summarize blame: group consecutive lines by author
+                author_ranges = []
+                current_author = None
+                start_line = 1
+                for bl in blame:
+                    if bl.author != current_author:
+                        if current_author:
+                            author_ranges.append({
+                                "author": current_author,
+                                "lines": f"{start_line}-{bl.line_number - 1}"
+                            })
+                        current_author = bl.author
+                        start_line = bl.line_number
+                if current_author:
+                    author_ranges.append({
+                        "author": current_author,
+                        "lines": f"{start_line}-{blame[-1].line_number}"
+                    })
+                blame_by_file[filepath] = {
+                    "total_lines": len(blame),
+                    "author_ranges": author_ranges[:10]  # Limit to first 10 ranges
+                }
+        except Exception:
+            pass
+    
+    # Recent activity summary
+    recent_commits = [
+        {
+            "sha": c.short_sha,
+            "author": c.author,
+            "timestamp_iso": c.timestamp_iso,
+            "message": c.message_subject,
+            "files_changed": len(parser.get_commit_diff(c.sha, create_patch=False))
+        }
+        for c in commits[:10]
+    ]
+    
+    # Change frequency (hotspots)
+    change_frequency = {
+        path: len(commits_list)
+        for path, commits_list in file_commits.items()
+    }
+    hotspots = sorted(change_frequency.items(), key=lambda x: x[1], reverse=True)[:10]
+    
+    return {
+        "metadata": {
+            "generated_at": dt.now().isoformat(),
+            "repo": str(parser.repo_path),
+            "analyzer": "GitPython Git Metadata Extractor v1.0",
+            "branch": parser.repo.active_branch.name if not parser.repo.head.is_detached else "detached",
+            "total_commits_analyzed": len(commits)
+        },
+        "summary": {
+            "total_commits": len(commits),
+            "total_authors": len(set(c.author for c in commits)),
+            "files_with_history": len(file_commits),
+            "files_with_blame": len(blame_by_file)
+        },
+        "file_ownership": file_ownership,
+        "file_last_modified": file_last_modified,
+        "blame_summary": blame_by_file,
+        "recent_commits": recent_commits,
+        "change_hotspots": [{"file": f, "changes": c} for f, c in hotspots],
+        "file_commit_history": {
+            path: commits_list[:5]  # Last 5 commits per file
+            for path, commits_list in file_commits.items()
+        }
+    }
+
+
 # ---------------------------------------------------------------------------
 # CLI entry point
 # ---------------------------------------------------------------------------
 
 
 def main():
-    """Run the parser on Data/ and print summary."""
+    """Run the parser on the repository and generate knowledge base JSON."""
     import json
 
-    repo_path = Path(__file__).resolve().parent.parent / "Data"
+    # Look for .git in parent directory (project root)
+    repo_path = Path(__file__).resolve().parent.parent
     if not (repo_path / ".git").exists():
-        repo_path = Path(__file__).resolve().parent.parent
+        print(f"Error: No git repository found at {repo_path}")
+        return
 
     parser = GitParser(repo_path)
     print(f"Repository: {parser.repo_path}")
@@ -414,6 +556,21 @@ def main():
                 for bl in sample:
                     print(f"  L{bl.line_number}: {bl.commit_sha[:7]} | {bl.content[:50]}...")
             break
+    
+    # Generate and save knowledge base JSON
+    print("\n" + "-" * 60)
+    print("Generating Git Knowledge Base...")
+    kb = generate_git_knowledge_base(parser, max_commits=100)
+    
+    output_file = Path(__file__).parent / "git_knowledge_base.json"
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(kb, f, indent=2, default=str)
+    
+    print(f"\n[OUTPUT] Git knowledge base saved to: {output_file}")
+    print(f"  - {kb['summary']['total_commits']} commits analyzed")
+    print(f"  - {kb['summary']['total_authors']} authors found")
+    print(f"  - {kb['summary']['files_with_history']} files with history")
+    print(f"  - {kb['summary']['files_with_blame']} files with blame")
 
 
 if __name__ == "__main__":

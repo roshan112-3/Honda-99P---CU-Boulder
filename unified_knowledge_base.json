@@ -1,0 +1,4883 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-15T19:14:33.863276",
+    "repo": "Honda Automotive Dataset",
+    "analyzers": [
+      "Tree-sitter Code Analyzer v1.0",
+      "GitPython Git Metadata Extractor v1.0"
+    ],
+    "merge_version": "1.0"
+  },
+  "summary": {
+    "total_functions": 39,
+    "total_classes": 7,
+    "total_calls": 233,
+    "total_relationships": 313,
+    "total_commits": 23,
+    "total_authors": 3,
+    "files_with_history": 36
+  },
+  "functions_by_file": {
+    "firmware\\canbus.cpp": [
+      {
+        "name": "CANBus::init",
+        "line": 6,
+        "parameters": [
+          "int baud"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::send",
+        "line": 12,
+        "parameters": [
+          "const std::vector<uint8_t> &payload"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::set_tx_id",
+        "line": 23,
+        "parameters": [
+          "uint16_t id"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::send_with_id",
+        "line": 29,
+        "parameters": [
+          "uint16_t id",
+          "const std::vector<uint8_t> &payload"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::receive",
+        "line": 38,
+        "parameters": [],
+        "return_type": "std::vector<uint8_t>",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::extract_id",
+        "line": 47,
+        "parameters": [
+          "const std::vector<uint8_t> &frame"
+        ],
+        "return_type": "uint16_t",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "CANBus::inject_frame",
+        "line": 54,
+        "parameters": [
+          "const std::vector<uint8_t> &frame"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:53:12",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler",
+          "total_file_changes": 3,
+          "function_author": "OpenCode"
+        }
+      }
+    ],
+    "firmware\\gps.cpp": [
+      {
+        "name": "GPSModule::init",
+        "line": 10,
+        "parameters": [],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:54:16",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes",
+          "total_file_changes": 1,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "GPSModule::read_fix",
+        "line": 15,
+        "parameters": [],
+        "return_type": "GPSFix",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:54:16",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes",
+          "total_file_changes": 1,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "GPSModule::nmea_from_fix",
+        "line": 33,
+        "parameters": [
+          "const GPSFix &f"
+        ],
+        "return_type": "std::string",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:54:16",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes",
+          "total_file_changes": 1,
+          "function_author": "OpenCode"
+        }
+      }
+    ],
+    "firmware\\interrupts.cpp": [
+      {
+        "name": "InterruptController::init",
+        "line": 4,
+        "parameters": [],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:52:34",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations",
+          "total_file_changes": 2
+        }
+      },
+      {
+        "name": "InterruptController::register_handler",
+        "line": 9,
+        "parameters": [
+          "IRQLine line",
+          "Handler h",
+          "int priority"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:52:34",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations",
+          "total_file_changes": 2
+        }
+      },
+      {
+        "name": "InterruptController::raise",
+        "line": 17,
+        "parameters": [
+          "IRQLine line"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:52:34",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations",
+          "total_file_changes": 2
+        }
+      }
+    ],
+    "firmware\\main.cpp": [
+      {
+        "name": "telemetry_thread",
+        "line": 20,
+        "parameters": [
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:56:17",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+          "total_file_changes": 8
+        }
+      },
+      {
+        "name": "print_hex",
+        "line": 31,
+        "parameters": [
+          "const std::vector<uint8_t> &pkt"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:56:17",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+          "total_file_changes": 8
+        }
+      },
+      {
+        "name": "handle_config_frame",
+        "line": 38,
+        "parameters": [
+          "const std::vector<uint8_t> &frame",
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:56:17",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+          "total_file_changes": 8
+        }
+      },
+      {
+        "name": "run_self_test",
+        "line": 64,
+        "parameters": [
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "bool",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:56:17",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+          "total_file_changes": 8
+        }
+      },
+      {
+        "name": "main",
+        "line": 87,
+        "parameters": [
+          "int argc",
+          "char **argv"
+        ],
+        "return_type": "int",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:56:17",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+          "total_file_changes": 8
+        }
+      }
+    ],
+    "firmware\\sensors.cpp": [
+      {
+        "name": "crc8",
+        "line": 7,
+        "parameters": [
+          "const uint8_t *data",
+          "size_t len"
+        ],
+        "return_type": "uint8_t",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::init",
+        "line": 27,
+        "parameters": [],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::on_adc_complete",
+        "line": 36,
+        "parameters": [],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::inject_fault_temperature",
+        "line": 48,
+        "parameters": [
+          "int16_t val"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::inject_fault_pressure",
+        "line": 54,
+        "parameters": [
+          "uint16_t val"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::pack_latest",
+        "line": 60,
+        "parameters": [],
+        "return_type": "std::vector<uint8_t>",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "SensorManager::set_sampling_rate_hz",
+        "line": 97,
+        "parameters": [
+          "int hz"
+        ],
+        "return_type": "void",
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:40",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      }
+    ],
+    "cloud\\ingest.py": [
+      {
+        "name": "Ingestor::__init__",
+        "line": 13,
+        "parameters": [
+          "self"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::start",
+        "line": 18,
+        "parameters": [
+          "self"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::stop",
+        "line": 23,
+        "parameters": [
+          "self"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::push_raw",
+        "line": 26,
+        "parameters": [
+          "self",
+          "raw_bytes"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::_worker",
+        "line": 30,
+        "parameters": [
+          "self"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::parse_sensor_packet",
+        "line": 43,
+        "parameters": [
+          "self",
+          "raw"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "Ingestor::crc8",
+        "line": 49,
+        "parameters": [
+          "data"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "main_demo",
+        "line": 170,
+        "parameters": [],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "RemoteStorageClient::__init__",
+        "line": 188,
+        "parameters": [
+          "self"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "RemoteStorageClient::upload_bulk",
+        "line": 191,
+        "parameters": [
+          "self",
+          "items"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "reliable_upload",
+        "line": 199,
+        "parameters": [
+          "client",
+          "items",
+          "retries=3"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "run_end_to_end_demo",
+        "line": 213,
+        "parameters": [],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      },
+      {
+        "name": "record_heartbeat",
+        "line": 246,
+        "parameters": [
+          "can_id",
+          "payload"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:55:24",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3",
+          "total_file_changes": 8,
+          "function_author": "OpenCode"
+        }
+      }
+    ],
+    "cloud\\utils.py": [
+      {
+        "name": "pack_sensor_packet",
+        "line": 3,
+        "parameters": [
+          "version",
+          "sensor_id",
+          "temp_raw",
+          "pressure_raw",
+          "status_flags"
+        ],
+        "return_type": null,
+        "git_context": {
+          "file_owner": "OpenCode",
+          "contributors": [
+            "OpenCode"
+          ],
+          "last_modified": "2026-02-13T16:51:01",
+          "last_modified_by": "OpenCode",
+          "last_modified_reason": "Initial project scaffolding: firmware, cloud, docs, README",
+          "total_file_changes": 1,
+          "function_author": "OpenCode"
+        }
+      }
+    ]
+  },
+  "call_graph": {
+    "CANBus::init": [
+      "CANBus::init"
+    ],
+    "CANBus::send": [
+      "printf",
+      "CANBus::send"
+    ],
+    "CANBus::set_tx_id": [
+      "CANBus::set_tx_id"
+    ],
+    "CANBus::send_with_id": [
+      "CANBus::send_with_id",
+      "printf"
+    ],
+    "CANBus::receive": [
+      "g",
+      "CANBus::receive",
+      "clear",
+      "empty"
+    ],
+    "CANBus::extract_id": [
+      "size",
+      "CANBus::extract_id"
+    ],
+    "CANBus::inject_frame": [
+      "g",
+      "CANBus::inject_frame"
+    ],
+    "GPSModule::init": [
+      "GPSModule::init"
+    ],
+    "GPSModule::read_fix": [
+      "dlon",
+      "std::time",
+      "gen",
+      "dlat",
+      "std::rand",
+      "rd",
+      "GPSModule::read_fix"
+    ],
+    "GPSModule::nmea_from_fix": [
+      "std::setprecision",
+      "int",
+      "GPSModule::nmea_from_fix",
+      "str"
+    ],
+    "InterruptController::init": [
+      "InterruptController::init"
+    ],
+    "InterruptController::register_handler": [
+      "g",
+      "InterruptController::register_handler"
+    ],
+    "InterruptController::raise": [
+      "h",
+      "g",
+      "InterruptController::raise",
+      "count"
+    ],
+    "telemetry_thread": [
+      "this_thread::sleep_for",
+      "chrono::milliseconds",
+      "pack_latest",
+      "telemetry_thread",
+      "load",
+      "send"
+    ],
+    "print_hex": [
+      "printf",
+      "print_hex"
+    ],
+    "handle_config_frame": [
+      "handle_config_frame",
+      "size",
+      "empty",
+      "pack_latest",
+      "set_sampling_rate_hz",
+      "send"
+    ],
+    "run_self_test": [
+      "size",
+      "run_self_test",
+      "on_adc_complete",
+      "pack_latest",
+      "back",
+      "send"
+    ],
+    "main": [
+      "register_handler",
+      "size",
+      "set_tx_id",
+      "empty",
+      "std::ref",
+      "set_sampling_rate_hz",
+      "hb",
+      "main",
+      "chrono::milliseconds",
+      "load",
+      "diag",
+      "join",
+      "init",
+      "receive",
+      "send_with_id",
+      "joinable",
+      "50Hz",
+      "run_self_test",
+      "store",
+      "inject_frame",
+      "send",
+      "compute_health_score",
+      "this_thread::sleep_for",
+      "print_header",
+      "on_adc_complete",
+      "raise",
+      "pack_latest",
+      "stress_test",
+      "t",
+      "extract_id"
+    ],
+    "crc8": [
+      "status_flags",
+      "last_humidity_raw",
+      "crc8",
+      "last_temperature_raw",
+      "adc_resolution_bits",
+      "last_pressure_raw",
+      "std::time",
+      "std::srand",
+      "SensorManager::SensorManager",
+      "sampling_rate_hz"
+    ],
+    "SensorManager::init": [
+      "SensorManager::init"
+    ],
+    "SensorManager::on_adc_complete": [
+      "SensorManager::on_adc_complete",
+      "int",
+      "std::rand"
+    ],
+    "SensorManager::inject_fault_temperature": [
+      "SensorManager::inject_fault_temperature"
+    ],
+    "SensorManager::inject_fault_pressure": [
+      "SensorManager::inject_fault_pressure"
+    ],
+    "SensorManager::pack_latest": [
+      "size",
+      "crc8",
+      "checksum",
+      "2",
+      "9",
+      "data",
+      "default",
+      "SensorManager::pack_latest",
+      "std::rand",
+      "pkt"
+    ],
+    "SensorManager::set_sampling_rate_hz": [
+      "SensorManager::set_sampling_rate_hz"
+    ],
+    "Ingestor::__init__": [
+      "Queue",
+      "__init__"
+    ],
+    "Ingestor::start": [
+      "Thread",
+      "start"
+    ],
+    "Ingestor::stop": [
+      "stop"
+    ],
+    "Ingestor::push_raw": [
+      "put",
+      "push_raw"
+    ],
+    "Ingestor::_worker": [
+      "parse_sensor_packet",
+      "append",
+      "get",
+      "_worker"
+    ],
+    "Ingestor::parse_sensor_packet": [
+      "parse_sensor_packet",
+      "v3",
+      "v1",
+      "ValueError",
+      "v2"
+    ],
+    "Ingestor::crc8": [
+      "unpack",
+      "crc8",
+      "v2",
+      "support",
+      "v1",
+      "time",
+      "v3",
+      "bool",
+      "bytearray",
+      "ValueError",
+      "bytes",
+      "sum"
+    ],
+    "main_demo": [
+      "pack",
+      "push_raw",
+      "randint",
+      "start",
+      "stop",
+      "sleep",
+      "bytes",
+      "Ingestor",
+      "sum",
+      "main_demo",
+      "uniform"
+    ],
+    "RemoteStorageClient::__init__": [
+      "__init__"
+    ],
+    "RemoteStorageClient::upload_bulk": [
+      "upload_bulk",
+      "random",
+      "RuntimeError"
+    ],
+    "reliable_upload": [
+      "upload_bulk",
+      "reliable_upload",
+      "sleep",
+      "failed"
+    ],
+    "run_end_to_end_demo": [
+      "RemoteStorageClient",
+      "pack",
+      "reliable_upload",
+      "push_raw",
+      "run_end_to_end_demo",
+      "randint",
+      "start",
+      "stop",
+      "sleep",
+      "bytes",
+      "Ingestor",
+      "sum",
+      "append",
+      "uniform"
+    ],
+    "record_heartbeat": [
+      "run_end_to_end_demo",
+      "main_demo",
+      "record_heartbeat",
+      "frame"
+    ],
+    "pack_sensor_packet": [
+      "pack",
+      "bytes",
+      "sum",
+      "pack_sensor_packet"
+    ]
+  },
+  "hsi_traceability": {
+    "SENSOR_PKT.version": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 64,
+        "value": "3"
+      }
+    ],
+    "SENSOR_PKT.sensor_id": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 65,
+        "value": "0x01"
+      }
+    ],
+    "SENSOR_PKT.temperature_raw_high": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 66,
+        "value": "static_cast<uint8_t>((last_temperature_raw >> 8) & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.temperature_raw_low": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 67,
+        "value": "static_cast<uint8_t>(last_temperature_raw & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.pressure_raw_high": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 68,
+        "value": "static_cast<uint8_t>((last_pressure_raw >> 8) & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.pressure_raw_low": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 69,
+        "value": "static_cast<uint8_t>(last_pressure_raw & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.humidity_raw_high": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 70,
+        "value": "static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.humidity_raw_low": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 71,
+        "value": "static_cast<uint8_t>(last_humidity_raw & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.fuel_raw_high": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 72,
+        "value": "static_cast<uint8_t>((last_fuel_raw >> 8) & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.fuel_raw_low": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 73,
+        "value": "static_cast<uint8_t>(last_fuel_raw & 0xFF)"
+      }
+    ],
+    "SENSOR_PKT.status_flags": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 77,
+        "value": "status_flags | 0x80"
+      },
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 78,
+        "value": "status_flags"
+      }
+    ],
+    "SENSOR_PKT.checksum": [
+      {
+        "function": "SensorManager::pack_latest",
+        "file": "firmware\\sensors.cpp",
+        "line": 89,
+        "value": "c"
+      }
+    ]
+  },
+  "classes": [
+    {
+      "name": "CANBus",
+      "file": "firmware\\canbus.h",
+      "line_start": 6,
+      "line_end": 6,
+      "language": "cpp",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "GPSFix",
+      "file": "firmware\\gps.h",
+      "line_start": 5,
+      "line_end": 5,
+      "language": "cpp",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "GPSModule",
+      "file": "firmware\\gps.h",
+      "line_start": 13,
+      "line_end": 13,
+      "language": "cpp",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "InterruptController",
+      "file": "firmware\\interrupts.h",
+      "line_start": 8,
+      "line_end": 8,
+      "language": "cpp",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "SensorManager",
+      "file": "firmware\\sensors.h",
+      "line_start": 5,
+      "line_end": 5,
+      "language": "cpp",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "Ingestor",
+      "file": "cloud\\ingest.py",
+      "line_start": 12,
+      "line_end": 12,
+      "language": "python",
+      "members": [],
+      "methods": []
+    },
+    {
+      "name": "RemoteStorageClient",
+      "file": "cloud\\ingest.py",
+      "line_start": 186,
+      "line_end": 186,
+      "language": "python",
+      "members": [],
+      "methods": []
+    }
+  ],
+  "relationships": [
+    {
+      "source": "CANBus::init",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 6,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::send",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 12,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::set_tx_id",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 23,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::send_with_id",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 29,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 38,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::extract_id",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 47,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "CANBus::inject_frame",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\canbus.cpp",
+      "metadata": {
+        "line": 54,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "GPSModule::init",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\gps.cpp",
+      "metadata": {
+        "line": 10,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\gps.cpp",
+      "metadata": {
+        "line": 15,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\gps.cpp",
+      "metadata": {
+        "line": 33,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "InterruptController::init",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 4,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 9,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 17,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\main.cpp",
+      "metadata": {
+        "line": 20,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "print_hex",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\main.cpp",
+      "metadata": {
+        "line": 31,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\main.cpp",
+      "metadata": {
+        "line": 38,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\main.cpp",
+      "metadata": {
+        "line": 64,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\main.cpp",
+      "metadata": {
+        "line": 87,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 7,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 27,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 36,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 48,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 54,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 60,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "DEFINED_IN",
+      "target": "firmware\\sensors.cpp",
+      "metadata": {
+        "line": 97,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "Ingestor::__init__",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 13,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::start",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 18,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::stop",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 23,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::push_raw",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 26,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 30,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 43,
+        "language": "python"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 49,
+        "language": "python"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 170,
+        "language": "python"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::__init__",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 188,
+        "language": "python"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::upload_bulk",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 191,
+        "language": "python"
+      }
+    },
+    {
+      "source": "reliable_upload",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 199,
+        "language": "python"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 213,
+        "language": "python"
+      }
+    },
+    {
+      "source": "record_heartbeat",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\ingest.py",
+      "metadata": {
+        "line": 246,
+        "language": "python"
+      }
+    },
+    {
+      "source": "pack_sensor_packet",
+      "relation": "DEFINED_IN",
+      "target": "cloud\\utils.py",
+      "metadata": {
+        "line": 3,
+        "language": "python"
+      }
+    },
+    {
+      "source": "CANBus::init",
+      "relation": "CALLS",
+      "target": "CANBus::init",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 6,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send",
+      "relation": "CALLS",
+      "target": "CANBus::send",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 12,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send",
+      "relation": "CALLS",
+      "target": "printf",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 18,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::set_tx_id",
+      "relation": "CALLS",
+      "target": "CANBus::set_tx_id",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 23,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send_with_id",
+      "relation": "CALLS",
+      "target": "CANBus::send_with_id",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 29,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send_with_id",
+      "relation": "CALLS",
+      "target": "printf",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 33,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "CALLS",
+      "target": "CANBus::receive",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 38,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 40,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "CALLS",
+      "target": "empty",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 41,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "CALLS",
+      "target": "clear",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 43,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::extract_id",
+      "relation": "CALLS",
+      "target": "CANBus::extract_id",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 47,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::extract_id",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 49,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::extract_id",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 50,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::inject_frame",
+      "relation": "CALLS",
+      "target": "CANBus::inject_frame",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 54,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::inject_frame",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "line": 56,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::init",
+      "relation": "CALLS",
+      "target": "GPSModule::init",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 10,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "GPSModule::read_fix",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 15,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "gen",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 19,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "rd",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 19,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "dlat",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 20,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "dlon",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 21,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "dlat",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 24,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "dlon",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 25,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 26,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "CALLS",
+      "target": "std::time",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 28,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "CALLS",
+      "target": "GPSModule::nmea_from_fix",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 33,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "CALLS",
+      "target": "std::setprecision",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 36,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "CALLS",
+      "target": "int",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 37,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "CALLS",
+      "target": "str",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "line": 38,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::init",
+      "relation": "CALLS",
+      "target": "InterruptController::init",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 4,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "CALLS",
+      "target": "InterruptController::register_handler",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 9,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 11,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "InterruptController::raise",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 17,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 21,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "count",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "h",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "line": 26,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "telemetry_thread",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 20,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "load",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 23,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "pack_latest",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 24,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "send",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 25,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "this_thread::sleep_for",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 26,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "telemetry_thread",
+      "relation": "CALLS",
+      "target": "chrono::milliseconds",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 26,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "print_hex",
+      "relation": "CALLS",
+      "target": "print_hex",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 31,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "print_hex",
+      "relation": "CALLS",
+      "target": "printf",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 33,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "print_hex",
+      "relation": "CALLS",
+      "target": "printf",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 34,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "handle_config_frame",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 38,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "empty",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 40,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 45,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "set_sampling_rate_hz",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 47,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "pack_latest",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 54,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "handle_config_frame",
+      "relation": "CALLS",
+      "target": "send",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 55,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "run_self_test",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 64,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "on_adc_complete",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 68,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "pack_latest",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 69,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "send",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 70,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 72,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 78,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_self_test",
+      "relation": "CALLS",
+      "target": "back",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 79,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "main",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 87,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "init",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 96,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "init",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 97,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "set_tx_id",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 99,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "init",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 100,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "register_handler",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 103,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "on_adc_complete",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 104,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "register_handler",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 107,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "receive",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 108,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "empty",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 109,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "extract_id",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 111,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 112,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "t",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 117,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "std::ref",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 117,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "std::ref",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 117,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "diag",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 121,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "load",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 123,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "set_sampling_rate_hz",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 130,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "this_thread::sleep_for",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 133,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "store",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 136,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "hb",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 140,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "load",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 141,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "send_with_id",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 143,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "this_thread::sleep_for",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 144,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "chrono::milliseconds",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 144,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "load",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 149,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "this_thread::sleep_for",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 151,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "raise",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 152,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "50Hz",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 158,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "inject_frame",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 159,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "inject_frame",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 161,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "raise",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 163,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "run_self_test",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 166,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "store",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 169,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "join",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 170,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "joinable",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 171,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "join",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 171,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "joinable",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 172,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "join",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 172,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "print_header",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 180,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "stress_test",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 184,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "on_adc_complete",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 187,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "pack_latest",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 188,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "send",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 189,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "this_thread::sleep_for",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 190,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main",
+      "relation": "CALLS",
+      "target": "compute_health_score",
+      "metadata": {
+        "file": "firmware\\main.cpp",
+        "line": 195,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 7,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "SensorManager::SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 21,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "sampling_rate_hz",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "adc_resolution_bits",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_temperature_raw",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_pressure_raw",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_humidity_raw",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "status_flags",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 22,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "std::srand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 24,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "std::time",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 24,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "CALLS",
+      "target": "SensorManager::init",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 27,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "SensorManager::on_adc_complete",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 36,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 39,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 42,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 43,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "int",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 44,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 44,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "CALLS",
+      "target": "SensorManager::inject_fault_temperature",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 48,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "CALLS",
+      "target": "SensorManager::inject_fault_pressure",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 54,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "SensorManager::pack_latest",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 60,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "default",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 62,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "pkt",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 63,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "2",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 64,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 76,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "9",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 84,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 85,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "checksum",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 87,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 88,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "data",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 88,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "CALLS",
+      "target": "SensorManager::set_sampling_rate_hz",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 97,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::__init__",
+      "relation": "CALLS",
+      "target": "__init__",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 13,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::__init__",
+      "relation": "CALLS",
+      "target": "Queue",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 14,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::start",
+      "relation": "CALLS",
+      "target": "start",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 18,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::start",
+      "relation": "CALLS",
+      "target": "Thread",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 20,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::start",
+      "relation": "CALLS",
+      "target": "start",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 21,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::stop",
+      "relation": "CALLS",
+      "target": "stop",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 23,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::push_raw",
+      "relation": "CALLS",
+      "target": "push_raw",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 26,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::push_raw",
+      "relation": "CALLS",
+      "target": "put",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 28,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "CALLS",
+      "target": "_worker",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 30,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "CALLS",
+      "target": "get",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 33,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "CALLS",
+      "target": "parse_sensor_packet",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 37,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "CALLS",
+      "target": "append",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 38,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "CALLS",
+      "target": "parse_sensor_packet",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 43,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "CALLS",
+      "target": "v1",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 44,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "CALLS",
+      "target": "v2",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 44,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "CALLS",
+      "target": "v3",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 44,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 46,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 49,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "v1",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 61,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "unpack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 63,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 64,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 66,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "time",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 73,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "v3",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 79,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 82,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 82,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 84,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bool",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 86,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytearray",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 87,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "unpack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 92,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 92,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "time",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 101,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "v2",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 109,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 111,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 113,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 113,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 115,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bool",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 117,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytearray",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 118,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "unpack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 123,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 123,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "time",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 131,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "support",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 138,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 142,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 142,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "ValueError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 144,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bool",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 146,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytearray",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 147,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "unpack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 153,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 153,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "CALLS",
+      "target": "time",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 162,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "main_demo",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 170,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 171,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "start",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 172,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "uniform",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 175,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "randint",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 176,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "pack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 177,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 178,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 179,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "push_raw",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 180,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "sleep",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 181,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "sleep",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 182,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "main_demo",
+      "relation": "CALLS",
+      "target": "stop",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 183,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::__init__",
+      "relation": "CALLS",
+      "target": "__init__",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 188,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::upload_bulk",
+      "relation": "CALLS",
+      "target": "upload_bulk",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 191,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::upload_bulk",
+      "relation": "CALLS",
+      "target": "random",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 193,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::upload_bulk",
+      "relation": "CALLS",
+      "target": "RuntimeError",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 194,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "reliable_upload",
+      "relation": "CALLS",
+      "target": "reliable_upload",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 199,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "reliable_upload",
+      "relation": "CALLS",
+      "target": "upload_bulk",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 203,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "reliable_upload",
+      "relation": "CALLS",
+      "target": "failed",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 208,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "reliable_upload",
+      "relation": "CALLS",
+      "target": "sleep",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 209,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "run_end_to_end_demo",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 213,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 214,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "start",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 215,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "RemoteStorageClient",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 216,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "uniform",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 222,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "randint",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 223,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "uniform",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 224,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "pack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 225,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 226,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 227,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "uniform",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 229,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "randint",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 230,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "pack",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 231,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 232,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 233,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "push_raw",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 234,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "append",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 235,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "sleep",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 238,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "reliable_upload",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 241,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "run_end_to_end_demo",
+      "relation": "CALLS",
+      "target": "stop",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 243,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "record_heartbeat",
+      "relation": "CALLS",
+      "target": "record_heartbeat",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 246,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "record_heartbeat",
+      "relation": "CALLS",
+      "target": "frame",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 247,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "record_heartbeat",
+      "relation": "CALLS",
+      "target": "run_end_to_end_demo",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 261,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "record_heartbeat",
+      "relation": "CALLS",
+      "target": "main_demo",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "line": 264,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "pack_sensor_packet",
+      "relation": "CALLS",
+      "target": "pack_sensor_packet",
+      "metadata": {
+        "file": "cloud\\utils.py",
+        "line": 3,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "pack_sensor_packet",
+      "relation": "CALLS",
+      "target": "pack",
+      "metadata": {
+        "file": "cloud\\utils.py",
+        "line": 4,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "pack_sensor_packet",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "cloud\\utils.py",
+        "line": 5,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "pack_sensor_packet",
+      "relation": "CALLS",
+      "target": "bytes",
+      "metadata": {
+        "file": "cloud\\utils.py",
+        "line": 6,
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.version",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 64,
+        "value": "3",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.sensor_id",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 65,
+        "value": "0x01",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.temperature_raw_high",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 66,
+        "value": "static_cast<uint8_t>((last_temperature_raw >> 8) & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.temperature_raw_low",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 67,
+        "value": "static_cast<uint8_t>(last_temperature_raw & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.pressure_raw_high",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 68,
+        "value": "static_cast<uint8_t>((last_pressure_raw >> 8) & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.pressure_raw_low",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 69,
+        "value": "static_cast<uint8_t>(last_pressure_raw & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.humidity_raw_high",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 70,
+        "value": "static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.humidity_raw_low",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 71,
+        "value": "static_cast<uint8_t>(last_humidity_raw & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.fuel_raw_high",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 72,
+        "value": "static_cast<uint8_t>((last_fuel_raw >> 8) & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.fuel_raw_low",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 73,
+        "value": "static_cast<uint8_t>(last_fuel_raw & 0xFF)",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.status_flags",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 77,
+        "value": "status_flags | 0x80",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.status_flags",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 78,
+        "value": "status_flags",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "IMPLEMENTS_HSI",
+      "target": "SENSOR_PKT.checksum",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "line": 89,
+        "value": "c",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::init",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::set_tx_id",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::send_with_id",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::receive",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::extract_id",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "CANBus::inject_frame",
+      "relation": "BELONGS_TO",
+      "target": "CANBus",
+      "metadata": {
+        "file": "firmware\\canbus.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::init",
+      "relation": "BELONGS_TO",
+      "target": "GPSModule",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::read_fix",
+      "relation": "BELONGS_TO",
+      "target": "GPSModule",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "GPSModule::nmea_from_fix",
+      "relation": "BELONGS_TO",
+      "target": "GPSModule",
+      "metadata": {
+        "file": "firmware\\gps.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::init",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "firmware\\interrupts.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "firmware\\sensors.cpp",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::__init__",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::start",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::stop",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::push_raw",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::_worker",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::parse_sensor_packet",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "Ingestor::crc8",
+      "relation": "BELONGS_TO",
+      "target": "Ingestor",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::__init__",
+      "relation": "BELONGS_TO",
+      "target": "RemoteStorageClient",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    },
+    {
+      "source": "RemoteStorageClient::upload_bulk",
+      "relation": "BELONGS_TO",
+      "target": "RemoteStorageClient",
+      "metadata": {
+        "file": "cloud\\ingest.py",
+        "file_owner": "OpenCode"
+      }
+    }
+  ],
+  "git_insights": {
+    "change_hotspots": [
+      {
+        "file": "docs/hsi.md",
+        "changes": 12
+      },
+      {
+        "file": "firmware/main.cpp",
+        "changes": 8
+      },
+      {
+        "file": "firmware/sensors.cpp",
+        "changes": 8
+      },
+      {
+        "file": "cloud/ingest.py",
+        "changes": 8
+      },
+      {
+        "file": "README.md",
+        "changes": 4
+      },
+      {
+        "file": "firmware/sensors.h",
+        "changes": 4
+      },
+      {
+        "file": "Data/README.md",
+        "changes": 3
+      },
+      {
+        "file": "Data/cloud/ingest.py",
+        "changes": 3
+      },
+      {
+        "file": "Data/cloud/utils.py",
+        "changes": 3
+      },
+      {
+        "file": "Data/docs/hsi.md",
+        "changes": 3
+      }
+    ],
+    "recent_commits": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder",
+        "files_changed": 19
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo",
+        "files_changed": 18
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)",
+        "files_changed": 15
+      },
+      {
+        "sha": "77e58e7",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:35",
+        "message": "Add project README with overview and getting started",
+        "files_changed": 1
+      },
+      {
+        "sha": "743413c",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:33",
+        "message": "Add GitPython parser for commit, diff, and blame extraction",
+        "files_changed": 1
+      },
+      {
+        "sha": "50520b2",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:31",
+        "message": "Add requirements.txt with GitPython dependency",
+        "files_changed": 1
+      },
+      {
+        "sha": "da424f5",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:44:52",
+        "message": "Add .gitignore to exclude .DS_Store",
+        "files_changed": 0
+      },
+      {
+        "sha": "b7735b0",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:56:17",
+        "message": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+        "files_changed": 1
+      },
+      {
+        "sha": "ddb3aae",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:50",
+        "message": "Docs/readme update: HSI version history; add basic test script",
+        "files_changed": 2
+      },
+      {
+        "sha": "1f6db7c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+        "files_changed": 3
+      }
+    ],
+    "file_ownership": {
+      "Data/README.md": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/cloud/ingest.py": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/cloud/utils.py": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/docs/hsi.md": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/canbus.cpp": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/canbus.h": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/gps.cpp": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/gps.h": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/interrupts.cpp": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/interrupts.h": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/main.cpp": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/sensors.cpp": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/firmware/sensors.h": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/scripts/run_demo.sh": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "Data/scripts/run_tests.sh": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 2,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "tools/README.md": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1
+        }
+      },
+      "tools/analyze.py": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1
+        }
+      },
+      "tools/requirements.txt": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1
+        }
+      },
+      "tools/setup_parsers.py": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1
+        }
+      },
+      "README.md": {
+        "primary_author": "OpenCode",
+        "commit_count": 2,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1,
+          "Roshan Muddaluru": 1,
+          "OpenCode": 2
+        }
+      },
+      "parsers/git_parser.py": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "requirements.txt": {
+        "primary_author": "harshithaattantiwebspace",
+        "commit_count": 1,
+        "all_contributors": {
+          "harshithaattantiwebspace": 1,
+          "Roshan Muddaluru": 1
+        }
+      },
+      "firmware/main.cpp": {
+        "primary_author": "OpenCode",
+        "commit_count": 8,
+        "all_contributors": {
+          "OpenCode": 8
+        }
+      },
+      "scripts/run_tests.sh": {
+        "primary_author": "OpenCode",
+        "commit_count": 1,
+        "all_contributors": {
+          "OpenCode": 1
+        }
+      },
+      "docs/hsi.md": {
+        "primary_author": "OpenCode",
+        "commit_count": 12,
+        "all_contributors": {
+          "OpenCode": 12
+        }
+      },
+      "firmware/sensors.cpp": {
+        "primary_author": "OpenCode",
+        "commit_count": 8,
+        "all_contributors": {
+          "OpenCode": 8
+        }
+      },
+      "firmware/sensors.h": {
+        "primary_author": "OpenCode",
+        "commit_count": 4,
+        "all_contributors": {
+          "OpenCode": 4
+        }
+      },
+      "cloud/ingest.py": {
+        "primary_author": "OpenCode",
+        "commit_count": 8,
+        "all_contributors": {
+          "OpenCode": 8
+        }
+      },
+      "firmware/gps.cpp": {
+        "primary_author": "OpenCode",
+        "commit_count": 1,
+        "all_contributors": {
+          "OpenCode": 1
+        }
+      },
+      "firmware/gps.h": {
+        "primary_author": "OpenCode",
+        "commit_count": 1,
+        "all_contributors": {
+          "OpenCode": 1
+        }
+      },
+      "firmware/canbus.cpp": {
+        "primary_author": "OpenCode",
+        "commit_count": 3,
+        "all_contributors": {
+          "OpenCode": 3
+        }
+      },
+      "firmware/canbus.h": {
+        "primary_author": "OpenCode",
+        "commit_count": 3,
+        "all_contributors": {
+          "OpenCode": 3
+        }
+      },
+      "firmware/interrupts.cpp": {
+        "primary_author": "OpenCode",
+        "commit_count": 2,
+        "all_contributors": {
+          "OpenCode": 2
+        }
+      },
+      "firmware/interrupts.h": {
+        "primary_author": "OpenCode",
+        "commit_count": 2,
+        "all_contributors": {
+          "OpenCode": 2
+        }
+      },
+      "cloud/utils.py": {
+        "primary_author": "OpenCode",
+        "commit_count": 1,
+        "all_contributors": {
+          "OpenCode": 1
+        }
+      },
+      "scripts/run_demo.sh": {
+        "primary_author": "OpenCode",
+        "commit_count": 1,
+        "all_contributors": {
+          "OpenCode": 1
+        }
+      }
+    },
+    "file_last_modified": {
+      "Data/README.md": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/cloud/ingest.py": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/cloud/utils.py": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/docs/hsi.md": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/canbus.cpp": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/canbus.h": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/gps.cpp": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/gps.h": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/interrupts.cpp": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/interrupts.h": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/main.cpp": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/sensors.cpp": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/firmware/sensors.h": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/scripts/run_demo.sh": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "Data/scripts/run_tests.sh": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "tools/README.md": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "tools/analyze.py": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "tools/requirements.txt": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "tools/setup_parsers.py": {
+        "timestamp": 1771206141,
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "author": "harshithaattantiwebspace",
+        "message": "Remove duplicate Data folder"
+      },
+      "README.md": {
+        "timestamp": 1771205449,
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "author": "harshithaattantiwebspace",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      "parsers/git_parser.py": {
+        "timestamp": 1771205449,
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "author": "harshithaattantiwebspace",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      "requirements.txt": {
+        "timestamp": 1771205449,
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "author": "harshithaattantiwebspace",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      "firmware/main.cpp": {
+        "timestamp": 1771026977,
+        "timestamp_iso": "2026-02-13T16:56:17",
+        "author": "OpenCode",
+        "message": "Expand main.cpp utilities and add eof marker to reach 200 lines"
+      },
+      "scripts/run_tests.sh": {
+        "timestamp": 1771026950,
+        "timestamp_iso": "2026-02-13T16:55:50",
+        "author": "OpenCode",
+        "message": "Docs/readme update: HSI version history; add basic test script"
+      },
+      "docs/hsi.md": {
+        "timestamp": 1771026940,
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "author": "OpenCode",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      "firmware/sensors.cpp": {
+        "timestamp": 1771026940,
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "author": "OpenCode",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      "firmware/sensors.h": {
+        "timestamp": 1771026940,
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "author": "OpenCode",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      "cloud/ingest.py": {
+        "timestamp": 1771026924,
+        "timestamp_iso": "2026-02-13T16:55:24",
+        "author": "OpenCode",
+        "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+      },
+      "firmware/gps.cpp": {
+        "timestamp": 1771026856,
+        "timestamp_iso": "2026-02-13T16:54:16",
+        "author": "OpenCode",
+        "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+      },
+      "firmware/gps.h": {
+        "timestamp": 1771026856,
+        "timestamp_iso": "2026-02-13T16:54:16",
+        "author": "OpenCode",
+        "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+      },
+      "firmware/canbus.cpp": {
+        "timestamp": 1771026792,
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "author": "OpenCode",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler"
+      },
+      "firmware/canbus.h": {
+        "timestamp": 1771026792,
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "author": "OpenCode",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler"
+      },
+      "firmware/interrupts.cpp": {
+        "timestamp": 1771026754,
+        "timestamp_iso": "2026-02-13T16:52:34",
+        "author": "OpenCode",
+        "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations"
+      },
+      "firmware/interrupts.h": {
+        "timestamp": 1771026754,
+        "timestamp_iso": "2026-02-13T16:52:34",
+        "author": "OpenCode",
+        "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations"
+      },
+      "cloud/utils.py": {
+        "timestamp": 1771026661,
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "author": "OpenCode",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      },
+      "scripts/run_demo.sh": {
+        "timestamp": 1771026661,
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "author": "OpenCode",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    }
+  }
+}

@@ -433,11 +433,11 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
     # Get blame for key source files
     blame_by_file = {}
     source_files = [
-        "firmware/sensors.cpp",
-        "firmware/canbus.cpp",
-        "firmware/gps.cpp",
-        "cloud/ingest.py",
-        "cloud/utils.py"
+        "Data/firmware/sensors.cpp",
+        "Data/firmware/canbus.cpp",
+        "Data/firmware/gps.cpp",
+        "Data/cloud/ingest.py",
+        "Data/cloud/utils.py"
     ]
     for filepath in source_files:
         try:
@@ -547,7 +547,7 @@ def main():
             print(f"  [{fc.change_type}] {fc.path} (+{fc.insertions} -{fc.deletions})")
 
     print("\n" + "-" * 60)
-    for test_file in ["cloud/ingest.py", "firmware/sensors.cpp"]:
+    for test_file in ["Data/cloud/ingest.py", "Data/firmware/sensors.cpp"]:
         if (repo_path / test_file).exists():
             blame = parser.get_blame(test_file)
             if blame:
@@ -562,7 +562,7 @@ def main():
     print("Generating Git Knowledge Base...")
     kb = generate_git_knowledge_base(parser, max_commits=100)
     
-    output_file = Path(__file__).parent / "git_knowledge_base.json"
+    output_file = Path(__file__).parent / "git_history_knowledge_base.json"
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(kb, f, indent=2, default=str)
     

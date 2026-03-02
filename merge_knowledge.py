@@ -206,24 +206,23 @@ def main():
     
     # Script is now at root level
     root_dir = Path(__file__).parent
-    tools_dir = root_dir / "tools"
     parsers_dir = root_dir / "parsers"
     
     # Load knowledge bases
     print("Loading tree-sitter knowledge base...")
-    treesitter_kb = load_json(tools_dir / "knowledge_base.json")
+    treesitter_kb = load_json(parsers_dir / "ast_knowledge_base.json")
     
     print("Loading git knowledge base...")
-    git_kb = load_json(parsers_dir / "git_knowledge_base.json")
+    git_kb = load_json(parsers_dir / "git_history_knowledge_base.json")
     
     if not treesitter_kb:
-        print("ERROR: Tree-sitter knowledge base not found.")
-        print("  Run: python tools/analyze.py")
+        print("ERROR: AST knowledge base not found.")
+        print("  Run: python parsers/tree_sitter.py")
         return
     
     if not git_kb:
-        print("ERROR: Git knowledge base not found.")
-        print("  Run: python parsers/git_parser.py")
+        print("ERROR: Git history knowledge base not found.")
+        print("  Run: python parsers/git_python.py")
         return
     
     # Merge

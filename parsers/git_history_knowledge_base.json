@@ -1,0 +1,525 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-22T15:37:36.886490",
+    "repo": "/Users/roshanmuddaluru/Documents/Honda/Honda-99P---CU-Boulder",
+    "analyzer": "GitPython Git Metadata Extractor v1.0",
+    "branch": "main",
+    "total_commits_analyzed": 5
+  },
+  "summary": {
+    "total_commits": 5,
+    "total_authors": 1,
+    "files_with_history": 18,
+    "files_with_blame": 5
+  },
+  "file_ownership": {
+    "Data/README.md": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/cloud/ingest.py": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/cloud/utils.py": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/docs/hsi.md": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/canbus.cpp": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/canbus.h": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/gps.cpp": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/gps.h": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/interrupts.cpp": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/interrupts.h": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/main.cpp": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/sensors.cpp": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/sensors.h": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/scripts/run_demo.sh": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/scripts/run_tests.sh": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "README.md": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "parsers/git_parser.py": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    },
+    "requirements.txt": {
+      "primary_author": "Roshan Muddaluru",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan Muddaluru": 1
+      }
+    }
+  },
+  "file_last_modified": {
+    "Data/README.md": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/cloud/ingest.py": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/cloud/utils.py": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/docs/hsi.md": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/canbus.cpp": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/canbus.h": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/gps.cpp": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/gps.h": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/interrupts.cpp": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/interrupts.h": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/main.cpp": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/sensors.cpp": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/firmware/sensors.h": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/scripts/run_demo.sh": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "Data/scripts/run_tests.sh": {
+      "timestamp": 1771202994,
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "author": "Roshan Muddaluru",
+      "message": "Add Data dataset (automotive firmware codebase)"
+    },
+    "README.md": {
+      "timestamp": 1771202795,
+      "timestamp_iso": "2026-02-15T17:46:35",
+      "author": "Roshan Muddaluru",
+      "message": "Add project README with overview and getting started"
+    },
+    "parsers/git_parser.py": {
+      "timestamp": 1771202793,
+      "timestamp_iso": "2026-02-15T17:46:33",
+      "author": "Roshan Muddaluru",
+      "message": "Add GitPython parser for commit, diff, and blame extraction"
+    },
+    "requirements.txt": {
+      "timestamp": 1771202791,
+      "timestamp_iso": "2026-02-15T17:46:31",
+      "author": "Roshan Muddaluru",
+      "message": "Add requirements.txt with GitPython dependency"
+    }
+  },
+  "blame_summary": {
+    "Data/firmware/sensors.cpp": {
+      "total_lines": 100,
+      "author_ranges": [
+        {
+          "author": "Roshan Muddaluru",
+          "lines": "1-100"
+        }
+      ]
+    },
+    "Data/firmware/canbus.cpp": {
+      "total_lines": 58,
+      "author_ranges": [
+        {
+          "author": "Roshan Muddaluru",
+          "lines": "1-58"
+        }
+      ]
+    },
+    "Data/firmware/gps.cpp": {
+      "total_lines": 39,
+      "author_ranges": [
+        {
+          "author": "Roshan Muddaluru",
+          "lines": "1-39"
+        }
+      ]
+    },
+    "Data/cloud/ingest.py": {
+      "total_lines": 264,
+      "author_ranges": [
+        {
+          "author": "Roshan Muddaluru",
+          "lines": "1-264"
+        }
+      ]
+    },
+    "Data/cloud/utils.py": {
+      "total_lines": 6,
+      "author_ranges": [
+        {
+          "author": "Roshan Muddaluru",
+          "lines": "1-6"
+        }
+      ]
+    }
+  },
+  "recent_commits": [
+    {
+      "sha": "aba3ae8",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "message": "Add Data dataset (automotive firmware codebase)",
+      "files_changed": 15
+    },
+    {
+      "sha": "77e58e7",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:35",
+      "message": "Add project README with overview and getting started",
+      "files_changed": 1
+    },
+    {
+      "sha": "743413c",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:33",
+      "message": "Add GitPython parser for commit, diff, and blame extraction",
+      "files_changed": 1
+    },
+    {
+      "sha": "50520b2",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:31",
+      "message": "Add requirements.txt with GitPython dependency",
+      "files_changed": 1
+    },
+    {
+      "sha": "da424f5",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:44:52",
+      "message": "Add .gitignore to exclude .DS_Store",
+      "files_changed": 0
+    }
+  ],
+  "change_hotspots": [
+    {
+      "file": "Data/README.md",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/ingest.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/utils.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/docs/hsi.md",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/canbus.cpp",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/canbus.h",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/gps.cpp",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/gps.h",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/interrupts.cpp",
+      "changes": 1
+    },
+    {
+      "file": "Data/firmware/interrupts.h",
+      "changes": 1
+    }
+  ],
+  "file_commit_history": {
+    "Data/README.md": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/cloud/ingest.py": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/cloud/utils.py": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/docs/hsi.md": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/canbus.cpp": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/canbus.h": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/gps.cpp": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/gps.h": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/interrupts.cpp": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/interrupts.h": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/main.cpp": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/sensors.cpp": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/sensors.h": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/scripts/run_demo.sh": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/scripts/run_tests.sh": [
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "README.md": [
+      {
+        "sha": "77e58e7",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:35",
+        "message": "Add project README with overview and getting started"
+      }
+    ],
+    "parsers/git_parser.py": [
+      {
+        "sha": "743413c",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:33",
+        "message": "Add GitPython parser for commit, diff, and blame extraction"
+      }
+    ],
+    "requirements.txt": [
+      {
+        "sha": "50520b2",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:31",
+        "message": "Add requirements.txt with GitPython dependency"
+      }
+    ]
+  }
+}

@@ -64,3 +64,39 @@ CREATE FULLTEXT INDEX function_name_fulltext IF NOT EXISTS
 
 CREATE FULLTEXT INDEX commit_message_fulltext IF NOT EXISTS
   FOR (cm:Commit) ON EACH [cm.message];
+
+// ---------------------------------------------------------------------------
+// 4. SCENARIO-BASED NODES (from change_risk_scenarios.json)
+// ---------------------------------------------------------------------------
+
+CREATE CONSTRAINT scenario_id_unique IF NOT EXISTS
+  FOR (s:Scenario) REQUIRE s.id IS UNIQUE;
+
+CREATE CONSTRAINT scenario_commit_tag_unique IF NOT EXISTS
+  FOR (sc:ScenarioCommit) REQUIRE sc.tag IS UNIQUE;
+
+// Index for labeled test examples
+CREATE INDEX test_label_test_idx IF NOT EXISTS
+  FOR (tl:TestLabel) ON (tl.test);
+
+CREATE INDEX test_label_scenario_idx IF NOT EXISTS
+  FOR (tl:TestLabel) ON (tl.scenario_id);
+
+// ---------------------------------------------------------------------------
+// 5. CONSTANT NODES (changed parameters that trigger test prioritization)
+// ---------------------------------------------------------------------------
+
+CREATE CONSTRAINT constant_name_unique IF NOT EXISTS
+  FOR (k:Constant) REQUIRE k.name IS UNIQUE;
+
+// ---------------------------------------------------------------------------
+// 6. PRIORITY SCORE INDEXES (for ranked test queries)
+// ---------------------------------------------------------------------------
+
+// Fast lookup of functions by priority score (for ranking)
+CREATE INDEX function_priority_score_idx IF NOT EXISTS
+  FOR (fn:Function) ON (fn.priority_score);
+
+// Fast lookup of functions by risk tier (for Bloom color-coding)
+CREATE INDEX function_risk_tier_idx IF NOT EXISTS
+  FOR (fn:Function) ON (fn.risk_tier);

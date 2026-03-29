@@ -478,15 +478,15 @@ def print_human_readable_report(analyzer: CodeAnalyzer):
     for caller, callees in sorted(call_graph.items()):
         print(f"\n  {caller}")
         for callee in sorted(callees):
-            print(f"    └── calls → {callee}")
+            print(f"    +-- calls -> {callee}")
     
     # -------------------------------------------------------------------------
     print("\n" + "-" * 70)
-    print("SECTION 3: HSI TRACEABILITY (Code ↔ Specification)")
+    print("SECTION 3: HSI TRACEABILITY (Code <-> Specification)")
     print("-" * 70)
     
     print("\n  SENSOR_PKT v3 (12 bytes) Implementation:")
-    print("  " + "─" * 50)
+    print("  " + "-" * 50)
     
     hsi_fields = {
         "0": ("version", "byte 0"),
@@ -509,7 +509,7 @@ def print_human_readable_report(analyzer: CodeAnalyzer):
             print(f"    HSI: {byte_pos:8s} = {field_name:25s}")
             print(f"    Code: pkt[{ba.index}] = {ba.value:20s}  @ {ba.file}:{ba.line}")
             print(f"    Function: {ba.function}")
-            print("    Status: ✓ IMPLEMENTED")
+            print("    Status: IMPLEMENTED")
             print()
     
     # -------------------------------------------------------------------------
@@ -528,7 +528,7 @@ def print_human_readable_report(analyzer: CodeAnalyzer):
     for cls_name, methods in sorted(class_methods.items()):
         print(f"\n  class {cls_name}:")
         for method in methods:
-            print(f"    ├── {method}()")
+            print(f"    |-- {method}()")
     
     # -------------------------------------------------------------------------
     print("\n" + "-" * 70)

@@ -378,27 +378,250 @@ def blame_line_to_dict(bl: BlameLine) -> dict:
     }
 
 
+def generate_data_knowledge_base(repo_root: Path) -> dict:
+    """
+    Generate the git-style knowledge base purely from the Data/ folder.
+
+    Source of truth:
+      - Authors, commits, roles, ownership  -> Data/docs/change_risk_scenarios.json
+      - File ownership                       -> derived from scenario commit artifacts
+      - Labeled test examples (ML labels)   -> scenarios[].examples
+
+    No git repository is required.
+    """
+    import json as _json
+    from collections import defaultdict
+    from datetime import datetime as dt
+
+    scenario_path = repo_root / "Data" / "docs" / "change_risk_scenarios.json"
+    if not scenario_path.exists():
+        print(f"ERROR: {scenario_path} not found.")
+        return {}
+
+    with open(scenario_path, "r", encoding="utf-8") as f:
+        scenario_data = _json.load(f)
+
+    meta = _extract_scenario_metadata(scenario_data)
+
+    # Build file commit history from scenario commits
+    file_commit_history = defaultdict(list)
+    file_last_modified = {}
+    for sc in meta["scenario_commits"]:
+        fp = sc.get("file")
+        if fp:
+            file_commit_history[fp].append({
+                "sha": sc["tag"],
+                "author": sc["author"],
+                "timestamp_iso": "2026-03",
+                "message": sc["role"]
+            })
+            if fp not in file_last_modified:
+                file_last_modified[fp] = {
+                    "timestamp": 0,
+                    "timestamp_iso": "2026-03",
+                    "author": sc["author"],
+                    "message": sc["role"]
+                }
+
+    # Change hotspots: files touched most across scenarios
+    file_touch_count = defaultdict(int)
+    for sc in meta["scenario_commits"]:
+        if sc.get("file"):
+            file_touch_count[sc["file"]] += 1
+    hotspots = sorted(file_touch_count.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    total_scenario_commits = len(meta["scenario_commits"])
+    total_authors = len(meta["authors"])
+
+    return {
+        "metadata": {
+            "generated_at": dt.now().isoformat(),
+            "repo": str(repo_root / "Data"),
+            "analyzer": "Data Scenario Extractor v3.0",
+            "source": "Data/docs/change_risk_scenarios.json",
+            "total_scenario_commits": total_scenario_commits,
+        },
+        "summary": {
+            "total_commits": total_scenario_commits,
+            "total_authors": total_authors,
+            "files_with_history": len(file_commit_history),
+            "files_with_blame": 0,
+            "total_scenarios": len(meta["scenarios"]),
+            "total_labeled_examples": len(meta["labeled_examples"]),
+        },
+        "file_ownership": meta["scenario_file_ownership"],
+        "file_last_modified": file_last_modified,
+        "blame_summary": {},
+        "recent_commits": [
+            {
+                "sha": sc["tag"],
+                "author": sc["author"],
+                "timestamp_iso": "2026-03",
+                "message": f"[{sc['role']}] {sc['artifact']}",
+                "files_changed": 1
+            }
+            for sc in meta["scenario_commits"]
+        ],
+        "change_hotspots": [{"file": f, "changes": c} for f, c in hotspots],
+        "file_commit_history": {
+            path: commits[:5]
+            for path, commits in file_commit_history.items()
+        },
+        # Scenario-based data
+        "scenario_authors": meta["authors"],
+        "scenario_commits": meta["scenario_commits"],
+        "author_ownership": meta["author_ownership"],
+        "scenarios": meta["scenarios"],
+        "labeled_examples": meta["labeled_examples"],
+    }
+
+
+def _load_scenario_data(repo_root: Path) -> dict:
+    """
+    Load change_risk_scenarios.json from the Data/docs folder.
+    This file contains the real multi-author commit history, ownership,
+    and labeled test outcomes for the project.
+    """
+    import json as _json
+
+    scenario_path = repo_root / "Data" / "docs" / "change_risk_scenarios.json"
+    if not scenario_path.exists():
+        return {}
+    with open(scenario_path, "r", encoding="utf-8") as f:
+        return _json.load(f)
+
+
+def _extract_scenario_metadata(scenario_data: dict) -> dict:
+    """
+    Extract authors, commits, file ownership, and labeled test examples
+    from the change_risk_scenarios.json dataset.
+
+    Returns a dict with keys:
+        authors, scenario_commits, author_ownership, labeled_examples, scenarios
+    """
+    from collections import defaultdict
+
+    authors_set: set[str] = set(scenario_data.get("authors", []))
+    scenario_commits: list[dict] = []
+    author_ownership: dict[str, dict] = defaultdict(lambda: {"roles": [], "artifacts": [], "commits": []})
+    labeled_examples: list[dict] = []
+    scenarios: list[dict] = []
+
+    # Map artifact names -> likely file paths
+    artifact_to_file = {
+        "apply_ABS_threshold()": "Data/cloud/abs_subsystem.py",
+        "braking_config.py": "Data/cloud/braking_config.py",
+        "calculate_brake_distance()": "Data/cloud/braking_controller.py",
+        "plan_avoidance_trajectory()": "Data/cloud/trajectory_planner.py",
+        "sensor_config.py": "Data/cloud/sensor_config.py",
+        "check_thermal_threshold()": "Data/cloud/thermal_monitor.py",
+        "vehicle_ecu_loop()": "Data/cloud/ecu_manager.py",
+        "drivetrain_config.py": "Data/cloud/drivetrain_config.py",
+        "apply_torque_request()": "Data/cloud/drivetrain_controller.py",
+        "parse_can_frame()": "Data/cloud/can_interface.py",
+        "read_steering_input()": "Data/cloud/input_signals.py",
+        "read_brake_pedal_signal()": "Data/cloud/input_signals.py",
+        "read_accelerator_signal()": "Data/cloud/input_signals.py",
+        "network_config.py": "Data/cloud/network_config.py",
+    }
+
+    for scenario in scenario_data.get("scenarios", []):
+        sid = scenario["id"]
+        title = scenario["title"]
+        param = scenario.get("parameter", {})
+        review = scenario.get("review", {})
+
+        scenarios.append({
+            "id": sid,
+            "title": title,
+            "parameter": param,
+            "review": review,
+        })
+
+        for commit in scenario.get("commits", []):
+            tag = commit["tag"]
+            author = commit["author"]
+            artifact = commit["artifact"]
+            role = commit["role"]
+            timing = commit.get("timing", "")
+
+            authors_set.add(author)
+
+            sc = {
+                "tag": tag,
+                "author": author,
+                "role": role,
+                "artifact": artifact,
+                "timing": timing,
+                "scenario_id": sid,
+                "scenario_title": title,
+                "file": artifact_to_file.get(artifact),
+            }
+            scenario_commits.append(sc)
+
+            author_ownership[author]["roles"].append(role)
+            author_ownership[author]["artifacts"].append(artifact)
+            author_ownership[author]["commits"].append(tag)
+
+        for example in scenario.get("examples", []):
+            labeled_examples.append({
+                **example,
+                "scenario_id": sid,
+                "scenario_title": title,
+                "parameter_name": param.get("name"),
+                "parameter_before": param.get("before"),
+                "parameter_after": param.get("after"),
+                "parameter_type": param.get("type"),
+            })
+
+    # Build file ownership from scenario commits
+    scenario_file_ownership = defaultdict(lambda: defaultdict(int))
+    for sc in scenario_commits:
+        if sc["file"]:
+            scenario_file_ownership[sc["file"]][sc["author"]] += 1
+
+    file_ownership_result = {}
+    for filepath, authors in scenario_file_ownership.items():
+        primary = max(authors.items(), key=lambda x: x[1])
+        file_ownership_result[filepath] = {
+            "primary_author": primary[0],
+            "commit_count": sum(authors.values()),
+            "all_contributors": dict(authors),
+        }
+
+    return {
+        "authors": sorted(authors_set),
+        "scenario_commits": scenario_commits,
+        "author_ownership": {k: dict(v) for k, v in author_ownership.items()},
+        "scenario_file_ownership": file_ownership_result,
+        "labeled_examples": labeled_examples,
+        "scenarios": scenarios,
+    }
+
+
 def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> dict:
     """
     Generate a knowledge base output compatible with tree-sitter output.
-    
+
     This extracts the most valuable git metadata for knowledge enrichment:
     - File ownership (who owns which files based on commits/blame)
     - Change history (when files were modified)
     - Commit context (why changes were made - from messages)
     - Change frequency (hotspots for potential bugs)
+    - Scenario-based authors, commits, and labeled test examples from
+      Data/docs/change_risk_scenarios.json
     """
     from datetime import datetime as dt
     from collections import defaultdict
-    
-    # Collect all commits
+
+    # Collect all commits from git history
     commits = list(parser.iter_commits(max_count=max_commits))
-    
+
     # File-level aggregations
     file_authors = defaultdict(lambda: defaultdict(int))  # file -> author -> count
     file_commits = defaultdict(list)  # file -> list of commit summaries
     file_last_modified = {}  # file -> {timestamp, author, message}
-    
+
     # Process commits and their diffs
     for commit in commits:
         changes = parser.get_commit_diff(commit.sha, create_patch=False)
@@ -418,8 +641,8 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
                     "author": commit.author,
                     "message": commit.message_subject
                 }
-    
-    # Calculate file ownership (primary author per file)
+
+    # Calculate file ownership from git history
     file_ownership = {}
     for filepath, authors in file_authors.items():
         if authors:
@@ -429,15 +652,57 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
                 "commit_count": primary_author[1],
                 "all_contributors": dict(authors)
             }
-    
+
+    # -----------------------------------------------------------------------
+    # Load scenario-based metadata (real multi-author data from Data/docs/)
+    # -----------------------------------------------------------------------
+    scenario_data = _load_scenario_data(parser.repo_path)
+    scenario_meta = _extract_scenario_metadata(scenario_data) if scenario_data else {}
+
+    # Merge scenario file ownership into git file ownership
+    for filepath, info in scenario_meta.get("scenario_file_ownership", {}).items():
+        if filepath in file_ownership:
+            # Merge contributors
+            for author, count in info["all_contributors"].items():
+                existing = file_ownership[filepath]["all_contributors"]
+                existing[author] = existing.get(author, 0) + count
+            # Recalculate primary
+            all_c = file_ownership[filepath]["all_contributors"]
+            primary = max(all_c.items(), key=lambda x: x[1])
+            file_ownership[filepath]["primary_author"] = primary[0]
+            file_ownership[filepath]["commit_count"] = sum(all_c.values())
+        else:
+            file_ownership[filepath] = info
+
+    # Collect all unique authors (git + scenario)
+    all_authors = set(c.author for c in commits)
+    all_authors.update(scenario_meta.get("authors", []))
+
     # Get blame for key source files
     blame_by_file = {}
     source_files = [
         "Data/firmware/sensors.cpp",
         "Data/firmware/canbus.cpp",
         "Data/firmware/gps.cpp",
+        "Data/firmware/main.cpp",
+        "Data/firmware/interrupts.cpp",
         "Data/cloud/ingest.py",
-        "Data/cloud/utils.py"
+        "Data/cloud/utils.py",
+        "Data/cloud/abs_subsystem.py",
+        "Data/cloud/braking_controller.py",
+        "Data/cloud/can_interface.py",
+        "Data/cloud/drivetrain_controller.py",
+        "Data/cloud/ecu_manager.py",
+        "Data/cloud/energy_management.py",
+        "Data/cloud/safety_controller.py",
+        "Data/cloud/sensor_fusion.py",
+        "Data/cloud/thermal_monitor.py",
+        "Data/cloud/trajectory_planner.py",
+        "Data/cloud/vehicle_sensors.py",
+        "Data/cloud/test_braking.py",
+        "Data/cloud/test_can_timing.py",
+        "Data/cloud/test_drivetrain.py",
+        "Data/cloud/test_sensor_fusion.py",
     ]
     for filepath in source_files:
         try:
@@ -467,8 +732,8 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
                 }
         except Exception:
             pass
-    
-    # Recent activity summary
+
+    # Recent activity summary (git)
     recent_commits = [
         {
             "sha": c.short_sha,
@@ -479,27 +744,34 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
         }
         for c in commits[:10]
     ]
-    
+
     # Change frequency (hotspots)
     change_frequency = {
         path: len(commits_list)
         for path, commits_list in file_commits.items()
     }
     hotspots = sorted(change_frequency.items(), key=lambda x: x[1], reverse=True)[:10]
-    
+
+    # Count total scenario commits
+    scenario_commits = scenario_meta.get("scenario_commits", [])
+    total_scenario_commits = len(scenario_commits)
+
     return {
         "metadata": {
             "generated_at": dt.now().isoformat(),
             "repo": str(parser.repo_path),
-            "analyzer": "GitPython Git Metadata Extractor v1.0",
+            "analyzer": "GitPython Git Metadata Extractor v2.0",
             "branch": parser.repo.active_branch.name if not parser.repo.head.is_detached else "detached",
-            "total_commits_analyzed": len(commits)
+            "total_git_commits_analyzed": len(commits),
+            "total_scenario_commits": total_scenario_commits,
         },
         "summary": {
-            "total_commits": len(commits),
-            "total_authors": len(set(c.author for c in commits)),
+            "total_commits": len(commits) + total_scenario_commits,
+            "total_authors": len(all_authors),
             "files_with_history": len(file_commits),
-            "files_with_blame": len(blame_by_file)
+            "files_with_blame": len(blame_by_file),
+            "total_scenarios": len(scenario_meta.get("scenarios", [])),
+            "total_labeled_examples": len(scenario_meta.get("labeled_examples", [])),
         },
         "file_ownership": file_ownership,
         "file_last_modified": file_last_modified,
@@ -509,7 +781,13 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
         "file_commit_history": {
             path: commits_list[:5]  # Last 5 commits per file
             for path, commits_list in file_commits.items()
-        }
+        },
+        # Scenario-based data
+        "scenario_authors": scenario_meta.get("authors", []),
+        "scenario_commits": scenario_commits,
+        "author_ownership": scenario_meta.get("author_ownership", {}),
+        "scenarios": scenario_meta.get("scenarios", []),
+        "labeled_examples": scenario_meta.get("labeled_examples", []),
     }
 
 
@@ -519,58 +797,39 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
 
 
 def main():
-    """Run the parser on the repository and generate knowledge base JSON."""
+    """
+    Generate knowledge base from Data/ folder only.
+    Source of truth: Data/docs/change_risk_scenarios.json
+    No git repository required.
+    """
     import json
 
-    # Look for .git in parent directory (project root)
-    repo_path = Path(__file__).resolve().parent.parent
-    if not (repo_path / ".git").exists():
-        print(f"Error: No git repository found at {repo_path}")
-        return
-
-    parser = GitParser(repo_path)
-    print(f"Repository: {parser.repo_path}")
-    print(f"Branch: {parser.repo.active_branch.name if not parser.repo.head.is_detached else 'detached'}")
+    repo_root = Path(__file__).resolve().parent.parent
+    print(f"Data root: {repo_root / 'Data'}")
+    print(f"Source:    Data/docs/change_risk_scenarios.json")
     print("-" * 60)
 
-    commits = list(parser.iter_commits(max_count=5))
-    print(f"Latest {len(commits)} commits:")
-    for c in commits:
-        print(f"  {c.short_sha} | {c.timestamp_iso} | {c.author} | {c.message_subject[:50]}")
+    kb = generate_data_knowledge_base(repo_root)
+    if not kb:
+        return
 
-    print("\n" + "-" * 60)
-    if commits:
-        c = commits[0]
-        changes = parser.get_commit_diff(c.sha)
-        print(f"Diff for {c.short_sha} ({len(changes)} files changed):")
-        for fc in changes[:5]:
-            print(f"  [{fc.change_type}] {fc.path} (+{fc.insertions} -{fc.deletions})")
+    s = kb["summary"]
+    print(f"Authors:          {s['total_authors']}  -> {kb['scenario_authors']}")
+    print(f"Commits:          {s['total_commits']}")
+    print(f"Scenarios:        {s['total_scenarios']}")
+    print(f"Labeled examples: {s['total_labeled_examples']}")
+    print(f"Files w/ history: {s['files_with_history']}")
+    print()
+    print("Commits by author:")
+    for author, info in kb["author_ownership"].items():
+        tags = info["commits"]
+        print(f"  {author:12s}: {len(tags)} commits  {tags}")
 
-    print("\n" + "-" * 60)
-    for test_file in ["Data/cloud/ingest.py", "Data/firmware/sensors.cpp"]:
-        if (repo_path / test_file).exists():
-            blame = parser.get_blame(test_file)
-            if blame:
-                print(f"Blame for {test_file}: {len(blame)} lines")
-                sample = blame[:3]
-                for bl in sample:
-                    print(f"  L{bl.line_number}: {bl.commit_sha[:7]} | {bl.content[:50]}...")
-            break
-    
-    # Generate and save knowledge base JSON
-    print("\n" + "-" * 60)
-    print("Generating Git Knowledge Base...")
-    kb = generate_git_knowledge_base(parser, max_commits=100)
-    
     output_file = Path(__file__).parent / "git_history_knowledge_base.json"
-    with open(output_file, 'w', encoding='utf-8') as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         json.dump(kb, f, indent=2, default=str)
-    
-    print(f"\n[OUTPUT] Git knowledge base saved to: {output_file}")
-    print(f"  - {kb['summary']['total_commits']} commits analyzed")
-    print(f"  - {kb['summary']['total_authors']} authors found")
-    print(f"  - {kb['summary']['files_with_history']} files with history")
-    print(f"  - {kb['summary']['files_with_blame']} files with blame")
+
+    print(f"\n[OUTPUT] Knowledge base saved to: {output_file}")
 
 
 if __name__ == "__main__":

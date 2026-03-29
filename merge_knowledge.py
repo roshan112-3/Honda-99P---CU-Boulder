@@ -129,9 +129,9 @@ def merge_knowledge_bases(
             "repo": treesitter_kb.get('metadata', {}).get('repo', 'Honda Repository'),
             "analyzers": [
                 "Tree-sitter Code Analyzer v1.0",
-                "GitPython Git Metadata Extractor v1.0"
+                "GitPython Git Metadata Extractor v2.0"
             ],
-            "merge_version": "1.0"
+            "merge_version": "2.0"
         },
         "summary": {
             # Code analysis summary
@@ -142,22 +142,34 @@ def merge_knowledge_bases(
             # Git summary
             "total_commits": git_kb.get('summary', {}).get('total_commits', 0),
             "total_authors": git_kb.get('summary', {}).get('total_authors', 0),
-            "files_with_history": git_kb.get('summary', {}).get('files_with_history', 0)
+            "files_with_history": git_kb.get('summary', {}).get('files_with_history', 0),
+            # Scenario summary
+            "total_scenarios": git_kb.get('summary', {}).get('total_scenarios', 0),
+            "total_labeled_examples": git_kb.get('summary', {}).get('total_labeled_examples', 0),
         },
-        
+
         # Enriched code entities
         "functions_by_file": enriched_functions,
         "call_graph": treesitter_kb.get('call_graph', {}),
         "hsi_traceability": treesitter_kb.get('hsi_traceability', {}),
         "classes": treesitter_kb.get('classes', []),
         "relationships": enriched_relationships,
-        
+
         # Git-specific insights
         "git_insights": {
             "change_hotspots": git_kb.get('change_hotspots', []),
             "recent_commits": git_kb.get('recent_commits', []),
             "file_ownership": git_kb.get('file_ownership', {}),
             "file_last_modified": git_kb.get('file_last_modified', {})
+        },
+
+        # Scenario-based data (from Data/docs/change_risk_scenarios.json)
+        "scenario_data": {
+            "authors": git_kb.get('scenario_authors', []),
+            "commits": git_kb.get('scenario_commits', []),
+            "author_ownership": git_kb.get('author_ownership', {}),
+            "scenarios": git_kb.get('scenarios', []),
+            "labeled_examples": git_kb.get('labeled_examples', []),
         }
     }
 
@@ -197,7 +209,20 @@ def print_merge_report(unified: Dict[str, Any]):
         print("\n[CHANGE HOTSPOTS] (Files most frequently modified)")
         for hs in hotspots[:5]:
             print(f"  {hs.get('file')}: {hs.get('changes')} changes")
-    
+
+    scenario = unified.get('scenario_data', {})
+    if scenario.get('authors'):
+        print(f"\n[SCENARIO DATA]")
+        print(f"  Authors:          {', '.join(scenario['authors'])}")
+        print(f"  Scenarios:        {len(scenario.get('scenarios', []))}")
+        print(f"  Commits:          {len(scenario.get('commits', []))}")
+        print(f"  Labeled examples: {len(scenario.get('labeled_examples', []))}")
+        labels = scenario.get('labeled_examples', [])
+        fail_count = sum(1 for ex in labels if ex.get('label') == 1)
+        pass_count = sum(1 for ex in labels if ex.get('label') == 0)
+        print(f"    - Failures (label=1): {fail_count}")
+        print(f"    - Passes   (label=0): {pass_count}")
+
     print("\n" + "=" * 70)
 
 

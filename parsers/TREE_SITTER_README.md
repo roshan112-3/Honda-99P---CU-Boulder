@@ -1,215 +1,168 @@
-# Tree-sitter Code Analyzer for Honda Repository
+# Parsers -- Code & Metadata Extraction
+
+This folder contains two parsers that form the first two steps of the Honda 99P knowledge graph pipeline.
+
+---
 
 ## Overview
 
-This tool analyzes the Honda automotive codebase using parsing techniques to extract **functions**, **relationships**, and **HSI (Hardware-Software Interface) traceability** — producing a structured knowledge base for further analysis.
+```
+Data/                                 parsers/
+|-- firmware/*.cpp, *.h      --->     tree_sitter.py      --->  ast_knowledge_base.json
+|-- cloud/*.py                        (AST parsing)             95 functions, 483 rels
+|
+|-- docs/change_risk_        --->     git_python.py       --->  git_history_knowledge_base.json
+|     scenarios.json                  (metadata extract)        4 authors, 16 commits, 25 labels
+```
 
-The output from this tool (`ast_knowledge_base.json`) can be merged with git metadata using `merge_knowledge.py` (at repo root) to create an enriched knowledge base that feeds into the Neo4j knowledge graph.
+These two JSON outputs are then merged by `merge_knowledge.py` (at root) into `unified_knowledge_base.json`, which feeds into Neo4j.
 
 ---
 
-## What This Tool Does
+## Parser 1: tree_sitter.py (AST Code Analysis)
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     HONDA REPO                               │
-│   Data/firmware/*.cpp, Data/firmware/*.h, Data/cloud/*.py   │
-└─────────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                 tree_sitter.py                                │
-│                                                              │
-│   1. Find all source files                                   │
-│   2. Parse each file                                         │
-│   3. Extract functions, calls, classes                       │
-│   4. Map code to HSI specification                           │
-│   5. Build relationships                                     │
-└─────────────────────────────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│              ast_knowledge_base.json                         │
-│                                                              │
-│   - 39 functions                                             │
-│   - 7 classes                                                │
-│   - 233 function calls                                       │
-│   - 313 relationships                                        │
-│   - HSI traceability mapping                                 │
-└─────────────────────────────────────────────────────────────┘
-```
+### What it does
 
----
+Reads all source files under `Data/` and extracts code structure using regex-based parsing:
 
-## Quick Start
+- **Function definitions** -- name, file, line number, parameters, return type
+- **Class definitions** -- name, file, members, line range
+- **Function call edges** -- who calls whom (builds the call graph)
+- **HSI traceability** -- maps byte-level array assignments to SENSOR_PKT spec fields
 
-### Run the Analysis
+### Run it
 
 ```bash
-# From the repo root
-python3 parsers/tree_sitter.py
+python parsers/tree_sitter.py
 ```
 
-### Output Files
+### Output: ast_knowledge_base.json
 
-| File | Description |
-|------|-------------|
-| `parsers/ast_knowledge_base.json` | Tree-sitter extracted code structure |
-| Console output | Human-readable report |
+| Metric | Count |
+|--------|-------|
+| Functions | 95 |
+| Classes | 7 |
+| Function calls | 347 |
+| Relationships | 483 |
+| HSI implementations | 13 |
+| Files analyzed | 27 |
 
-To merge with git metadata, run from the repo root:
-```bash
-python3 merge_knowledge.py
-```
+### Languages parsed
 
----
+| Language | Source Directory | File Types |
+|----------|-----------------|------------|
+| C++ | Data/firmware/ | .cpp, .h |
+| Python | Data/cloud/ | .py |
 
-## What Gets Extracted
-
-### 1. Functions
-
-All functions/methods from C++ and Python files:
-
-```
-SensorManager::pack_latest()
-  File: Data/firmware/sensors.cpp
-  Line: 60
-  Parameters: (none)
-  Returns: std::vector<uint8_t>
-```
-
-### 2. Classes
-
-```
-class SensorManager:
-  ├── init()
-  ├── on_adc_complete()
-  ├── inject_fault_temperature()
-  ├── inject_fault_pressure()
-  ├── pack_latest()
-  └── set_sampling_rate_hz()
-```
-
-### 3. Function Call Graph
-
-Who calls whom:
-
-```
-telemetry_thread()
-  └── calls → SensorManager::pack_latest()
-  └── calls → CANBus::send()
-
-main()
-  └── calls → SensorManager::init()
-  └── calls → CANBus::init()
-  └── calls → InterruptController::init()
-```
-
-### 4. HSI Traceability
-
-Maps code to the Hardware-Software Interface specification:
-
-| HSI Requirement | Code | Location | Status |
-|-----------------|------|----------|--------|
-| byte 0 = version (3) | `pkt[0] = 3` | sensors.cpp:64 | ✓ |
-| byte 1 = sensor_id | `pkt[1] = 0x01` | sensors.cpp:65 | ✓ |
-| byte 2-3 = temperature_raw | `pkt[2,3] = temp` | sensors.cpp:66-67 | ✓ |
-| byte 4-5 = pressure_raw | `pkt[4,5] = pres` | sensors.cpp:68-69 | ✓ |
-| byte 6-7 = humidity_raw | `pkt[6,7] = hum` | sensors.cpp:70-71 | ✓ |
-| byte 8-9 = fuel_raw | `pkt[8,9] = fuel` | sensors.cpp:72-73 | ✓ |
-| byte 10 = status_flags | `pkt[10] = flags` | sensors.cpp:77-78 | ✓ |
-| byte 11 = checksum (CRC-8) | `pkt[11] = crc8()` | sensors.cpp:89 | ✓ |
-
----
-
-## Relationship Types
-
-The analyzer extracts these relationship types:
+### Relationship types extracted
 
 | Relationship | Description | Example |
-|--------------|-------------|---------|
-| `CALLS` | Function A calls Function B | `main()` → `init()` |
-| `DEFINED_IN` | Function is in which file | `pack_latest` → `sensors.cpp` |
-| `BELONGS_TO` | Method belongs to class | `pack_latest` → `SensorManager` |
-| `IMPLEMENTS_HSI` | Code implements HSI requirement | `pkt[0]=3` → `SENSOR_PKT.version` |
+|---|---|---|
+| `CALLS` | Function A calls Function B | `main()` -> `init()` |
+| `DEFINED_IN` | Function lives in file | `pack_latest` -> `sensors.cpp` |
+| `BELONGS_TO` | Method belongs to class | `pack_latest` -> `SensorManager` |
+| `IMPLEMENTS_HSI` | Code implements HSI byte | `pkt[0]=3` -> `SENSOR_PKT.version` |
+
+### HSI traceability
+
+Maps source code to the **SENSOR_PKT** protocol defined in `Data/docs/hsi.md`:
+
+| Byte | HSI Field | Function | File | Line |
+|------|-----------|----------|------|------|
+| 0 | version | pack_latest | sensors.cpp | 64 |
+| 1 | sensor_id | pack_latest | sensors.cpp | 65 |
+| 2-3 | temperature_raw | pack_latest | sensors.cpp | 66-67 |
+| 4-5 | pressure_raw | pack_latest | sensors.cpp | 68-69 |
+| 6-7 | humidity_raw | pack_latest | sensors.cpp | 70-71 |
+| 8-9 | fuel_raw | pack_latest | sensors.cpp | 72-73 |
+| 10 | status_flags | pack_latest | sensors.cpp | 77-78 |
+| 11 | checksum (CRC-8) | pack_latest | sensors.cpp | 89 |
 
 ---
 
-## Output JSON Structure
+## Parser 2: git_python.py (Scenario Metadata Extraction)
 
-```json
-{
-  "metadata": {
-    "generated_at": "2026-02-15T14:56:24",
-    "repo": "Honda Automotive Dataset",
-    "analyzer": "Tree-sitter Code Analyzer v1.0"
-  },
-  "summary": {
-    "total_functions": 39,
-    "total_classes": 7,
-    "total_calls": 233,
-    "total_relationships": 313
-  },
-  "functions_by_file": {
-    "Data/firmware/sensors.cpp": [
-      {"name": "crc8", "line": 7, "parameters": [...], "return_type": "uint8_t"},
-      {"name": "SensorManager::pack_latest", "line": 60, ...}
-    ]
-  },
-  "call_graph": {
-    "main": ["init", "send", "pack_latest", ...],
-    "telemetry_thread": ["pack_latest", "send", ...]
-  },
-  "hsi_traceability": {
-    "SENSOR_PKT.version": [{"function": "pack_latest", "file": "sensors.cpp", "line": 64}],
-    "SENSOR_PKT.checksum": [{"function": "pack_latest", "file": "sensors.cpp", "line": 89}]
-  },
-  "relationships": [
-    {"source": "main", "relation": "CALLS", "target": "init", "metadata": {...}},
-    {"source": "pack_latest", "relation": "IMPLEMENTS_HSI", "target": "SENSOR_PKT.version", ...}
-  ]
-}
-```
+### What it does
 
----
+Reads `Data/docs/change_risk_scenarios.json` and extracts all metadata needed for the knowledge graph and ML training. This parser does **NOT** require a `.git` directory or network access -- everything comes from the `Data/` folder.
 
-## Use Cases
+### Why not use git history?
 
-### Import into Neo4j (Graph Database)
+The Honda GitHub repo's git log only shows one author (Roshan) pushing the entire dataset. The real authorship and commit history is simulated inside `change_risk_scenarios.json`, which defines 4 distinct authors and 16 tagged commits across 4 scenarios. This file is the **source of truth** for all metadata.
 
-The project includes a dedicated ingestion pipeline:
+### Run it
 
 ```bash
-# Start Neo4j in Docker
-docker run -d --name honda-neo4j \
-  -p 7474:7474 -p 7687:7687 \
-  -e NEO4J_AUTH=neo4j/honda99p \
-  neo4j:5-community
-
-# Ingest the unified knowledge base
-python3 neo4j/ingest.py
-
-# Run risk prediction queries
-python3 neo4j/queries.py --file "Data/firmware/sensors.cpp" --line 60
+python parsers/git_python.py
 ```
 
-See the [main README](../README.md) and [neo4j/](../neo4j/) for details.
+### Output: git_history_knowledge_base.json
 
-### Search with Elasticsearch
+| Metric | Count |
+|--------|-------|
+| Authors | 4 (Harshitha, Roshan, Ryan, Shivani) |
+| Commits | 16 (H-023, R-041, S-078, R-019, H-057, S-092, S-093, H-009, S-031, RY-011, R-055, R-007, H-031, H-032, H-033, S-044) |
+| Scenarios | 4 |
+| Labeled test examples | 25 (19 failures, 6 passes) |
+| Files with ownership | 12 |
+
+### What gets extracted
+
+**Authors and ownership:**
+- 4 authors with their roles (ABS owner, hardware integration, LiDAR calibration, etc.)
+- File ownership mapping (which author owns which file based on commit roles)
+
+**Commits:**
+- 16 tagged commits with author, role, artifact, timing, and scenario ID
+- Artifact-to-file mapping (e.g., `apply_ABS_threshold()` -> `Data/cloud/abs_subsystem.py`)
+
+**Scenarios:**
+- 4 change risk scenarios with parameter name, before/after values, and type
+- Each scenario has 3-5 commits showing cross-team change propagation
+
+**Labeled examples (for ML):**
+- 25 test examples with binary labels (1 = fail, 0 = pass)
+- Engineered features: shortest_path, hw_sw_sync_lag_days, downstream_test_count, churn_rate, cofailure_count, is_cross_boundary_change, author_is_hw_team, param_is_safety_critical
+
+---
+
+## JSON Output Structure
+
+### ast_knowledge_base.json
 
 ```json
 {
-  "query": {
-    "match": {
-      "hsi_traceability.SENSOR_PKT.checksum": "crc8"
-    }
-  }
+  "metadata": {"analyzer": "Tree-sitter Code Analyzer v1.0"},
+  "summary": {"total_functions": 95, "total_classes": 7, "total_calls": 347},
+  "functions_by_file": {
+    "Data\\cloud\\braking_controller.py": [
+      {"name": "calculate_brake_distance", "line": 5, "parameters": [...]}
+    ]
+  },
+  "call_graph": {"calculate_brake_distance": ["get_brake_actuator_response_time_ms"]},
+  "hsi_traceability": {"SENSOR_PKT.version": [{"function": "pack_latest", ...}]},
+  "relationships": [{"source": "main", "relation": "CALLS", "target": "init"}]
 }
 ```
 
-### Build Documentation
+### git_history_knowledge_base.json
 
-Use the extracted data to auto-generate API documentation or architecture diagrams.
+```json
+{
+  "summary": {"total_commits": 16, "total_authors": 4, "total_scenarios": 4},
+  "scenario_authors": ["Harshitha", "Roshan", "Ryan", "Shivani"],
+  "scenario_commits": [
+    {"tag": "H-023", "author": "Harshitha", "role": "ABS subsystem owner", ...}
+  ],
+  "scenarios": [
+    {"id": "situation-1", "title": "Brake actuator response time drifted", ...}
+  ],
+  "labeled_examples": [
+    {"test": "test_brake_distance_nominal", "label": 1, "shortest_path": 1, ...}
+  ],
+  "author_ownership": {"Data/cloud/abs_subsystem.py": {"primary_author": "Harshitha"}}
+}
+```
 
 ---
 
@@ -217,75 +170,15 @@ Use the extracted data to auto-generate API documentation or architecture diagra
 
 | File | Purpose |
 |------|---------|
-| `tree_sitter.py` | Main analysis script |
-| `git_python.py` | GitPython-based git history parser |
-| `ast_knowledge_base.json` | Output: extracted code structure |
-| `git_history_knowledge_base.json` | Output: git metadata |
+| `tree_sitter.py` | AST parser -- extracts functions, calls, classes, HSI |
+| `git_python.py` | Scenario metadata extractor -- reads Data/ folder only |
+| `ast_knowledge_base.json` | Output: 95 functions, 7 classes, 483 relationships |
+| `git_history_knowledge_base.json` | Output: 4 authors, 16 commits, 25 labels |
 | `TREE_SITTER_README.md` | This file |
-
----
-
-## How It Works (Simple Explanation)
-
-### Step 1: Find Files
-```
-The script looks for:
-  - All *.cpp files in Data/firmware/
-  - All *.h files in Data/firmware/
-  - All *.py files in Data/cloud/
-```
-
-### Step 2: Parse Each File
-```
-For each file, it reads line-by-line and identifies:
-  - Function definitions (def, void, int, etc.)
-  - Class definitions (class, struct)
-  - Function calls (name followed by parentheses)
-  - Array assignments (arr[index] = value)
-```
-
-### Step 3: Build Relationships
-```
-It connects:
-  - Functions to the files they're in
-  - Methods to the classes they belong to
-  - Functions to other functions they call
-  - Byte assignments to HSI specification fields
-```
-
-### Step 4: Output
-```
-Everything is saved to:
-  - Console: human-readable report
-  - JSON: machine-readable knowledge base
-```
-
----
-
-## Summary Statistics
-
-| Metric | Count |
-|--------|-------|
-| C++ Source Files | 5 |
-| C++ Header Files | 4 |
-| Python Files | 2 |
-| **Total Functions** | 39 |
-| **Total Classes** | 7 |
-| **Function Calls** | 233 |
-| **HSI Implementations** | 13 |
-| **Total Relationships** | 313 |
 
 ---
 
 ## Requirements
 
 - Python 3.11+
-- No external dependencies required for basic analysis
-- `neo4j` driver for graph ingestion (`pip install neo4j`)
-- `GitPython` for git history parsing (`pip install GitPython`)
-
----
-
-## License
-
-Part of the Honda Automotive CI/CD Dataset.
+- No external dependencies required (both parsers use only the standard library)

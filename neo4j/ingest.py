@@ -28,9 +28,15 @@ from neo4j import GraphDatabase
 # Configuration
 # ---------------------------------------------------------------------------
 
-DEFAULT_URI = "bolt://localhost:7687"
-DEFAULT_USER = "neo4j"
-DEFAULT_PASSWORD = "honda99p"
+# DEFAULT_URI = "bolt://localhost:7687"
+# DEFAULT_USER = "neo4j"
+# DEFAULT_PASSWORD = "honda99p"
+# KB_PATH = Path(__file__).resolve().parent.parent / "unified_knowledge_base.json"
+
+
+DEFAULT_URI = "neo4j+s://c1960b7d.databases.neo4j.io"
+DEFAULT_USER = "c1960b7d"
+DEFAULT_PASSWORD = "8JhCacWXH3EYqkm1AW3PCFCodIvVwTFFF5o0VBCzMAI"
 KB_PATH = Path(__file__).resolve().parent.parent / "unified_knowledge_base.json"
 
 # Language detection helper
@@ -238,6 +244,156 @@ def create_author_committed_rels(tx, rels):
         MATCH (a:Author {name: r.author_name})
         MATCH (cm:Commit {sha: r.commit_sha})
         MERGE (a)-[:COMMITTED]->(cm)
+    """, rels=rels)
+
+
+# ---------------------------------------------------------------------------
+# Scenario node/relationship creation
+# ---------------------------------------------------------------------------
+
+def create_scenario_nodes(tx, scenarios):
+    """Create Scenario nodes."""
+    tx.run("""
+        UNWIND $scenarios AS s
+        MERGE (sc:Scenario {id: s.id})
+        SET sc.title = s.title,
+            sc.param_name = s.param_name,
+            sc.param_before = s.param_before,
+            sc.param_after = s.param_after,
+            sc.param_type = s.param_type,
+            sc.param_is_safety_critical = s.param_is_safety_critical
+    """, scenarios=scenarios)
+
+
+# def create_scenario_commit_nodes(tx, commits):
+#     """Create ScenarioCommit nodes."""
+#     tx.run("""
+#         UNWIND $commits AS c
+#         MERGE (sc:ScenarioCommit {tag: c.tag})
+#         SET sc.author = c.author,
+#             sc.role = c.role,
+#             sc.artifact = c.artifact,
+#             sc.timing = c.timing,
+#             sc.scenario_id = c.scenario_id,
+#             sc.file = c.file
+#     """, commits=commits)
+
+def create_scenario_as_commits(tx, commits):
+    tx.run("""
+        UNWIND $commits AS c
+        MERGE (cm:Commit {sha: c.tag})
+        SET cm.author      = c.author,
+            cm.message     = c.artifact,
+            cm.timestamp   = c.timing,
+            cm.scenario_id = c.scenario_id
+    """, commits=commits)
+
+
+def create_test_label_nodes(tx, labels):
+    """Create TestLabel nodes (labeled test examples for ML)."""
+    tx.run("""
+        UNWIND $labels AS l
+        MERGE (tl:TestLabel {id: l.id})
+        SET tl.test = l.test,
+            tl.label = l.label,
+            tl.shortest_path = l.shortest_path,
+            tl.hw_sw_sync_lag_days = l.hw_sw_sync_lag_days,
+            tl.downstream_test_count = l.downstream_test_count,
+            tl.churn_rate = l.churn_rate,
+            tl.cofailure_count = l.cofailure_count,
+            tl.is_cross_boundary_change = l.is_cross_boundary_change,
+            tl.author_is_hw_team = l.author_is_hw_team,
+            tl.param_is_safety_critical = l.param_is_safety_critical,
+            tl.scenario_id = l.scenario_id,
+            tl.parameter_name = l.parameter_name
+    """, labels=labels)
+
+
+def create_sc_commit_author_rels(tx, rels):
+    """ScenarioCommit -[:AUTHORED_BY]-> Author"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (sc:Commit {sha: r.tag})
+        MATCH (a:Author {name: r.author_name})
+        MERGE (sc)-[:AUTHORED_BY]->(a)
+    """, rels=rels)
+
+
+def create_sc_commit_scenario_rels(tx, rels):
+    """ScenarioCommit -[:PART_OF]-> Scenario"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (sc:Commit {sha: r.tag})
+        MATCH (s:Scenario {id: r.scenario_id})
+        MERGE (sc)-[:PART_OF]->(s)
+    """, rels=rels)
+
+
+def create_sc_commit_file_rels(tx, rels):
+    """ScenarioCommit -[:MODIFIES]-> File"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (sc:Commit {sha: r.tag})
+        MATCH (f:File {path: r.file_path})
+        MERGE (sc)-[:MODIFIES]->(f)
+    """, rels=rels)
+
+
+def create_test_label_scenario_rels(tx, rels):
+    """TestLabel -[:OBSERVED_IN]-> Scenario"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (tl:TestLabel {id: r.test_label_id})
+        MATCH (s:Scenario {id: r.scenario_id})
+        MERGE (tl)-[:OBSERVED_IN]->(s)
+    """, rels=rels)
+
+
+def create_test_label_function_rels(tx, rels):
+    """TestLabel -[:LABELS]-> Function"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (tl:TestLabel {id: r.test_label_id})
+        MATCH (fn:Function {uid: r.func_uid})
+        MERGE (tl)-[:LABELS]->(fn)
+    """, rels=rels)
+
+
+# ---------------------------------------------------------------------------
+# Constant node creation (scenario parameters = changed constants)
+# ---------------------------------------------------------------------------
+
+def create_constant_nodes(tx, constants):
+    """Create Constant nodes from scenario parameters."""
+    tx.run("""
+        UNWIND $constants AS k
+        MERGE (c:Constant {name: k.name})
+        SET c.before_value = k.before_value,
+            c.after_value = k.after_value,
+            c.type = k.type,
+            c.is_safety_critical = k.is_safety_critical,
+            c.scenario_id = k.scenario_id,
+            c.scenario_title = k.scenario_title
+    """, constants=constants)
+
+
+def create_constant_scenario_rels(tx, rels):
+    """Constant -[:CHANGED_IN]-> Scenario"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (k:Constant {name: r.constant_name})
+        MATCH (s:Scenario {id: r.scenario_id})
+        MERGE (k)-[:CHANGED_IN]->(s)
+    """, rels=rels)
+
+
+def create_constant_file_rels(tx, rels):
+    """Constant -[:AFFECTS]-> File (files modified in the scenario)"""
+    tx.run("""
+        UNWIND $rels AS r
+        MATCH (k:Constant {name: r.constant_name})
+        MATCH (f:File {path: r.file_path})
+        MERGE (k)-[:AFFECTS]->(f)
     """, rels=rels)
 
 
@@ -476,10 +632,158 @@ def prepare_data(kb: dict) -> dict:
         pass
 
     # ------------------------------------------------------------------
-    # 6. Authors
+    # 6. Authors (from git + scenarios)
     # ------------------------------------------------------------------
     for name in author_names:
         data["authors"].append({"name": name})
+
+    # Also add scenario authors
+    scenario_data = kb.get("scenario_data", {})
+    for author_name in scenario_data.get("authors", []):
+        author_names.add(author_name)
+        data["authors"].append({"name": author_name})
+    # Deduplicate authors
+    seen = set()
+    deduped = []
+    for a in data["authors"]:
+        if a["name"] not in seen:
+            seen.add(a["name"])
+            deduped.append(a)
+    data["authors"] = deduped
+
+    # ------------------------------------------------------------------
+    # 7. Scenario data (from Data/docs/change_risk_scenarios.json)
+    # ------------------------------------------------------------------
+    data["scenarios"] = []
+    data["scenario_commits_list"] = []
+    data["labeled_examples"] = []
+    data["sc_commit_to_author"] = []
+    data["sc_commit_to_scenario"] = []
+    data["sc_commit_to_file"] = []
+    data["test_label_to_scenario"] = []
+    data["test_label_to_function"] = []
+    data["constants"] = []
+    data["constant_to_scenario"] = []
+    data["constant_to_file"] = []
+
+    for scenario in scenario_data.get("scenarios", []):
+        param = scenario.get("parameter", {})
+        data["scenarios"].append({
+            "id": scenario["id"],
+            "title": scenario["title"],
+            "param_name": param.get("name"),
+            "param_before": str(param.get("before", "")),
+            "param_after": str(param.get("after", "")),
+            "param_type": param.get("type"),
+            "param_is_safety_critical": param.get("param_is_safety_critical", 0),
+        })
+
+        # Create Constant node from scenario parameter
+        if param.get("name"):
+            data["constants"].append({
+                "name": param["name"],
+                "before_value": str(param.get("before", "")),
+                "after_value": str(param.get("after", "")),
+                "type": param.get("type", "unknown"),
+                "is_safety_critical": param.get("param_is_safety_critical", 0),
+                "scenario_id": scenario["id"],
+                "scenario_title": scenario["title"],
+            })
+            data["constant_to_scenario"].append({
+                "constant_name": param["name"],
+                "scenario_id": scenario["id"],
+            })
+
+    # Normalize scenario file paths to match File nodes (backslash on Windows)
+    def _norm_scenario_path(p):
+        """Convert forward slashes to OS-native path separators."""
+        if p:
+            return str(Path(p))
+        return p
+
+    for sc in scenario_data.get("commits", []):
+        sc_file = _norm_scenario_path(sc.get("file"))
+        data["scenario_commits_list"].append({
+            "tag": sc["tag"],
+            "author": sc["author"],
+            "role": sc["role"],
+            "artifact": sc["artifact"],
+            "timing": sc.get("timing", ""),
+            "scenario_id": sc["scenario_id"],
+            "file": sc_file,
+        })
+        # ScenarioCommit -> Author
+        data["sc_commit_to_author"].append({
+            "tag": sc["tag"],
+            "author_name": sc["author"],
+        })
+        # ScenarioCommit -> Scenario
+        data["sc_commit_to_scenario"].append({
+            "tag": sc["tag"],
+            "scenario_id": sc["scenario_id"],
+        })
+        # ScenarioCommit -> File (if file mapping exists)
+        if sc_file:
+            data["sc_commit_to_file"].append({
+                "tag": sc["tag"],
+                "file_path": sc_file,
+            })
+
+    # Build Constant -> File relationships from scenario commits
+    # Group commits by scenario to link each constant to its affected files
+    scenario_to_param = {}
+    for scenario in scenario_data.get("scenarios", []):
+        param = scenario.get("parameter", {})
+        if param.get("name"):
+            scenario_to_param[scenario["id"]] = param["name"]
+
+    seen_const_file = set()
+    for sc in scenario_data.get("commits", []):
+        constant_name = scenario_to_param.get(sc.get("scenario_id"))
+        sc_file = _norm_scenario_path(sc.get("file"))
+        if constant_name and sc_file:
+            key = (constant_name, sc_file)
+            if key not in seen_const_file:
+                seen_const_file.add(key)
+                data["constant_to_file"].append({
+                    "constant_name": constant_name,
+                    "file_path": sc_file,
+                })
+
+    for i, ex in enumerate(scenario_data.get("labeled_examples", [])):
+        ex_id = f"{ex['scenario_id']}::{ex['test']}"
+        data["labeled_examples"].append({
+            "id": ex_id,
+            "test": ex["test"],
+            "label": ex.get("label", 0),
+            "shortest_path": ex.get("shortest_path"),
+            "hw_sw_sync_lag_days": ex.get("hw_sw_sync_lag_days", 0),
+            "downstream_test_count": ex.get("downstream_test_count", 0),
+            "churn_rate": ex.get("churn_rate", 0),
+            "cofailure_count": ex.get("cofailure_count", 0),
+            "is_cross_boundary_change": ex.get("is_cross_boundary_change", 0),
+            "author_is_hw_team": ex.get("author_is_hw_team", 0),
+            "param_is_safety_critical": ex.get("param_is_safety_critical", 0),
+            "scenario_id": ex["scenario_id"],
+            "parameter_name": ex.get("parameter_name"),
+        })
+        # TestLabel -> Scenario
+        data["test_label_to_scenario"].append({
+            "test_label_id": ex_id,
+            "scenario_id": ex["scenario_id"],
+        })
+        # TestLabel -> Function (match test function name)
+        # Find the function uid for this test
+        test_func_uid = None
+        for fn in data["functions"]:
+            if fn["name"] == ex["test"]:
+                test_func_uid = fn["uid"]
+                break
+        if test_func_uid:
+            data["test_label_to_function"].append({
+                "test_label_id": ex_id,
+                "func_uid": test_func_uid,
+            })
 
     return data
 
@@ -504,12 +808,15 @@ def ingest(uri: str, user: str, password: str, kb_path: Path):
     data = prepare_data(kb)
 
     print(f"  Nodes to create:")
-    print(f"    Files:      {len(data['files'])}")
-    print(f"    Functions:  {len(data['functions'])}")
-    print(f"    Classes:    {len(data['classes'])}")
-    print(f"    Commits:    {len(data['commits'])}")
-    print(f"    Authors:    {len(data['authors'])}")
-    print(f"    HSI Fields: {len(data['hsi_fields'])}")
+    print(f"    Files:           {len(data['files'])}")
+    print(f"    Functions:       {len(data['functions'])}")
+    print(f"    Classes:         {len(data['classes'])}")
+    print(f"    Commits:         {len(data['commits'])}")
+    print(f"    Authors:         {len(data['authors'])}")
+    print(f"    HSI Fields:      {len(data['hsi_fields'])}")
+    print(f"    Scenarios:       {len(data['scenarios'])}")
+    # print(f"    ScenarioCommits: {len(data['scenario_commits_list'])}")
+    # print(f"    TestLabels:      {len(data['labeled_examples'])}")
     print(f"  Relationships to create:")
     print(f"    DEFINED_IN:     {len(data['defined_in'])}")
     print(f"    CALLS:          {len(data['calls'])}")
@@ -518,6 +825,14 @@ def ingest(uri: str, user: str, password: str, kb_path: Path):
     print(f"    OWNED_BY:       {len(data['ownership'])}")
     print(f"    CONTRIBUTED_TO: {len(data['contributed'])}")
     print(f"    COMMITTED:      {len(data['author_committed'])}")
+    # print(f"    AUTHORED_BY:    {len(data['sc_commit_to_author'])}")
+    # print(f"    PART_OF:        {len(data['sc_commit_to_scenario'])}")
+    # print(f"    MODIFIES:       {len(data['sc_commit_to_file'])}")
+    # print(f"    OBSERVED_IN:    {len(data['test_label_to_scenario'])}")
+    # print(f"    LABELS:         {len(data['test_label_to_function'])}")
+    print(f"    Constants:      {len(data['constants'])}")
+    print(f"    CHANGED_IN:     {len(data['constant_to_scenario'])}")
+    print(f"    AFFECTS:        {len(data['constant_to_file'])}")
 
     # Connect to Neo4j
     print(f"\n[3/4] Connecting to Neo4j at {uri}...")
@@ -552,14 +867,14 @@ def ingest(uri: str, user: str, password: str, kb_path: Path):
         print("  Creating Class nodes...")
         session.execute_write(create_class_nodes, data["classes"])
 
-        print("  Creating Commit nodes...")
-        session.execute_write(create_commit_nodes, data["commits"])
+        # print("  Creating Commit nodes...")
+        # session.execute_write(create_commit_nodes, data["commits"])
 
         print("  Creating Author nodes...")
         session.execute_write(create_author_nodes, data["authors"])
 
-        print("  Creating HSIField nodes...")
-        session.execute_write(create_hsi_nodes, data["hsi_fields"])
+        # print("  Creating HSIField nodes...")
+        # session.execute_write(create_hsi_nodes, data["hsi_fields"])
 
         # Relationships
         print("  Creating DEFINED_IN relationships...")
@@ -571,8 +886,8 @@ def ingest(uri: str, user: str, password: str, kb_path: Path):
         print("  Creating BELONGS_TO relationships...")
         session.execute_write(create_belongs_to_rels, data["belongs_to"])
 
-        print("  Creating IMPLEMENTS_HSI relationships...")
-        session.execute_write(create_implements_hsi_rels, data["implements_hsi"])
+        # print("  Creating IMPLEMENTS_HSI relationships...")
+        # session.execute_write(create_implements_hsi_rels, data["implements_hsi"])
 
         print("  Creating OWNED_BY relationships...")
         session.execute_write(create_ownership_rels, data["ownership"])
@@ -580,8 +895,46 @@ def ingest(uri: str, user: str, password: str, kb_path: Path):
         print("  Creating CONTRIBUTED_TO relationships...")
         session.execute_write(create_contributed_rels, data["contributed"])
 
-        print("  Creating COMMITTED relationships...")
-        session.execute_write(create_author_committed_rels, data["author_committed"])
+        # print("  Creating COMMITTED relationships...")
+        # session.execute_write(create_author_committed_rels, data["author_committed"])
+
+        # Scenario nodes
+        if data["scenarios"]:
+            print("  Creating Scenario nodes...")
+            session.execute_write(create_scenario_nodes, data["scenarios"])
+
+            print("  Creating ScenarioCommit nodes...")
+            # session.execute_write(create_scenario_commit_nodes, data["scenario_commits_list"])
+            session.execute_write(create_scenario_as_commits, data["scenario_commits_list"])
+
+            # print("  Creating TestLabel nodes...")
+            # session.execute_write(create_test_label_nodes, data["labeled_examples"])
+
+            print("  Creating AUTHORED_BY relationships...")
+            session.execute_write(create_sc_commit_author_rels, data["sc_commit_to_author"])
+
+            print("  Creating PART_OF relationships...")
+            session.execute_write(create_sc_commit_scenario_rels, data["sc_commit_to_scenario"])
+
+            print("  Creating MODIFIES relationships...")
+            session.execute_write(create_sc_commit_file_rels, data["sc_commit_to_file"])
+
+            # print("  Creating OBSERVED_IN relationships...")
+            # session.execute_write(create_test_label_scenario_rels, data["test_label_to_scenario"])
+
+            # print("  Creating LABELS relationships...")
+            # session.execute_write(create_test_label_function_rels, data["test_label_to_function"])
+
+        # Constant nodes
+        if data["constants"]:
+            print("  Creating Constant nodes...")
+            session.execute_write(create_constant_nodes, data["constants"])
+
+            print("  Creating CHANGED_IN relationships...")
+            session.execute_write(create_constant_scenario_rels, data["constant_to_scenario"])
+
+            print("  Creating AFFECTS relationships...")
+            session.execute_write(create_constant_file_rels, data["constant_to_file"])
 
     # Verify
     print("\n" + "-" * 70)

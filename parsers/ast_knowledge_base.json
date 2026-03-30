@@ -1,43 +1,17 @@
 {
   "metadata": {
-    "generated_at": "2026-02-22T15:37:26.040365",
+    "generated_at": "2026-03-28T17:28:27.523169",
     "repo": "Honda Automotive Dataset",
     "analyzer": "Tree-sitter Code Analyzer v1.0"
   },
   "summary": {
-    "total_functions": 39,
+    "total_functions": 95,
     "total_classes": 7,
-    "total_calls": 233,
-    "total_relationships": 313
+    "total_calls": 347,
+    "total_relationships": 483
   },
   "functions_by_file": {
-    "Data/firmware/interrupts.cpp": [
-      {
-        "name": "InterruptController::init",
-        "line": 4,
-        "parameters": [],
-        "return_type": "void"
-      },
-      {
-        "name": "InterruptController::register_handler",
-        "line": 9,
-        "parameters": [
-          "IRQLine line",
-          "Handler h",
-          "int priority"
-        ],
-        "return_type": "void"
-      },
-      {
-        "name": "InterruptController::raise",
-        "line": 17,
-        "parameters": [
-          "IRQLine line"
-        ],
-        "return_type": "void"
-      }
-    ],
-    "Data/firmware/canbus.cpp": [
+    "Data\\firmware\\canbus.cpp": [
       {
         "name": "CANBus::init",
         "line": 6,
@@ -94,7 +68,102 @@
         "return_type": "void"
       }
     ],
-    "Data/firmware/sensors.cpp": [
+    "Data\\firmware\\gps.cpp": [
+      {
+        "name": "GPSModule::init",
+        "line": 10,
+        "parameters": [],
+        "return_type": "void"
+      },
+      {
+        "name": "GPSModule::read_fix",
+        "line": 15,
+        "parameters": [],
+        "return_type": "GPSFix"
+      },
+      {
+        "name": "GPSModule::nmea_from_fix",
+        "line": 33,
+        "parameters": [
+          "const GPSFix &f"
+        ],
+        "return_type": "std::string"
+      }
+    ],
+    "Data\\firmware\\interrupts.cpp": [
+      {
+        "name": "InterruptController::init",
+        "line": 4,
+        "parameters": [],
+        "return_type": "void"
+      },
+      {
+        "name": "InterruptController::register_handler",
+        "line": 9,
+        "parameters": [
+          "IRQLine line",
+          "Handler h",
+          "int priority"
+        ],
+        "return_type": "void"
+      },
+      {
+        "name": "InterruptController::raise",
+        "line": 17,
+        "parameters": [
+          "IRQLine line"
+        ],
+        "return_type": "void"
+      }
+    ],
+    "Data\\firmware\\main.cpp": [
+      {
+        "name": "telemetry_thread",
+        "line": 20,
+        "parameters": [
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "void"
+      },
+      {
+        "name": "print_hex",
+        "line": 31,
+        "parameters": [
+          "const std::vector<uint8_t> &pkt"
+        ],
+        "return_type": "void"
+      },
+      {
+        "name": "handle_config_frame",
+        "line": 38,
+        "parameters": [
+          "const std::vector<uint8_t> &frame",
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "void"
+      },
+      {
+        "name": "run_self_test",
+        "line": 64,
+        "parameters": [
+          "SensorManager &mgr",
+          "CANBus &can"
+        ],
+        "return_type": "bool"
+      },
+      {
+        "name": "main",
+        "line": 87,
+        "parameters": [
+          "int argc",
+          "char **argv"
+        ],
+        "return_type": "int"
+      }
+    ],
+    "Data\\firmware\\sensors.cpp": [
       {
         "name": "crc8",
         "line": 7,
@@ -147,76 +216,148 @@
         "return_type": "void"
       }
     ],
-    "Data/firmware/gps.cpp": [
+    "Data\\cloud\\abs_subsystem.py": [
       {
-        "name": "GPSModule::init",
-        "line": 10,
-        "parameters": [],
-        "return_type": "void"
-      },
-      {
-        "name": "GPSModule::read_fix",
-        "line": 15,
-        "parameters": [],
-        "return_type": "GPSFix"
-      },
-      {
-        "name": "GPSModule::nmea_from_fix",
-        "line": 33,
+        "name": "apply_ABS_threshold",
+        "line": 4,
         "parameters": [
-          "const GPSFix &f"
+          "wheel_slip_ratio",
+          "brake_pressure_bar"
         ],
-        "return_type": "std::string"
+        "return_type": null
       }
     ],
-    "Data/firmware/main.cpp": [
+    "Data\\cloud\\braking_config.py": [
       {
-        "name": "telemetry_thread",
-        "line": 20,
-        "parameters": [
-          "SensorManager &mgr",
-          "CANBus &can"
-        ],
-        "return_type": "void"
+        "name": "get_brake_actuator_response_time_ms",
+        "line": 12,
+        "parameters": [],
+        "return_type": null
       },
       {
-        "name": "print_hex",
-        "line": 31,
+        "name": "get_speed_zone_multiplier",
+        "line": 16,
         "parameters": [
-          "const std::vector<uint8_t> &pkt"
+          "speed_mps"
         ],
-        "return_type": "void"
-      },
-      {
-        "name": "handle_config_frame",
-        "line": 38,
-        "parameters": [
-          "const std::vector<uint8_t> &frame",
-          "SensorManager &mgr",
-          "CANBus &can"
-        ],
-        "return_type": "void"
-      },
-      {
-        "name": "run_self_test",
-        "line": 64,
-        "parameters": [
-          "SensorManager &mgr",
-          "CANBus &can"
-        ],
-        "return_type": "bool"
-      },
-      {
-        "name": "main",
-        "line": 87,
-        "parameters": [
-          "int argc",
-          "char **argv"
-        ],
-        "return_type": "int"
+        "return_type": null
       }
     ],
-    "Data/cloud/ingest.py": [
+    "Data\\cloud\\braking_controller.py": [
+      {
+        "name": "calculate_brake_distance",
+        "line": 9,
+        "parameters": [
+          "speed_mps",
+          "road_mu=0.82"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "estimate_stopping_force",
+        "line": 18,
+        "parameters": [
+          "speed_mps",
+          "brake_pressure_bar"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "command_emergency_stop",
+        "line": 24,
+        "parameters": [
+          "speed_mps",
+          "brake_pressure_bar"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\can_interface.py": [
+      {
+        "name": "parse_can_frame",
+        "line": 4,
+        "parameters": [
+          "frame_bytes",
+          "delta_ms"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "validate_can_checksum",
+        "line": 16,
+        "parameters": [
+          "frame_bytes"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "parse_can_identifier",
+        "line": 21,
+        "parameters": [
+          "frame_bytes"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\drivetrain_config.py": [
+      {
+        "name": "get_max_motor_torque_nm",
+        "line": 4,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\drivetrain_controller.py": [
+      {
+        "name": "apply_torque_request",
+        "line": 4,
+        "parameters": [
+          "requested_nm"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\ecu_manager.py": [
+      {
+        "name": "vehicle_ecu_loop",
+        "line": 5,
+        "parameters": [
+          "requested_torque_nm",
+          "winding_temp_c"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "motor_overheat_protection",
+        "line": 14,
+        "parameters": [
+          "requested_torque_nm",
+          "winding_temp_c"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\energy_management.py": [
+      {
+        "name": "battery_charge_cycle",
+        "line": 1,
+        "parameters": [
+          "cell_voltage_v",
+          "pack_current_a"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "regen_braking_efficiency",
+        "line": 5,
+        "parameters": [
+          "speed_mps",
+          "battery_soc"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\ingest.py": [
       {
         "name": "Ingestor::__init__",
         "line": 13,
@@ -324,7 +465,299 @@
         "return_type": null
       }
     ],
-    "Data/cloud/utils.py": [
+    "Data\\cloud\\input_signals.py": [
+      {
+        "name": "read_steering_input",
+        "line": 4,
+        "parameters": [
+          "frame_bytes",
+          "delta_ms"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "read_brake_pedal_signal",
+        "line": 9,
+        "parameters": [
+          "frame_bytes",
+          "delta_ms"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "read_accelerator_signal",
+        "line": 14,
+        "parameters": [
+          "frame_bytes",
+          "delta_ms"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "diagnostic_health_check_interval",
+        "line": 19,
+        "parameters": [
+          "frame_bytes",
+          "delta_ms"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\network_config.py": [
+      {
+        "name": "get_can_bus_message_interval_ms",
+        "line": 4,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\safety_controller.py": [
+      {
+        "name": "safety_controller_loop",
+        "line": 4,
+        "parameters": [
+          "speed_mps",
+          "brake_pressure_bar"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "run_vehicle_dynamics",
+        "line": 9,
+        "parameters": [
+          "speed_mps",
+          "brake_pressure_bar"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\sensor_config.py": [
+      {
+        "name": "get_lidar_offset_calibration",
+        "line": 4,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\sensor_fusion.py": [
+      {
+        "name": "fuse_obstacle_track",
+        "line": 4,
+        "parameters": [
+          "raw_distance_m",
+          "raw_lateral_m"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "obstacle_detection_accuracy",
+        "line": 12,
+        "parameters": [
+          "raw_distance_m",
+          "raw_lateral_m"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "sensor_fusion_integration",
+        "line": 17,
+        "parameters": [
+          "raw_distance_m",
+          "raw_lateral_m"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\test_braking.py": [
+      {
+        "name": "test_brake_distance_nominal",
+        "line": 7,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_emergency_stop_latency",
+        "line": 11,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_stopping_force_range",
+        "line": 15,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_ABS_trigger_threshold",
+        "line": 19,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_safety_controller_integration",
+        "line": 23,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_vehicle_dynamics_end_to_end",
+        "line": 27,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_brake_fluid_pressure_sensor",
+        "line": 31,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_pedal_input_mapping",
+        "line": 35,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\test_can_timing.py": [
+      {
+        "name": "test_can_frame_parse_timing",
+        "line": 10,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_steering_input_latency",
+        "line": 14,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_brake_pedal_signal_integrity",
+        "line": 18,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_accelerator_response_time",
+        "line": 22,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_diagnostic_health_check_interval",
+        "line": 26,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_can_frame_checksum_validation",
+        "line": 30,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_can_frame_id_parsing",
+        "line": 34,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\test_drivetrain.py": [
+      {
+        "name": "test_torque_application_limits",
+        "line": 6,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_thermal_cutoff_trigger",
+        "line": 10,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_ecu_integration_nominal",
+        "line": 14,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_motor_overheat_protection",
+        "line": 18,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_battery_charge_cycle",
+        "line": 22,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_regen_braking_efficiency",
+        "line": 26,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\test_sensor_fusion.py": [
+      {
+        "name": "test_obstacle_detection_accuracy",
+        "line": 5,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_collision_margin_nominal",
+        "line": 9,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_trajectory_planner_clearance",
+        "line": 13,
+        "parameters": [],
+        "return_type": null
+      },
+      {
+        "name": "test_sensor_fusion_integration",
+        "line": 17,
+        "parameters": [],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\thermal_monitor.py": [
+      {
+        "name": "check_thermal_threshold",
+        "line": 1,
+        "parameters": [
+          "applied_torque_nm",
+          "winding_temp_c"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\trajectory_planner.py": [
+      {
+        "name": "plan_avoidance_trajectory",
+        "line": 4,
+        "parameters": [
+          "raw_distance_m",
+          "raw_lateral_m"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "collision_margin_nominal",
+        "line": 9,
+        "parameters": [
+          "raw_distance_m",
+          "raw_lateral_m"
+        ],
+        "return_type": null
+      }
+    ],
+    "Data\\cloud\\utils.py": [
       {
         "name": "pack_sensor_packet",
         "line": 3,
@@ -337,28 +770,33 @@
         ],
         "return_type": null
       }
+    ],
+    "Data\\cloud\\vehicle_sensors.py": [
+      {
+        "name": "read_brake_fluid_pressure",
+        "line": 1,
+        "parameters": [
+          "raw_adc"
+        ],
+        "return_type": null
+      },
+      {
+        "name": "map_pedal_input",
+        "line": 5,
+        "parameters": [
+          "raw_value"
+        ],
+        "return_type": null
+      }
     ]
   },
   "call_graph": {
-    "InterruptController::init": [
-      "InterruptController::init"
-    ],
-    "InterruptController::register_handler": [
-      "g",
-      "InterruptController::register_handler"
-    ],
-    "InterruptController::raise": [
-      "InterruptController::raise",
-      "h",
-      "g",
-      "count"
-    ],
     "CANBus::init": [
       "CANBus::init"
     ],
     "CANBus::send": [
-      "printf",
-      "CANBus::send"
+      "CANBus::send",
+      "printf"
     ],
     "CANBus::set_tx_id": [
       "CANBus::set_tx_id"
@@ -368,38 +806,129 @@
       "printf"
     ],
     "CANBus::receive": [
-      "CANBus::receive",
       "g",
       "empty",
+      "CANBus::receive",
       "clear"
     ],
     "CANBus::extract_id": [
-      "CANBus::extract_id",
-      "size"
+      "size",
+      "CANBus::extract_id"
     ],
     "CANBus::inject_frame": [
       "CANBus::inject_frame",
       "g"
     ],
+    "GPSModule::init": [
+      "GPSModule::init"
+    ],
+    "GPSModule::read_fix": [
+      "gen",
+      "std::rand",
+      "GPSModule::read_fix",
+      "dlat",
+      "dlon",
+      "std::time",
+      "rd"
+    ],
+    "GPSModule::nmea_from_fix": [
+      "GPSModule::nmea_from_fix",
+      "str",
+      "int",
+      "std::setprecision"
+    ],
+    "InterruptController::init": [
+      "InterruptController::init"
+    ],
+    "InterruptController::register_handler": [
+      "InterruptController::register_handler",
+      "g"
+    ],
+    "InterruptController::raise": [
+      "h",
+      "InterruptController::raise",
+      "g",
+      "count"
+    ],
+    "telemetry_thread": [
+      "load",
+      "telemetry_thread",
+      "this_thread::sleep_for",
+      "chrono::milliseconds",
+      "pack_latest",
+      "send"
+    ],
+    "print_hex": [
+      "print_hex",
+      "printf"
+    ],
+    "handle_config_frame": [
+      "set_sampling_rate_hz",
+      "size",
+      "empty",
+      "pack_latest",
+      "handle_config_frame",
+      "send"
+    ],
+    "run_self_test": [
+      "run_self_test",
+      "back",
+      "size",
+      "on_adc_complete",
+      "pack_latest",
+      "send"
+    ],
+    "main": [
+      "store",
+      "this_thread::sleep_for",
+      "50Hz",
+      "on_adc_complete",
+      "diag",
+      "run_self_test",
+      "inject_frame",
+      "chrono::milliseconds",
+      "empty",
+      "pack_latest",
+      "send",
+      "init",
+      "load",
+      "set_tx_id",
+      "set_sampling_rate_hz",
+      "hb",
+      "extract_id",
+      "t",
+      "stress_test",
+      "main",
+      "std::ref",
+      "compute_health_score",
+      "joinable",
+      "raise",
+      "register_handler",
+      "size",
+      "send_with_id",
+      "print_header",
+      "receive",
+      "join"
+    ],
     "crc8": [
-      "last_humidity_raw",
-      "crc8",
-      "std::srand",
+      "SensorManager::SensorManager",
       "last_pressure_raw",
       "last_temperature_raw",
-      "SensorManager::SensorManager",
+      "sampling_rate_hz",
       "adc_resolution_bits",
-      "std::time",
+      "last_humidity_raw",
       "status_flags",
-      "sampling_rate_hz"
+      "std::srand",
+      "std::time",
+      "crc8"
     ],
     "SensorManager::init": [
       "SensorManager::init"
     ],
     "SensorManager::on_adc_complete": [
+      "int",
       "SensorManager::on_adc_complete",
-      "std::rand",
-      "int"
+      "std::rand"
     ],
     "SensorManager::inject_fault_temperature": [
       "SensorManager::inject_fault_temperature"
@@ -408,97 +937,82 @@
       "SensorManager::inject_fault_pressure"
     ],
     "SensorManager::pack_latest": [
-      "default",
+      "checksum",
       "std::rand",
-      "SensorManager::pack_latest",
-      "2",
+      "default",
+      "data",
       "size",
       "9",
-      "checksum",
+      "pkt",
       "crc8",
-      "data",
-      "pkt"
+      "SensorManager::pack_latest",
+      "2"
     ],
     "SensorManager::set_sampling_rate_hz": [
       "SensorManager::set_sampling_rate_hz"
     ],
-    "GPSModule::init": [
-      "GPSModule::init"
+    "apply_ABS_threshold": [
+      "get_brake_actuator_response_time_ms",
+      "apply_ABS_threshold"
     ],
-    "GPSModule::read_fix": [
-      "std::rand",
-      "rd",
-      "gen",
-      "dlon",
-      "GPSModule::read_fix",
-      "std::time",
-      "dlat"
+    "get_brake_actuator_response_time_ms": [
+      "get_brake_actuator_response_time_ms"
     ],
-    "GPSModule::nmea_from_fix": [
-      "str",
-      "GPSModule::nmea_from_fix",
-      "std::setprecision",
-      "int"
+    "get_speed_zone_multiplier": [
+      "get_speed_zone_multiplier"
     ],
-    "telemetry_thread": [
-      "send",
-      "load",
-      "telemetry_thread",
-      "this_thread::sleep_for",
-      "pack_latest",
-      "chrono::milliseconds"
+    "calculate_brake_distance": [
+      "return",
+      "min",
+      "get_brake_actuator_response_time_ms",
+      "calculate_brake_distance",
+      "max",
+      "get_speed_zone_multiplier"
     ],
-    "print_hex": [
-      "printf",
-      "print_hex"
+    "estimate_stopping_force": [
+      "apply_ABS_threshold",
+      "estimate_stopping_force"
     ],
-    "handle_config_frame": [
-      "size",
-      "send",
-      "set_sampling_rate_hz",
-      "handle_config_frame",
-      "pack_latest",
-      "empty"
+    "command_emergency_stop": [
+      "estimate_stopping_force",
+      "command_emergency_stop",
+      "calculate_brake_distance"
     ],
-    "run_self_test": [
-      "on_adc_complete",
-      "send",
-      "size",
-      "back",
-      "pack_latest",
-      "run_self_test"
+    "parse_can_frame": [
+      "parse_can_frame",
+      "get_can_bus_message_interval_ms"
     ],
-    "main": [
-      "on_adc_complete",
-      "store",
-      "stress_test",
-      "50Hz",
-      "main",
-      "run_self_test",
-      "compute_health_score",
-      "send",
-      "raise",
-      "set_sampling_rate_hz",
-      "join",
-      "print_header",
-      "set_tx_id",
-      "register_handler",
-      "send_with_id",
-      "extract_id",
-      "empty",
-      "size",
-      "init",
-      "t",
-      "this_thread::sleep_for",
-      "hb",
-      "joinable",
-      "pack_latest",
-      "load",
-      "std::ref",
-      "diag",
-      "receive",
-      "chrono::milliseconds",
-      "inject_frame"
+    "validate_can_checksum": [
+      "sum",
+      "validate_can_checksum"
+    ],
+    "parse_can_identifier": [
+      "return",
+      "parse_can_identifier"
+    ],
+    "get_max_motor_torque_nm": [
+      "get_max_motor_torque_nm"
+    ],
+    "apply_torque_request": [
+      "min",
+      "get_max_motor_torque_nm",
+      "apply_torque_request"
+    ],
+    "vehicle_ecu_loop": [
+      "vehicle_ecu_loop",
+      "apply_torque_request",
+      "check_thermal_threshold"
+    ],
+    "motor_overheat_protection": [
+      "motor_overheat_protection",
+      "vehicle_ecu_loop"
+    ],
+    "battery_charge_cycle": [
+      "battery_charge_cycle"
+    ],
+    "regen_braking_efficiency": [
+      "min",
+      "regen_braking_efficiency"
     ],
     "Ingestor::__init__": [
       "Queue",
@@ -517,92 +1031,255 @@
     ],
     "Ingestor::_worker": [
       "append",
-      "parse_sensor_packet",
       "get",
-      "_worker"
+      "_worker",
+      "parse_sensor_packet"
     ],
     "Ingestor::parse_sensor_packet": [
-      "parse_sensor_packet",
-      "v1",
-      "v2",
       "ValueError",
-      "v3"
+      "v3",
+      "v1",
+      "parse_sensor_packet",
+      "v2"
     ],
     "Ingestor::crc8": [
-      "time",
-      "crc8",
-      "v1",
-      "v2",
-      "bool",
+      "unpack",
       "ValueError",
       "sum",
       "support",
-      "bytes",
       "v3",
-      "unpack",
-      "bytearray"
+      "bytearray",
+      "v1",
+      "bytes",
+      "time",
+      "bool",
+      "v2",
+      "crc8"
     ],
     "main_demo": [
-      "pack",
-      "sleep",
-      "uniform",
-      "start",
       "sum",
-      "bytes",
-      "push_raw",
       "Ingestor",
       "randint",
       "main_demo",
-      "stop"
+      "push_raw",
+      "stop",
+      "start",
+      "pack",
+      "bytes",
+      "sleep",
+      "uniform"
     ],
     "RemoteStorageClient::__init__": [
       "__init__"
     ],
     "RemoteStorageClient::upload_bulk": [
+      "upload_bulk",
       "random",
-      "RuntimeError",
-      "upload_bulk"
+      "RuntimeError"
     ],
     "reliable_upload": [
-      "reliable_upload",
+      "upload_bulk",
       "failed",
-      "sleep",
-      "upload_bulk"
+      "reliable_upload",
+      "sleep"
     ],
     "run_end_to_end_demo": [
-      "pack",
-      "sleep",
-      "run_end_to_end_demo",
-      "uniform",
-      "start",
       "sum",
-      "bytes",
-      "push_raw",
-      "reliable_upload",
       "Ingestor",
-      "append",
-      "randint",
       "RemoteStorageClient",
-      "stop"
+      "randint",
+      "push_raw",
+      "stop",
+      "start",
+      "reliable_upload",
+      "pack",
+      "run_end_to_end_demo",
+      "bytes",
+      "sleep",
+      "append",
+      "uniform"
     ],
     "record_heartbeat": [
-      "frame",
       "run_end_to_end_demo",
-      "main_demo",
-      "record_heartbeat"
+      "record_heartbeat",
+      "frame",
+      "main_demo"
+    ],
+    "read_steering_input": [
+      "read_steering_input",
+      "parse_can_frame"
+    ],
+    "read_brake_pedal_signal": [
+      "read_brake_pedal_signal",
+      "parse_can_frame"
+    ],
+    "read_accelerator_signal": [
+      "parse_can_frame",
+      "read_accelerator_signal"
+    ],
+    "diagnostic_health_check_interval": [
+      "diagnostic_health_check_interval",
+      "parse_can_frame"
+    ],
+    "get_can_bus_message_interval_ms": [
+      "get_can_bus_message_interval_ms"
+    ],
+    "safety_controller_loop": [
+      "command_emergency_stop",
+      "safety_controller_loop"
+    ],
+    "run_vehicle_dynamics": [
+      "run_vehicle_dynamics",
+      "safety_controller_loop"
+    ],
+    "get_lidar_offset_calibration": [
+      "get_lidar_offset_calibration"
+    ],
+    "fuse_obstacle_track": [
+      "get_lidar_offset_calibration",
+      "fuse_obstacle_track"
+    ],
+    "obstacle_detection_accuracy": [
+      "fuse_obstacle_track",
+      "abs",
+      "obstacle_detection_accuracy"
+    ],
+    "sensor_fusion_integration": [
+      "sensor_fusion_integration",
+      "obstacle_detection_accuracy"
+    ],
+    "test_brake_distance_nominal": [
+      "test_brake_distance_nominal",
+      "calculate_brake_distance"
+    ],
+    "test_emergency_stop_latency": [
+      "command_emergency_stop",
+      "test_emergency_stop_latency"
+    ],
+    "test_stopping_force_range": [
+      "test_stopping_force_range",
+      "estimate_stopping_force"
+    ],
+    "test_ABS_trigger_threshold": [
+      "apply_ABS_threshold",
+      "test_ABS_trigger_threshold"
+    ],
+    "test_safety_controller_integration": [
+      "test_safety_controller_integration",
+      "safety_controller_loop"
+    ],
+    "test_vehicle_dynamics_end_to_end": [
+      "run_vehicle_dynamics",
+      "test_vehicle_dynamics_end_to_end"
+    ],
+    "test_brake_fluid_pressure_sensor": [
+      "test_brake_fluid_pressure_sensor",
+      "read_brake_fluid_pressure"
+    ],
+    "test_pedal_input_mapping": [
+      "test_pedal_input_mapping",
+      "map_pedal_input"
+    ],
+    "test_can_frame_parse_timing": [
+      "test_can_frame_parse_timing",
+      "parse_can_frame"
+    ],
+    "test_steering_input_latency": [
+      "test_steering_input_latency",
+      "read_steering_input"
+    ],
+    "test_brake_pedal_signal_integrity": [
+      "read_brake_pedal_signal",
+      "test_brake_pedal_signal_integrity"
+    ],
+    "test_accelerator_response_time": [
+      "test_accelerator_response_time",
+      "read_accelerator_signal"
+    ],
+    "test_diagnostic_health_check_interval": [
+      "diagnostic_health_check_interval",
+      "test_diagnostic_health_check_interval"
+    ],
+    "test_can_frame_checksum_validation": [
+      "test_can_frame_checksum_validation",
+      "validate_can_checksum"
+    ],
+    "test_can_frame_id_parsing": [
+      "test_can_frame_id_parsing",
+      "parse_can_identifier"
+    ],
+    "test_torque_application_limits": [
+      "apply_torque_request",
+      "test_torque_application_limits"
+    ],
+    "test_thermal_cutoff_trigger": [
+      "test_thermal_cutoff_trigger",
+      "vehicle_ecu_loop"
+    ],
+    "test_ecu_integration_nominal": [
+      "test_ecu_integration_nominal",
+      "vehicle_ecu_loop"
+    ],
+    "test_motor_overheat_protection": [
+      "motor_overheat_protection",
+      "test_motor_overheat_protection"
+    ],
+    "test_battery_charge_cycle": [
+      "test_battery_charge_cycle",
+      "battery_charge_cycle"
+    ],
+    "test_regen_braking_efficiency": [
+      "regen_braking_efficiency",
+      "test_regen_braking_efficiency"
+    ],
+    "test_obstacle_detection_accuracy": [
+      "obstacle_detection_accuracy",
+      "test_obstacle_detection_accuracy"
+    ],
+    "test_collision_margin_nominal": [
+      "test_collision_margin_nominal",
+      "collision_margin_nominal"
+    ],
+    "test_trajectory_planner_clearance": [
+      "test_trajectory_planner_clearance",
+      "plan_avoidance_trajectory"
+    ],
+    "test_sensor_fusion_integration": [
+      "sensor_fusion_integration",
+      "test_sensor_fusion_integration"
+    ],
+    "check_thermal_threshold": [
+      "check_thermal_threshold"
+    ],
+    "plan_avoidance_trajectory": [
+      "fuse_obstacle_track",
+      "abs",
+      "plan_avoidance_trajectory"
+    ],
+    "collision_margin_nominal": [
+      "plan_avoidance_trajectory",
+      "collision_margin_nominal"
     ],
     "pack_sensor_packet": [
-      "pack",
-      "bytes",
       "sum",
-      "pack_sensor_packet"
+      "pack_sensor_packet",
+      "bytes",
+      "pack"
+    ],
+    "read_brake_fluid_pressure": [
+      "read_brake_fluid_pressure"
+    ],
+    "map_pedal_input": [
+      "min",
+      "max",
+      "map_pedal_input"
     ]
   },
   "hsi_traceability": {
     "SENSOR_PKT.version": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 64,
         "value": "3"
       }
@@ -610,7 +1287,7 @@
     "SENSOR_PKT.sensor_id": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 65,
         "value": "0x01"
       }
@@ -618,7 +1295,7 @@
     "SENSOR_PKT.temperature_raw_high": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 66,
         "value": "static_cast<uint8_t>((last_temperature_raw >> 8) & 0xFF)"
       }
@@ -626,7 +1303,7 @@
     "SENSOR_PKT.temperature_raw_low": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 67,
         "value": "static_cast<uint8_t>(last_temperature_raw & 0xFF)"
       }
@@ -634,7 +1311,7 @@
     "SENSOR_PKT.pressure_raw_high": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 68,
         "value": "static_cast<uint8_t>((last_pressure_raw >> 8) & 0xFF)"
       }
@@ -642,7 +1319,7 @@
     "SENSOR_PKT.pressure_raw_low": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 69,
         "value": "static_cast<uint8_t>(last_pressure_raw & 0xFF)"
       }
@@ -650,7 +1327,7 @@
     "SENSOR_PKT.humidity_raw_high": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 70,
         "value": "static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF)"
       }
@@ -658,7 +1335,7 @@
     "SENSOR_PKT.humidity_raw_low": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 71,
         "value": "static_cast<uint8_t>(last_humidity_raw & 0xFF)"
       }
@@ -666,7 +1343,7 @@
     "SENSOR_PKT.fuel_raw_high": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 72,
         "value": "static_cast<uint8_t>((last_fuel_raw >> 8) & 0xFF)"
       }
@@ -674,7 +1351,7 @@
     "SENSOR_PKT.fuel_raw_low": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 73,
         "value": "static_cast<uint8_t>(last_fuel_raw & 0xFF)"
       }
@@ -682,13 +1359,13 @@
     "SENSOR_PKT.status_flags": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 77,
         "value": "status_flags | 0x80"
       },
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 78,
         "value": "status_flags"
       }
@@ -696,7 +1373,7 @@
     "SENSOR_PKT.checksum": [
       {
         "function": "SensorManager::pack_latest",
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 89,
         "value": "c"
       }
@@ -704,17 +1381,17 @@
   },
   "classes": [
     {
-      "name": "InterruptController",
-      "file": "Data/firmware/interrupts.h",
-      "line_start": 8,
-      "line_end": 8,
+      "name": "CANBus",
+      "file": "Data\\firmware\\canbus.h",
+      "line_start": 6,
+      "line_end": 6,
       "language": "cpp",
       "members": [],
       "methods": []
     },
     {
       "name": "GPSFix",
-      "file": "Data/firmware/gps.h",
+      "file": "Data\\firmware\\gps.h",
       "line_start": 5,
       "line_end": 5,
       "language": "cpp",
@@ -723,7 +1400,7 @@
     },
     {
       "name": "GPSModule",
-      "file": "Data/firmware/gps.h",
+      "file": "Data\\firmware\\gps.h",
       "line_start": 13,
       "line_end": 13,
       "language": "cpp",
@@ -731,17 +1408,17 @@
       "methods": []
     },
     {
-      "name": "CANBus",
-      "file": "Data/firmware/canbus.h",
-      "line_start": 6,
-      "line_end": 6,
+      "name": "InterruptController",
+      "file": "Data\\firmware\\interrupts.h",
+      "line_start": 8,
+      "line_end": 8,
       "language": "cpp",
       "members": [],
       "methods": []
     },
     {
       "name": "SensorManager",
-      "file": "Data/firmware/sensors.h",
+      "file": "Data\\firmware\\sensors.h",
       "line_start": 5,
       "line_end": 5,
       "language": "cpp",
@@ -750,7 +1427,7 @@
     },
     {
       "name": "Ingestor",
-      "file": "Data/cloud/ingest.py",
+      "file": "Data\\cloud\\ingest.py",
       "line_start": 12,
       "line_end": 12,
       "language": "python",
@@ -759,7 +1436,7 @@
     },
     {
       "name": "RemoteStorageClient",
-      "file": "Data/cloud/ingest.py",
+      "file": "Data\\cloud\\ingest.py",
       "line_start": 186,
       "line_end": 186,
       "language": "python",
@@ -769,36 +1446,9 @@
   ],
   "relationships": [
     {
-      "source": "InterruptController::init",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/interrupts.cpp",
-      "metadata": {
-        "line": 4,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "InterruptController::register_handler",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/interrupts.cpp",
-      "metadata": {
-        "line": 9,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/interrupts.cpp",
-      "metadata": {
-        "line": 17,
-        "language": "cpp"
-      }
-    },
-    {
       "source": "CANBus::init",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 6,
         "language": "cpp"
@@ -807,7 +1457,7 @@
     {
       "source": "CANBus::send",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 12,
         "language": "cpp"
@@ -816,7 +1466,7 @@
     {
       "source": "CANBus::set_tx_id",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 23,
         "language": "cpp"
@@ -825,7 +1475,7 @@
     {
       "source": "CANBus::send_with_id",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 29,
         "language": "cpp"
@@ -834,7 +1484,7 @@
     {
       "source": "CANBus::receive",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 38,
         "language": "cpp"
@@ -843,7 +1493,7 @@
     {
       "source": "CANBus::extract_id",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 47,
         "language": "cpp"
@@ -852,79 +1502,16 @@
     {
       "source": "CANBus::inject_frame",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/canbus.cpp",
+      "target": "Data\\firmware\\canbus.cpp",
       "metadata": {
         "line": 54,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 7,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::init",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 27,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 36,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_temperature",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 48,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_pressure",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 54,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 60,
-        "language": "cpp"
-      }
-    },
-    {
-      "source": "SensorManager::set_sampling_rate_hz",
-      "relation": "DEFINED_IN",
-      "target": "Data/firmware/sensors.cpp",
-      "metadata": {
-        "line": 97,
         "language": "cpp"
       }
     },
     {
       "source": "GPSModule::init",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/gps.cpp",
+      "target": "Data\\firmware\\gps.cpp",
       "metadata": {
         "line": 10,
         "language": "cpp"
@@ -933,7 +1520,7 @@
     {
       "source": "GPSModule::read_fix",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/gps.cpp",
+      "target": "Data\\firmware\\gps.cpp",
       "metadata": {
         "line": 15,
         "language": "cpp"
@@ -942,16 +1529,43 @@
     {
       "source": "GPSModule::nmea_from_fix",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/gps.cpp",
+      "target": "Data\\firmware\\gps.cpp",
       "metadata": {
         "line": 33,
         "language": "cpp"
       }
     },
     {
+      "source": "InterruptController::init",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 4,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 9,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\interrupts.cpp",
+      "metadata": {
+        "line": 17,
+        "language": "cpp"
+      }
+    },
+    {
       "source": "telemetry_thread",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/main.cpp",
+      "target": "Data\\firmware\\main.cpp",
       "metadata": {
         "line": 20,
         "language": "cpp"
@@ -960,7 +1574,7 @@
     {
       "source": "print_hex",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/main.cpp",
+      "target": "Data\\firmware\\main.cpp",
       "metadata": {
         "line": 31,
         "language": "cpp"
@@ -969,7 +1583,7 @@
     {
       "source": "handle_config_frame",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/main.cpp",
+      "target": "Data\\firmware\\main.cpp",
       "metadata": {
         "line": 38,
         "language": "cpp"
@@ -978,7 +1592,7 @@
     {
       "source": "run_self_test",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/main.cpp",
+      "target": "Data\\firmware\\main.cpp",
       "metadata": {
         "line": 64,
         "language": "cpp"
@@ -987,16 +1601,214 @@
     {
       "source": "main",
       "relation": "DEFINED_IN",
-      "target": "Data/firmware/main.cpp",
+      "target": "Data\\firmware\\main.cpp",
       "metadata": {
         "line": 87,
         "language": "cpp"
       }
     },
     {
+      "source": "crc8",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 7,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 27,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 36,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 48,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 54,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 60,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "DEFINED_IN",
+      "target": "Data\\firmware\\sensors.cpp",
+      "metadata": {
+        "line": 97,
+        "language": "cpp"
+      }
+    },
+    {
+      "source": "apply_ABS_threshold",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\abs_subsystem.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "get_brake_actuator_response_time_ms",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\braking_config.py",
+      "metadata": {
+        "line": 12,
+        "language": "python"
+      }
+    },
+    {
+      "source": "get_speed_zone_multiplier",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\braking_config.py",
+      "metadata": {
+        "line": 16,
+        "language": "python"
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\braking_controller.py",
+      "metadata": {
+        "line": 9,
+        "language": "python"
+      }
+    },
+    {
+      "source": "estimate_stopping_force",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\braking_controller.py",
+      "metadata": {
+        "line": 18,
+        "language": "python"
+      }
+    },
+    {
+      "source": "command_emergency_stop",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\braking_controller.py",
+      "metadata": {
+        "line": 24,
+        "language": "python"
+      }
+    },
+    {
+      "source": "parse_can_frame",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\can_interface.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "validate_can_checksum",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\can_interface.py",
+      "metadata": {
+        "line": 16,
+        "language": "python"
+      }
+    },
+    {
+      "source": "parse_can_identifier",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\can_interface.py",
+      "metadata": {
+        "line": 21,
+        "language": "python"
+      }
+    },
+    {
+      "source": "get_max_motor_torque_nm",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\drivetrain_config.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "apply_torque_request",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\drivetrain_controller.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "vehicle_ecu_loop",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\ecu_manager.py",
+      "metadata": {
+        "line": 5,
+        "language": "python"
+      }
+    },
+    {
+      "source": "motor_overheat_protection",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\ecu_manager.py",
+      "metadata": {
+        "line": 14,
+        "language": "python"
+      }
+    },
+    {
+      "source": "battery_charge_cycle",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\energy_management.py",
+      "metadata": {
+        "line": 1,
+        "language": "python"
+      }
+    },
+    {
+      "source": "regen_braking_efficiency",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\energy_management.py",
+      "metadata": {
+        "line": 5,
+        "language": "python"
+      }
+    },
+    {
       "source": "Ingestor::__init__",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 13,
         "language": "python"
@@ -1005,7 +1817,7 @@
     {
       "source": "Ingestor::start",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 18,
         "language": "python"
@@ -1014,7 +1826,7 @@
     {
       "source": "Ingestor::stop",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 23,
         "language": "python"
@@ -1023,7 +1835,7 @@
     {
       "source": "Ingestor::push_raw",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 26,
         "language": "python"
@@ -1032,7 +1844,7 @@
     {
       "source": "Ingestor::_worker",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 30,
         "language": "python"
@@ -1041,7 +1853,7 @@
     {
       "source": "Ingestor::parse_sensor_packet",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 43,
         "language": "python"
@@ -1050,7 +1862,7 @@
     {
       "source": "Ingestor::crc8",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 49,
         "language": "python"
@@ -1059,7 +1871,7 @@
     {
       "source": "main_demo",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 170,
         "language": "python"
@@ -1068,7 +1880,7 @@
     {
       "source": "RemoteStorageClient::__init__",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 188,
         "language": "python"
@@ -1077,7 +1889,7 @@
     {
       "source": "RemoteStorageClient::upload_bulk",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 191,
         "language": "python"
@@ -1086,7 +1898,7 @@
     {
       "source": "reliable_upload",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 199,
         "language": "python"
@@ -1095,7 +1907,7 @@
     {
       "source": "run_end_to_end_demo",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 213,
         "language": "python"
@@ -1104,82 +1916,388 @@
     {
       "source": "record_heartbeat",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/ingest.py",
+      "target": "Data\\cloud\\ingest.py",
       "metadata": {
         "line": 246,
         "language": "python"
       }
     },
     {
+      "source": "read_steering_input",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\input_signals.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "read_brake_pedal_signal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\input_signals.py",
+      "metadata": {
+        "line": 9,
+        "language": "python"
+      }
+    },
+    {
+      "source": "read_accelerator_signal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\input_signals.py",
+      "metadata": {
+        "line": 14,
+        "language": "python"
+      }
+    },
+    {
+      "source": "diagnostic_health_check_interval",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\input_signals.py",
+      "metadata": {
+        "line": 19,
+        "language": "python"
+      }
+    },
+    {
+      "source": "get_can_bus_message_interval_ms",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\network_config.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "safety_controller_loop",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\safety_controller.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "run_vehicle_dynamics",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\safety_controller.py",
+      "metadata": {
+        "line": 9,
+        "language": "python"
+      }
+    },
+    {
+      "source": "get_lidar_offset_calibration",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\sensor_config.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "fuse_obstacle_track",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\sensor_fusion.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "obstacle_detection_accuracy",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\sensor_fusion.py",
+      "metadata": {
+        "line": 12,
+        "language": "python"
+      }
+    },
+    {
+      "source": "sensor_fusion_integration",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\sensor_fusion.py",
+      "metadata": {
+        "line": 17,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_brake_distance_nominal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 7,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_emergency_stop_latency",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 11,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_stopping_force_range",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 15,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_ABS_trigger_threshold",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 19,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_safety_controller_integration",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 23,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_vehicle_dynamics_end_to_end",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 27,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_brake_fluid_pressure_sensor",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 31,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_pedal_input_mapping",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_braking.py",
+      "metadata": {
+        "line": 35,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_can_frame_parse_timing",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 10,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_steering_input_latency",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 14,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_brake_pedal_signal_integrity",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 18,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_accelerator_response_time",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 22,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_diagnostic_health_check_interval",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 26,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_can_frame_checksum_validation",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 30,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_can_frame_id_parsing",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_can_timing.py",
+      "metadata": {
+        "line": 34,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_torque_application_limits",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 6,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_thermal_cutoff_trigger",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 10,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_ecu_integration_nominal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 14,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_motor_overheat_protection",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 18,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_battery_charge_cycle",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 22,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_regen_braking_efficiency",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_drivetrain.py",
+      "metadata": {
+        "line": 26,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_obstacle_detection_accuracy",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_sensor_fusion.py",
+      "metadata": {
+        "line": 5,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_collision_margin_nominal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_sensor_fusion.py",
+      "metadata": {
+        "line": 9,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_trajectory_planner_clearance",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_sensor_fusion.py",
+      "metadata": {
+        "line": 13,
+        "language": "python"
+      }
+    },
+    {
+      "source": "test_sensor_fusion_integration",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\test_sensor_fusion.py",
+      "metadata": {
+        "line": 17,
+        "language": "python"
+      }
+    },
+    {
+      "source": "check_thermal_threshold",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\thermal_monitor.py",
+      "metadata": {
+        "line": 1,
+        "language": "python"
+      }
+    },
+    {
+      "source": "plan_avoidance_trajectory",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\trajectory_planner.py",
+      "metadata": {
+        "line": 4,
+        "language": "python"
+      }
+    },
+    {
+      "source": "collision_margin_nominal",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\trajectory_planner.py",
+      "metadata": {
+        "line": 9,
+        "language": "python"
+      }
+    },
+    {
       "source": "pack_sensor_packet",
       "relation": "DEFINED_IN",
-      "target": "Data/cloud/utils.py",
+      "target": "Data\\cloud\\utils.py",
       "metadata": {
         "line": 3,
         "language": "python"
       }
     },
     {
-      "source": "InterruptController::init",
-      "relation": "CALLS",
-      "target": "InterruptController::init",
+      "source": "read_brake_fluid_pressure",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\vehicle_sensors.py",
       "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 4
+        "line": 1,
+        "language": "python"
       }
     },
     {
-      "source": "InterruptController::register_handler",
-      "relation": "CALLS",
-      "target": "InterruptController::register_handler",
+      "source": "map_pedal_input",
+      "relation": "DEFINED_IN",
+      "target": "Data\\cloud\\vehicle_sensors.py",
       "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 9
-      }
-    },
-    {
-      "source": "InterruptController::register_handler",
-      "relation": "CALLS",
-      "target": "g",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 11
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "CALLS",
-      "target": "InterruptController::raise",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 17
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "CALLS",
-      "target": "g",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 21
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "CALLS",
-      "target": "count",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "CALLS",
-      "target": "h",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp",
-        "line": 26
+        "line": 5,
+        "language": "python"
       }
     },
     {
@@ -1187,7 +2305,7 @@
       "relation": "CALLS",
       "target": "CANBus::init",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 6
       }
     },
@@ -1196,7 +2314,7 @@
       "relation": "CALLS",
       "target": "CANBus::send",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 12
       }
     },
@@ -1205,7 +2323,7 @@
       "relation": "CALLS",
       "target": "printf",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 18
       }
     },
@@ -1214,7 +2332,7 @@
       "relation": "CALLS",
       "target": "CANBus::set_tx_id",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 23
       }
     },
@@ -1223,7 +2341,7 @@
       "relation": "CALLS",
       "target": "CANBus::send_with_id",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 29
       }
     },
@@ -1232,7 +2350,7 @@
       "relation": "CALLS",
       "target": "printf",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 33
       }
     },
@@ -1241,7 +2359,7 @@
       "relation": "CALLS",
       "target": "CANBus::receive",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 38
       }
     },
@@ -1250,7 +2368,7 @@
       "relation": "CALLS",
       "target": "g",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 40
       }
     },
@@ -1259,7 +2377,7 @@
       "relation": "CALLS",
       "target": "empty",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 41
       }
     },
@@ -1268,7 +2386,7 @@
       "relation": "CALLS",
       "target": "clear",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 43
       }
     },
@@ -1277,7 +2395,7 @@
       "relation": "CALLS",
       "target": "CANBus::extract_id",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 47
       }
     },
@@ -1286,7 +2404,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 49
       }
     },
@@ -1295,7 +2413,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 50
       }
     },
@@ -1304,7 +2422,7 @@
       "relation": "CALLS",
       "target": "CANBus::inject_frame",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 54
       }
     },
@@ -1313,278 +2431,8 @@
       "relation": "CALLS",
       "target": "g",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp",
+        "file": "Data\\firmware\\canbus.cpp",
         "line": 56
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "crc8",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 7
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "SensorManager::SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 21
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "sampling_rate_hz",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "adc_resolution_bits",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "last_temperature_raw",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "last_pressure_raw",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "last_humidity_raw",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "status_flags",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 22
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "std::srand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 24
-      }
-    },
-    {
-      "source": "crc8",
-      "relation": "CALLS",
-      "target": "std::time",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 24
-      }
-    },
-    {
-      "source": "SensorManager::init",
-      "relation": "CALLS",
-      "target": "SensorManager::init",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 27
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "SensorManager::on_adc_complete",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 36
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "std::rand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 39
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "std::rand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 42
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "std::rand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 43
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "int",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 44
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "CALLS",
-      "target": "std::rand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 44
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_temperature",
-      "relation": "CALLS",
-      "target": "SensorManager::inject_fault_temperature",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 48
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_pressure",
-      "relation": "CALLS",
-      "target": "SensorManager::inject_fault_pressure",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 54
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "SensorManager::pack_latest",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 60
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "default",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 62
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "pkt",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 63
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "2",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 64
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "std::rand",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 76
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "9",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 84
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "size",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 85
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "checksum",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 87
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "crc8",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 88
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "CALLS",
-      "target": "data",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 88
-      }
-    },
-    {
-      "source": "SensorManager::set_sampling_rate_hz",
-      "relation": "CALLS",
-      "target": "SensorManager::set_sampling_rate_hz",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp",
-        "line": 97
       }
     },
     {
@@ -1592,7 +2440,7 @@
       "relation": "CALLS",
       "target": "GPSModule::init",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 10
       }
     },
@@ -1601,7 +2449,7 @@
       "relation": "CALLS",
       "target": "GPSModule::read_fix",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 15
       }
     },
@@ -1610,7 +2458,7 @@
       "relation": "CALLS",
       "target": "gen",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 19
       }
     },
@@ -1619,7 +2467,7 @@
       "relation": "CALLS",
       "target": "rd",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 19
       }
     },
@@ -1628,7 +2476,7 @@
       "relation": "CALLS",
       "target": "dlat",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 20
       }
     },
@@ -1637,7 +2485,7 @@
       "relation": "CALLS",
       "target": "dlon",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 21
       }
     },
@@ -1646,7 +2494,7 @@
       "relation": "CALLS",
       "target": "dlat",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 24
       }
     },
@@ -1655,7 +2503,7 @@
       "relation": "CALLS",
       "target": "dlon",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 25
       }
     },
@@ -1664,7 +2512,7 @@
       "relation": "CALLS",
       "target": "std::rand",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 26
       }
     },
@@ -1673,7 +2521,7 @@
       "relation": "CALLS",
       "target": "std::time",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 28
       }
     },
@@ -1682,7 +2530,7 @@
       "relation": "CALLS",
       "target": "GPSModule::nmea_from_fix",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 33
       }
     },
@@ -1691,7 +2539,7 @@
       "relation": "CALLS",
       "target": "std::setprecision",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 36
       }
     },
@@ -1700,7 +2548,7 @@
       "relation": "CALLS",
       "target": "int",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 37
       }
     },
@@ -1709,8 +2557,71 @@
       "relation": "CALLS",
       "target": "str",
       "metadata": {
-        "file": "Data/firmware/gps.cpp",
+        "file": "Data\\firmware\\gps.cpp",
         "line": 38
+      }
+    },
+    {
+      "source": "InterruptController::init",
+      "relation": "CALLS",
+      "target": "InterruptController::init",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 4
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "CALLS",
+      "target": "InterruptController::register_handler",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 9
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 11
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "InterruptController::raise",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 17
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "g",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 21
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "count",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "CALLS",
+      "target": "h",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp",
+        "line": 26
       }
     },
     {
@@ -1718,7 +2629,7 @@
       "relation": "CALLS",
       "target": "telemetry_thread",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 20
       }
     },
@@ -1727,7 +2638,7 @@
       "relation": "CALLS",
       "target": "load",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 23
       }
     },
@@ -1736,7 +2647,7 @@
       "relation": "CALLS",
       "target": "pack_latest",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 24
       }
     },
@@ -1745,7 +2656,7 @@
       "relation": "CALLS",
       "target": "send",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 25
       }
     },
@@ -1754,7 +2665,7 @@
       "relation": "CALLS",
       "target": "this_thread::sleep_for",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 26
       }
     },
@@ -1763,7 +2674,7 @@
       "relation": "CALLS",
       "target": "chrono::milliseconds",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 26
       }
     },
@@ -1772,7 +2683,7 @@
       "relation": "CALLS",
       "target": "print_hex",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 31
       }
     },
@@ -1781,7 +2692,7 @@
       "relation": "CALLS",
       "target": "printf",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 33
       }
     },
@@ -1790,7 +2701,7 @@
       "relation": "CALLS",
       "target": "printf",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 34
       }
     },
@@ -1799,7 +2710,7 @@
       "relation": "CALLS",
       "target": "handle_config_frame",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 38
       }
     },
@@ -1808,7 +2719,7 @@
       "relation": "CALLS",
       "target": "empty",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 40
       }
     },
@@ -1817,7 +2728,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 45
       }
     },
@@ -1826,7 +2737,7 @@
       "relation": "CALLS",
       "target": "set_sampling_rate_hz",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 47
       }
     },
@@ -1835,7 +2746,7 @@
       "relation": "CALLS",
       "target": "pack_latest",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 54
       }
     },
@@ -1844,7 +2755,7 @@
       "relation": "CALLS",
       "target": "send",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 55
       }
     },
@@ -1853,7 +2764,7 @@
       "relation": "CALLS",
       "target": "run_self_test",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 64
       }
     },
@@ -1862,7 +2773,7 @@
       "relation": "CALLS",
       "target": "on_adc_complete",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 68
       }
     },
@@ -1871,7 +2782,7 @@
       "relation": "CALLS",
       "target": "pack_latest",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 69
       }
     },
@@ -1880,7 +2791,7 @@
       "relation": "CALLS",
       "target": "send",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 70
       }
     },
@@ -1889,7 +2800,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 72
       }
     },
@@ -1898,7 +2809,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 78
       }
     },
@@ -1907,7 +2818,7 @@
       "relation": "CALLS",
       "target": "back",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 79
       }
     },
@@ -1916,7 +2827,7 @@
       "relation": "CALLS",
       "target": "main",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 87
       }
     },
@@ -1925,7 +2836,7 @@
       "relation": "CALLS",
       "target": "init",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 96
       }
     },
@@ -1934,7 +2845,7 @@
       "relation": "CALLS",
       "target": "init",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 97
       }
     },
@@ -1943,7 +2854,7 @@
       "relation": "CALLS",
       "target": "set_tx_id",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 99
       }
     },
@@ -1952,7 +2863,7 @@
       "relation": "CALLS",
       "target": "init",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 100
       }
     },
@@ -1961,7 +2872,7 @@
       "relation": "CALLS",
       "target": "register_handler",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 103
       }
     },
@@ -1970,7 +2881,7 @@
       "relation": "CALLS",
       "target": "on_adc_complete",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 104
       }
     },
@@ -1979,7 +2890,7 @@
       "relation": "CALLS",
       "target": "register_handler",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 107
       }
     },
@@ -1988,7 +2899,7 @@
       "relation": "CALLS",
       "target": "receive",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 108
       }
     },
@@ -1997,7 +2908,7 @@
       "relation": "CALLS",
       "target": "empty",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 109
       }
     },
@@ -2006,7 +2917,7 @@
       "relation": "CALLS",
       "target": "extract_id",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 111
       }
     },
@@ -2015,7 +2926,7 @@
       "relation": "CALLS",
       "target": "size",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 112
       }
     },
@@ -2024,7 +2935,7 @@
       "relation": "CALLS",
       "target": "t",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 117
       }
     },
@@ -2033,7 +2944,7 @@
       "relation": "CALLS",
       "target": "std::ref",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 117
       }
     },
@@ -2042,7 +2953,7 @@
       "relation": "CALLS",
       "target": "std::ref",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 117
       }
     },
@@ -2051,7 +2962,7 @@
       "relation": "CALLS",
       "target": "diag",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 121
       }
     },
@@ -2060,7 +2971,7 @@
       "relation": "CALLS",
       "target": "load",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 123
       }
     },
@@ -2069,7 +2980,7 @@
       "relation": "CALLS",
       "target": "set_sampling_rate_hz",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 130
       }
     },
@@ -2078,7 +2989,7 @@
       "relation": "CALLS",
       "target": "this_thread::sleep_for",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 133
       }
     },
@@ -2087,7 +2998,7 @@
       "relation": "CALLS",
       "target": "store",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 136
       }
     },
@@ -2096,7 +3007,7 @@
       "relation": "CALLS",
       "target": "hb",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 140
       }
     },
@@ -2105,7 +3016,7 @@
       "relation": "CALLS",
       "target": "load",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 141
       }
     },
@@ -2114,7 +3025,7 @@
       "relation": "CALLS",
       "target": "send_with_id",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 143
       }
     },
@@ -2123,7 +3034,7 @@
       "relation": "CALLS",
       "target": "this_thread::sleep_for",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 144
       }
     },
@@ -2132,7 +3043,7 @@
       "relation": "CALLS",
       "target": "chrono::milliseconds",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 144
       }
     },
@@ -2141,7 +3052,7 @@
       "relation": "CALLS",
       "target": "load",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 149
       }
     },
@@ -2150,7 +3061,7 @@
       "relation": "CALLS",
       "target": "this_thread::sleep_for",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 151
       }
     },
@@ -2159,7 +3070,7 @@
       "relation": "CALLS",
       "target": "raise",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 152
       }
     },
@@ -2168,7 +3079,7 @@
       "relation": "CALLS",
       "target": "50Hz",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 158
       }
     },
@@ -2177,7 +3088,7 @@
       "relation": "CALLS",
       "target": "inject_frame",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 159
       }
     },
@@ -2186,7 +3097,7 @@
       "relation": "CALLS",
       "target": "inject_frame",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 161
       }
     },
@@ -2195,7 +3106,7 @@
       "relation": "CALLS",
       "target": "raise",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 163
       }
     },
@@ -2204,7 +3115,7 @@
       "relation": "CALLS",
       "target": "run_self_test",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 166
       }
     },
@@ -2213,7 +3124,7 @@
       "relation": "CALLS",
       "target": "store",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 169
       }
     },
@@ -2222,7 +3133,7 @@
       "relation": "CALLS",
       "target": "join",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 170
       }
     },
@@ -2231,7 +3142,7 @@
       "relation": "CALLS",
       "target": "joinable",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 171
       }
     },
@@ -2240,7 +3151,7 @@
       "relation": "CALLS",
       "target": "join",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 171
       }
     },
@@ -2249,7 +3160,7 @@
       "relation": "CALLS",
       "target": "joinable",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 172
       }
     },
@@ -2258,7 +3169,7 @@
       "relation": "CALLS",
       "target": "join",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 172
       }
     },
@@ -2267,7 +3178,7 @@
       "relation": "CALLS",
       "target": "print_header",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 180
       }
     },
@@ -2276,7 +3187,7 @@
       "relation": "CALLS",
       "target": "stress_test",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 184
       }
     },
@@ -2285,7 +3196,7 @@
       "relation": "CALLS",
       "target": "on_adc_complete",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 187
       }
     },
@@ -2294,7 +3205,7 @@
       "relation": "CALLS",
       "target": "pack_latest",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 188
       }
     },
@@ -2303,7 +3214,7 @@
       "relation": "CALLS",
       "target": "send",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 189
       }
     },
@@ -2312,7 +3223,7 @@
       "relation": "CALLS",
       "target": "this_thread::sleep_for",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 190
       }
     },
@@ -2321,8 +3232,575 @@
       "relation": "CALLS",
       "target": "compute_health_score",
       "metadata": {
-        "file": "Data/firmware/main.cpp",
+        "file": "Data\\firmware\\main.cpp",
         "line": 195
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 7
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "SensorManager::SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 21
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "sampling_rate_hz",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "adc_resolution_bits",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_temperature_raw",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_pressure_raw",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "last_humidity_raw",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "status_flags",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 22
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "std::srand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 24
+      }
+    },
+    {
+      "source": "crc8",
+      "relation": "CALLS",
+      "target": "std::time",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 24
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "CALLS",
+      "target": "SensorManager::init",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 27
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "SensorManager::on_adc_complete",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 36
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 39
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 42
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 43
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "int",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 44
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 44
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "CALLS",
+      "target": "SensorManager::inject_fault_temperature",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 48
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "CALLS",
+      "target": "SensorManager::inject_fault_pressure",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 54
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "SensorManager::pack_latest",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 60
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "default",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 62
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "pkt",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 63
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "2",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 64
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "std::rand",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 76
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "9",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 84
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "size",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 85
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "checksum",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 87
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "crc8",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 88
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "CALLS",
+      "target": "data",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 88
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "CALLS",
+      "target": "SensorManager::set_sampling_rate_hz",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp",
+        "line": 97
+      }
+    },
+    {
+      "source": "apply_ABS_threshold",
+      "relation": "CALLS",
+      "target": "apply_ABS_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\abs_subsystem.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "apply_ABS_threshold",
+      "relation": "CALLS",
+      "target": "get_brake_actuator_response_time_ms",
+      "metadata": {
+        "file": "Data\\cloud\\abs_subsystem.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "get_brake_actuator_response_time_ms",
+      "relation": "CALLS",
+      "target": "get_brake_actuator_response_time_ms",
+      "metadata": {
+        "file": "Data\\cloud\\braking_config.py",
+        "line": 12
+      }
+    },
+    {
+      "source": "get_speed_zone_multiplier",
+      "relation": "CALLS",
+      "target": "get_speed_zone_multiplier",
+      "metadata": {
+        "file": "Data\\cloud\\braking_config.py",
+        "line": 16
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "calculate_brake_distance",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 9
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "min",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "get_brake_actuator_response_time_ms",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "get_speed_zone_multiplier",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 11
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "max",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 12
+      }
+    },
+    {
+      "source": "calculate_brake_distance",
+      "relation": "CALLS",
+      "target": "return",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "estimate_stopping_force",
+      "relation": "CALLS",
+      "target": "estimate_stopping_force",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 18
+      }
+    },
+    {
+      "source": "estimate_stopping_force",
+      "relation": "CALLS",
+      "target": "apply_ABS_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 19
+      }
+    },
+    {
+      "source": "command_emergency_stop",
+      "relation": "CALLS",
+      "target": "command_emergency_stop",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 24
+      }
+    },
+    {
+      "source": "command_emergency_stop",
+      "relation": "CALLS",
+      "target": "calculate_brake_distance",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 26
+      }
+    },
+    {
+      "source": "command_emergency_stop",
+      "relation": "CALLS",
+      "target": "estimate_stopping_force",
+      "metadata": {
+        "file": "Data\\cloud\\braking_controller.py",
+        "line": 27
+      }
+    },
+    {
+      "source": "parse_can_frame",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "parse_can_frame",
+      "relation": "CALLS",
+      "target": "get_can_bus_message_interval_ms",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "validate_can_checksum",
+      "relation": "CALLS",
+      "target": "validate_can_checksum",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 16
+      }
+    },
+    {
+      "source": "validate_can_checksum",
+      "relation": "CALLS",
+      "target": "sum",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 17
+      }
+    },
+    {
+      "source": "parse_can_identifier",
+      "relation": "CALLS",
+      "target": "parse_can_identifier",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 21
+      }
+    },
+    {
+      "source": "parse_can_identifier",
+      "relation": "CALLS",
+      "target": "return",
+      "metadata": {
+        "file": "Data\\cloud\\can_interface.py",
+        "line": 22
+      }
+    },
+    {
+      "source": "get_max_motor_torque_nm",
+      "relation": "CALLS",
+      "target": "get_max_motor_torque_nm",
+      "metadata": {
+        "file": "Data\\cloud\\drivetrain_config.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "apply_torque_request",
+      "relation": "CALLS",
+      "target": "apply_torque_request",
+      "metadata": {
+        "file": "Data\\cloud\\drivetrain_controller.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "apply_torque_request",
+      "relation": "CALLS",
+      "target": "get_max_motor_torque_nm",
+      "metadata": {
+        "file": "Data\\cloud\\drivetrain_controller.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "apply_torque_request",
+      "relation": "CALLS",
+      "target": "min",
+      "metadata": {
+        "file": "Data\\cloud\\drivetrain_controller.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "vehicle_ecu_loop",
+      "relation": "CALLS",
+      "target": "vehicle_ecu_loop",
+      "metadata": {
+        "file": "Data\\cloud\\ecu_manager.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "vehicle_ecu_loop",
+      "relation": "CALLS",
+      "target": "apply_torque_request",
+      "metadata": {
+        "file": "Data\\cloud\\ecu_manager.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "vehicle_ecu_loop",
+      "relation": "CALLS",
+      "target": "check_thermal_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\ecu_manager.py",
+        "line": 7
+      }
+    },
+    {
+      "source": "motor_overheat_protection",
+      "relation": "CALLS",
+      "target": "motor_overheat_protection",
+      "metadata": {
+        "file": "Data\\cloud\\ecu_manager.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "motor_overheat_protection",
+      "relation": "CALLS",
+      "target": "vehicle_ecu_loop",
+      "metadata": {
+        "file": "Data\\cloud\\ecu_manager.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "battery_charge_cycle",
+      "relation": "CALLS",
+      "target": "battery_charge_cycle",
+      "metadata": {
+        "file": "Data\\cloud\\energy_management.py",
+        "line": 1
+      }
+    },
+    {
+      "source": "regen_braking_efficiency",
+      "relation": "CALLS",
+      "target": "regen_braking_efficiency",
+      "metadata": {
+        "file": "Data\\cloud\\energy_management.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "regen_braking_efficiency",
+      "relation": "CALLS",
+      "target": "min",
+      "metadata": {
+        "file": "Data\\cloud\\energy_management.py",
+        "line": 6
       }
     },
     {
@@ -2330,7 +3808,7 @@
       "relation": "CALLS",
       "target": "__init__",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 13
       }
     },
@@ -2339,7 +3817,7 @@
       "relation": "CALLS",
       "target": "Queue",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 14
       }
     },
@@ -2348,7 +3826,7 @@
       "relation": "CALLS",
       "target": "start",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 18
       }
     },
@@ -2357,7 +3835,7 @@
       "relation": "CALLS",
       "target": "Thread",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 20
       }
     },
@@ -2366,7 +3844,7 @@
       "relation": "CALLS",
       "target": "start",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 21
       }
     },
@@ -2375,7 +3853,7 @@
       "relation": "CALLS",
       "target": "stop",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 23
       }
     },
@@ -2384,7 +3862,7 @@
       "relation": "CALLS",
       "target": "push_raw",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 26
       }
     },
@@ -2393,7 +3871,7 @@
       "relation": "CALLS",
       "target": "put",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 28
       }
     },
@@ -2402,7 +3880,7 @@
       "relation": "CALLS",
       "target": "_worker",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 30
       }
     },
@@ -2411,7 +3889,7 @@
       "relation": "CALLS",
       "target": "get",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 33
       }
     },
@@ -2420,7 +3898,7 @@
       "relation": "CALLS",
       "target": "parse_sensor_packet",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 37
       }
     },
@@ -2429,7 +3907,7 @@
       "relation": "CALLS",
       "target": "append",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 38
       }
     },
@@ -2438,7 +3916,7 @@
       "relation": "CALLS",
       "target": "parse_sensor_packet",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 43
       }
     },
@@ -2447,7 +3925,7 @@
       "relation": "CALLS",
       "target": "v1",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 44
       }
     },
@@ -2456,7 +3934,7 @@
       "relation": "CALLS",
       "target": "v2",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 44
       }
     },
@@ -2465,7 +3943,7 @@
       "relation": "CALLS",
       "target": "v3",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 44
       }
     },
@@ -2474,7 +3952,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 46
       }
     },
@@ -2483,7 +3961,7 @@
       "relation": "CALLS",
       "target": "crc8",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 49
       }
     },
@@ -2492,7 +3970,7 @@
       "relation": "CALLS",
       "target": "v1",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 61
       }
     },
@@ -2501,7 +3979,7 @@
       "relation": "CALLS",
       "target": "unpack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 63
       }
     },
@@ -2510,7 +3988,7 @@
       "relation": "CALLS",
       "target": "sum",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 64
       }
     },
@@ -2519,7 +3997,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 66
       }
     },
@@ -2528,7 +4006,7 @@
       "relation": "CALLS",
       "target": "time",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 73
       }
     },
@@ -2537,7 +4015,7 @@
       "relation": "CALLS",
       "target": "v3",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 79
       }
     },
@@ -2546,7 +4024,7 @@
       "relation": "CALLS",
       "target": "crc8",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 82
       }
     },
@@ -2555,7 +4033,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 82
       }
     },
@@ -2564,7 +4042,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 84
       }
     },
@@ -2573,7 +4051,7 @@
       "relation": "CALLS",
       "target": "bool",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 86
       }
     },
@@ -2582,7 +4060,7 @@
       "relation": "CALLS",
       "target": "bytearray",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 87
       }
     },
@@ -2591,7 +4069,7 @@
       "relation": "CALLS",
       "target": "unpack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 92
       }
     },
@@ -2600,7 +4078,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 92
       }
     },
@@ -2609,7 +4087,7 @@
       "relation": "CALLS",
       "target": "time",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 101
       }
     },
@@ -2618,7 +4096,7 @@
       "relation": "CALLS",
       "target": "v2",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 109
       }
     },
@@ -2627,7 +4105,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 111
       }
     },
@@ -2636,7 +4114,7 @@
       "relation": "CALLS",
       "target": "crc8",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 113
       }
     },
@@ -2645,7 +4123,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 113
       }
     },
@@ -2654,7 +4132,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 115
       }
     },
@@ -2663,7 +4141,7 @@
       "relation": "CALLS",
       "target": "bool",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 117
       }
     },
@@ -2672,7 +4150,7 @@
       "relation": "CALLS",
       "target": "bytearray",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 118
       }
     },
@@ -2681,7 +4159,7 @@
       "relation": "CALLS",
       "target": "unpack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 123
       }
     },
@@ -2690,7 +4168,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 123
       }
     },
@@ -2699,7 +4177,7 @@
       "relation": "CALLS",
       "target": "time",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 131
       }
     },
@@ -2708,7 +4186,7 @@
       "relation": "CALLS",
       "target": "support",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 138
       }
     },
@@ -2717,7 +4195,7 @@
       "relation": "CALLS",
       "target": "crc8",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 142
       }
     },
@@ -2726,7 +4204,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 142
       }
     },
@@ -2735,7 +4213,7 @@
       "relation": "CALLS",
       "target": "ValueError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 144
       }
     },
@@ -2744,7 +4222,7 @@
       "relation": "CALLS",
       "target": "bool",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 146
       }
     },
@@ -2753,7 +4231,7 @@
       "relation": "CALLS",
       "target": "bytearray",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 147
       }
     },
@@ -2762,7 +4240,7 @@
       "relation": "CALLS",
       "target": "unpack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 153
       }
     },
@@ -2771,7 +4249,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 153
       }
     },
@@ -2780,7 +4258,7 @@
       "relation": "CALLS",
       "target": "time",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 162
       }
     },
@@ -2789,7 +4267,7 @@
       "relation": "CALLS",
       "target": "main_demo",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 170
       }
     },
@@ -2798,7 +4276,7 @@
       "relation": "CALLS",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 171
       }
     },
@@ -2807,7 +4285,7 @@
       "relation": "CALLS",
       "target": "start",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 172
       }
     },
@@ -2816,7 +4294,7 @@
       "relation": "CALLS",
       "target": "uniform",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 175
       }
     },
@@ -2825,7 +4303,7 @@
       "relation": "CALLS",
       "target": "randint",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 176
       }
     },
@@ -2834,7 +4312,7 @@
       "relation": "CALLS",
       "target": "pack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 177
       }
     },
@@ -2843,7 +4321,7 @@
       "relation": "CALLS",
       "target": "sum",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 178
       }
     },
@@ -2852,7 +4330,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 179
       }
     },
@@ -2861,7 +4339,7 @@
       "relation": "CALLS",
       "target": "push_raw",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 180
       }
     },
@@ -2870,7 +4348,7 @@
       "relation": "CALLS",
       "target": "sleep",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 181
       }
     },
@@ -2879,7 +4357,7 @@
       "relation": "CALLS",
       "target": "sleep",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 182
       }
     },
@@ -2888,7 +4366,7 @@
       "relation": "CALLS",
       "target": "stop",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 183
       }
     },
@@ -2897,7 +4375,7 @@
       "relation": "CALLS",
       "target": "__init__",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 188
       }
     },
@@ -2906,7 +4384,7 @@
       "relation": "CALLS",
       "target": "upload_bulk",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 191
       }
     },
@@ -2915,7 +4393,7 @@
       "relation": "CALLS",
       "target": "random",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 193
       }
     },
@@ -2924,7 +4402,7 @@
       "relation": "CALLS",
       "target": "RuntimeError",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 194
       }
     },
@@ -2933,7 +4411,7 @@
       "relation": "CALLS",
       "target": "reliable_upload",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 199
       }
     },
@@ -2942,7 +4420,7 @@
       "relation": "CALLS",
       "target": "upload_bulk",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 203
       }
     },
@@ -2951,7 +4429,7 @@
       "relation": "CALLS",
       "target": "failed",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 208
       }
     },
@@ -2960,7 +4438,7 @@
       "relation": "CALLS",
       "target": "sleep",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 209
       }
     },
@@ -2969,7 +4447,7 @@
       "relation": "CALLS",
       "target": "run_end_to_end_demo",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 213
       }
     },
@@ -2978,7 +4456,7 @@
       "relation": "CALLS",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 214
       }
     },
@@ -2987,7 +4465,7 @@
       "relation": "CALLS",
       "target": "start",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 215
       }
     },
@@ -2996,7 +4474,7 @@
       "relation": "CALLS",
       "target": "RemoteStorageClient",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 216
       }
     },
@@ -3005,7 +4483,7 @@
       "relation": "CALLS",
       "target": "uniform",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 222
       }
     },
@@ -3014,7 +4492,7 @@
       "relation": "CALLS",
       "target": "randint",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 223
       }
     },
@@ -3023,7 +4501,7 @@
       "relation": "CALLS",
       "target": "uniform",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 224
       }
     },
@@ -3032,7 +4510,7 @@
       "relation": "CALLS",
       "target": "pack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 225
       }
     },
@@ -3041,7 +4519,7 @@
       "relation": "CALLS",
       "target": "sum",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 226
       }
     },
@@ -3050,7 +4528,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 227
       }
     },
@@ -3059,7 +4537,7 @@
       "relation": "CALLS",
       "target": "uniform",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 229
       }
     },
@@ -3068,7 +4546,7 @@
       "relation": "CALLS",
       "target": "randint",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 230
       }
     },
@@ -3077,7 +4555,7 @@
       "relation": "CALLS",
       "target": "pack",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 231
       }
     },
@@ -3086,7 +4564,7 @@
       "relation": "CALLS",
       "target": "sum",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 232
       }
     },
@@ -3095,7 +4573,7 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 233
       }
     },
@@ -3104,7 +4582,7 @@
       "relation": "CALLS",
       "target": "push_raw",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 234
       }
     },
@@ -3113,7 +4591,7 @@
       "relation": "CALLS",
       "target": "append",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 235
       }
     },
@@ -3122,7 +4600,7 @@
       "relation": "CALLS",
       "target": "sleep",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 238
       }
     },
@@ -3131,7 +4609,7 @@
       "relation": "CALLS",
       "target": "reliable_upload",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 241
       }
     },
@@ -3140,7 +4618,7 @@
       "relation": "CALLS",
       "target": "stop",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 243
       }
     },
@@ -3149,7 +4627,7 @@
       "relation": "CALLS",
       "target": "record_heartbeat",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 246
       }
     },
@@ -3158,7 +4636,7 @@
       "relation": "CALLS",
       "target": "frame",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 247
       }
     },
@@ -3167,7 +4645,7 @@
       "relation": "CALLS",
       "target": "run_end_to_end_demo",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 261
       }
     },
@@ -3176,8 +4654,701 @@
       "relation": "CALLS",
       "target": "main_demo",
       "metadata": {
-        "file": "Data/cloud/ingest.py",
+        "file": "Data\\cloud\\ingest.py",
         "line": 264
+      }
+    },
+    {
+      "source": "read_steering_input",
+      "relation": "CALLS",
+      "target": "read_steering_input",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "read_steering_input",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "read_brake_pedal_signal",
+      "relation": "CALLS",
+      "target": "read_brake_pedal_signal",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 9
+      }
+    },
+    {
+      "source": "read_brake_pedal_signal",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "read_accelerator_signal",
+      "relation": "CALLS",
+      "target": "read_accelerator_signal",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "read_accelerator_signal",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "diagnostic_health_check_interval",
+      "relation": "CALLS",
+      "target": "diagnostic_health_check_interval",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 19
+      }
+    },
+    {
+      "source": "diagnostic_health_check_interval",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\input_signals.py",
+        "line": 20
+      }
+    },
+    {
+      "source": "get_can_bus_message_interval_ms",
+      "relation": "CALLS",
+      "target": "get_can_bus_message_interval_ms",
+      "metadata": {
+        "file": "Data\\cloud\\network_config.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "safety_controller_loop",
+      "relation": "CALLS",
+      "target": "safety_controller_loop",
+      "metadata": {
+        "file": "Data\\cloud\\safety_controller.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "safety_controller_loop",
+      "relation": "CALLS",
+      "target": "command_emergency_stop",
+      "metadata": {
+        "file": "Data\\cloud\\safety_controller.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "run_vehicle_dynamics",
+      "relation": "CALLS",
+      "target": "run_vehicle_dynamics",
+      "metadata": {
+        "file": "Data\\cloud\\safety_controller.py",
+        "line": 9
+      }
+    },
+    {
+      "source": "run_vehicle_dynamics",
+      "relation": "CALLS",
+      "target": "safety_controller_loop",
+      "metadata": {
+        "file": "Data\\cloud\\safety_controller.py",
+        "line": 11
+      }
+    },
+    {
+      "source": "get_lidar_offset_calibration",
+      "relation": "CALLS",
+      "target": "get_lidar_offset_calibration",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_config.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "fuse_obstacle_track",
+      "relation": "CALLS",
+      "target": "fuse_obstacle_track",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "fuse_obstacle_track",
+      "relation": "CALLS",
+      "target": "get_lidar_offset_calibration",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "obstacle_detection_accuracy",
+      "relation": "CALLS",
+      "target": "obstacle_detection_accuracy",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 12
+      }
+    },
+    {
+      "source": "obstacle_detection_accuracy",
+      "relation": "CALLS",
+      "target": "fuse_obstacle_track",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 13
+      }
+    },
+    {
+      "source": "obstacle_detection_accuracy",
+      "relation": "CALLS",
+      "target": "abs",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "sensor_fusion_integration",
+      "relation": "CALLS",
+      "target": "sensor_fusion_integration",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 17
+      }
+    },
+    {
+      "source": "sensor_fusion_integration",
+      "relation": "CALLS",
+      "target": "obstacle_detection_accuracy",
+      "metadata": {
+        "file": "Data\\cloud\\sensor_fusion.py",
+        "line": 18
+      }
+    },
+    {
+      "source": "test_brake_distance_nominal",
+      "relation": "CALLS",
+      "target": "test_brake_distance_nominal",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 7
+      }
+    },
+    {
+      "source": "test_brake_distance_nominal",
+      "relation": "CALLS",
+      "target": "calculate_brake_distance",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 8
+      }
+    },
+    {
+      "source": "test_emergency_stop_latency",
+      "relation": "CALLS",
+      "target": "test_emergency_stop_latency",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 11
+      }
+    },
+    {
+      "source": "test_emergency_stop_latency",
+      "relation": "CALLS",
+      "target": "command_emergency_stop",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 12
+      }
+    },
+    {
+      "source": "test_stopping_force_range",
+      "relation": "CALLS",
+      "target": "test_stopping_force_range",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "test_stopping_force_range",
+      "relation": "CALLS",
+      "target": "estimate_stopping_force",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 16
+      }
+    },
+    {
+      "source": "test_ABS_trigger_threshold",
+      "relation": "CALLS",
+      "target": "test_ABS_trigger_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 19
+      }
+    },
+    {
+      "source": "test_ABS_trigger_threshold",
+      "relation": "CALLS",
+      "target": "apply_ABS_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 20
+      }
+    },
+    {
+      "source": "test_safety_controller_integration",
+      "relation": "CALLS",
+      "target": "test_safety_controller_integration",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 23
+      }
+    },
+    {
+      "source": "test_safety_controller_integration",
+      "relation": "CALLS",
+      "target": "safety_controller_loop",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 24
+      }
+    },
+    {
+      "source": "test_vehicle_dynamics_end_to_end",
+      "relation": "CALLS",
+      "target": "test_vehicle_dynamics_end_to_end",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 27
+      }
+    },
+    {
+      "source": "test_vehicle_dynamics_end_to_end",
+      "relation": "CALLS",
+      "target": "run_vehicle_dynamics",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 28
+      }
+    },
+    {
+      "source": "test_brake_fluid_pressure_sensor",
+      "relation": "CALLS",
+      "target": "test_brake_fluid_pressure_sensor",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 31
+      }
+    },
+    {
+      "source": "test_brake_fluid_pressure_sensor",
+      "relation": "CALLS",
+      "target": "read_brake_fluid_pressure",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 32
+      }
+    },
+    {
+      "source": "test_pedal_input_mapping",
+      "relation": "CALLS",
+      "target": "test_pedal_input_mapping",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 35
+      }
+    },
+    {
+      "source": "test_pedal_input_mapping",
+      "relation": "CALLS",
+      "target": "map_pedal_input",
+      "metadata": {
+        "file": "Data\\cloud\\test_braking.py",
+        "line": 36
+      }
+    },
+    {
+      "source": "test_can_frame_parse_timing",
+      "relation": "CALLS",
+      "target": "test_can_frame_parse_timing",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "test_can_frame_parse_timing",
+      "relation": "CALLS",
+      "target": "parse_can_frame",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 11
+      }
+    },
+    {
+      "source": "test_steering_input_latency",
+      "relation": "CALLS",
+      "target": "test_steering_input_latency",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "test_steering_input_latency",
+      "relation": "CALLS",
+      "target": "read_steering_input",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "test_brake_pedal_signal_integrity",
+      "relation": "CALLS",
+      "target": "test_brake_pedal_signal_integrity",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 18
+      }
+    },
+    {
+      "source": "test_brake_pedal_signal_integrity",
+      "relation": "CALLS",
+      "target": "read_brake_pedal_signal",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 19
+      }
+    },
+    {
+      "source": "test_accelerator_response_time",
+      "relation": "CALLS",
+      "target": "test_accelerator_response_time",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 22
+      }
+    },
+    {
+      "source": "test_accelerator_response_time",
+      "relation": "CALLS",
+      "target": "read_accelerator_signal",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 23
+      }
+    },
+    {
+      "source": "test_diagnostic_health_check_interval",
+      "relation": "CALLS",
+      "target": "test_diagnostic_health_check_interval",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 26
+      }
+    },
+    {
+      "source": "test_diagnostic_health_check_interval",
+      "relation": "CALLS",
+      "target": "diagnostic_health_check_interval",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 27
+      }
+    },
+    {
+      "source": "test_can_frame_checksum_validation",
+      "relation": "CALLS",
+      "target": "test_can_frame_checksum_validation",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 30
+      }
+    },
+    {
+      "source": "test_can_frame_checksum_validation",
+      "relation": "CALLS",
+      "target": "validate_can_checksum",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 31
+      }
+    },
+    {
+      "source": "test_can_frame_id_parsing",
+      "relation": "CALLS",
+      "target": "test_can_frame_id_parsing",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 34
+      }
+    },
+    {
+      "source": "test_can_frame_id_parsing",
+      "relation": "CALLS",
+      "target": "parse_can_identifier",
+      "metadata": {
+        "file": "Data\\cloud\\test_can_timing.py",
+        "line": 35
+      }
+    },
+    {
+      "source": "test_torque_application_limits",
+      "relation": "CALLS",
+      "target": "test_torque_application_limits",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "test_torque_application_limits",
+      "relation": "CALLS",
+      "target": "apply_torque_request",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 7
+      }
+    },
+    {
+      "source": "test_thermal_cutoff_trigger",
+      "relation": "CALLS",
+      "target": "test_thermal_cutoff_trigger",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "test_thermal_cutoff_trigger",
+      "relation": "CALLS",
+      "target": "vehicle_ecu_loop",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 11
+      }
+    },
+    {
+      "source": "test_ecu_integration_nominal",
+      "relation": "CALLS",
+      "target": "test_ecu_integration_nominal",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "test_ecu_integration_nominal",
+      "relation": "CALLS",
+      "target": "vehicle_ecu_loop",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 15
+      }
+    },
+    {
+      "source": "test_motor_overheat_protection",
+      "relation": "CALLS",
+      "target": "test_motor_overheat_protection",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 18
+      }
+    },
+    {
+      "source": "test_motor_overheat_protection",
+      "relation": "CALLS",
+      "target": "motor_overheat_protection",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 19
+      }
+    },
+    {
+      "source": "test_battery_charge_cycle",
+      "relation": "CALLS",
+      "target": "test_battery_charge_cycle",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 22
+      }
+    },
+    {
+      "source": "test_battery_charge_cycle",
+      "relation": "CALLS",
+      "target": "battery_charge_cycle",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 23
+      }
+    },
+    {
+      "source": "test_regen_braking_efficiency",
+      "relation": "CALLS",
+      "target": "test_regen_braking_efficiency",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 26
+      }
+    },
+    {
+      "source": "test_regen_braking_efficiency",
+      "relation": "CALLS",
+      "target": "regen_braking_efficiency",
+      "metadata": {
+        "file": "Data\\cloud\\test_drivetrain.py",
+        "line": 27
+      }
+    },
+    {
+      "source": "test_obstacle_detection_accuracy",
+      "relation": "CALLS",
+      "target": "test_obstacle_detection_accuracy",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "test_obstacle_detection_accuracy",
+      "relation": "CALLS",
+      "target": "obstacle_detection_accuracy",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "test_collision_margin_nominal",
+      "relation": "CALLS",
+      "target": "test_collision_margin_nominal",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 9
+      }
+    },
+    {
+      "source": "test_collision_margin_nominal",
+      "relation": "CALLS",
+      "target": "collision_margin_nominal",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 10
+      }
+    },
+    {
+      "source": "test_trajectory_planner_clearance",
+      "relation": "CALLS",
+      "target": "test_trajectory_planner_clearance",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 13
+      }
+    },
+    {
+      "source": "test_trajectory_planner_clearance",
+      "relation": "CALLS",
+      "target": "plan_avoidance_trajectory",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 14
+      }
+    },
+    {
+      "source": "test_sensor_fusion_integration",
+      "relation": "CALLS",
+      "target": "test_sensor_fusion_integration",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 17
+      }
+    },
+    {
+      "source": "test_sensor_fusion_integration",
+      "relation": "CALLS",
+      "target": "sensor_fusion_integration",
+      "metadata": {
+        "file": "Data\\cloud\\test_sensor_fusion.py",
+        "line": 18
+      }
+    },
+    {
+      "source": "check_thermal_threshold",
+      "relation": "CALLS",
+      "target": "check_thermal_threshold",
+      "metadata": {
+        "file": "Data\\cloud\\thermal_monitor.py",
+        "line": 1
+      }
+    },
+    {
+      "source": "plan_avoidance_trajectory",
+      "relation": "CALLS",
+      "target": "plan_avoidance_trajectory",
+      "metadata": {
+        "file": "Data\\cloud\\trajectory_planner.py",
+        "line": 4
+      }
+    },
+    {
+      "source": "plan_avoidance_trajectory",
+      "relation": "CALLS",
+      "target": "fuse_obstacle_track",
+      "metadata": {
+        "file": "Data\\cloud\\trajectory_planner.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "plan_avoidance_trajectory",
+      "relation": "CALLS",
+      "target": "abs",
+      "metadata": {
+        "file": "Data\\cloud\\trajectory_planner.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "collision_margin_nominal",
+      "relation": "CALLS",
+      "target": "collision_margin_nominal",
+      "metadata": {
+        "file": "Data\\cloud\\trajectory_planner.py",
+        "line": 9
+      }
+    },
+    {
+      "source": "collision_margin_nominal",
+      "relation": "CALLS",
+      "target": "plan_avoidance_trajectory",
+      "metadata": {
+        "file": "Data\\cloud\\trajectory_planner.py",
+        "line": 10
       }
     },
     {
@@ -3185,7 +5356,7 @@
       "relation": "CALLS",
       "target": "pack_sensor_packet",
       "metadata": {
-        "file": "Data/cloud/utils.py",
+        "file": "Data\\cloud\\utils.py",
         "line": 3
       }
     },
@@ -3194,7 +5365,7 @@
       "relation": "CALLS",
       "target": "pack",
       "metadata": {
-        "file": "Data/cloud/utils.py",
+        "file": "Data\\cloud\\utils.py",
         "line": 4
       }
     },
@@ -3203,7 +5374,7 @@
       "relation": "CALLS",
       "target": "sum",
       "metadata": {
-        "file": "Data/cloud/utils.py",
+        "file": "Data\\cloud\\utils.py",
         "line": 5
       }
     },
@@ -3212,7 +5383,43 @@
       "relation": "CALLS",
       "target": "bytes",
       "metadata": {
-        "file": "Data/cloud/utils.py",
+        "file": "Data\\cloud\\utils.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "read_brake_fluid_pressure",
+      "relation": "CALLS",
+      "target": "read_brake_fluid_pressure",
+      "metadata": {
+        "file": "Data\\cloud\\vehicle_sensors.py",
+        "line": 1
+      }
+    },
+    {
+      "source": "map_pedal_input",
+      "relation": "CALLS",
+      "target": "map_pedal_input",
+      "metadata": {
+        "file": "Data\\cloud\\vehicle_sensors.py",
+        "line": 5
+      }
+    },
+    {
+      "source": "map_pedal_input",
+      "relation": "CALLS",
+      "target": "max",
+      "metadata": {
+        "file": "Data\\cloud\\vehicle_sensors.py",
+        "line": 6
+      }
+    },
+    {
+      "source": "map_pedal_input",
+      "relation": "CALLS",
+      "target": "min",
+      "metadata": {
+        "file": "Data\\cloud\\vehicle_sensors.py",
         "line": 6
       }
     },
@@ -3221,7 +5428,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.version",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 64,
         "value": "3"
       }
@@ -3231,7 +5438,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.sensor_id",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 65,
         "value": "0x01"
       }
@@ -3241,7 +5448,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.temperature_raw_high",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 66,
         "value": "static_cast<uint8_t>((last_temperature_raw >> 8) & 0xFF)"
       }
@@ -3251,7 +5458,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.temperature_raw_low",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 67,
         "value": "static_cast<uint8_t>(last_temperature_raw & 0xFF)"
       }
@@ -3261,7 +5468,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.pressure_raw_high",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 68,
         "value": "static_cast<uint8_t>((last_pressure_raw >> 8) & 0xFF)"
       }
@@ -3271,7 +5478,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.pressure_raw_low",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 69,
         "value": "static_cast<uint8_t>(last_pressure_raw & 0xFF)"
       }
@@ -3281,7 +5488,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.humidity_raw_high",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 70,
         "value": "static_cast<uint8_t>((last_humidity_raw >> 8) & 0xFF)"
       }
@@ -3291,7 +5498,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.humidity_raw_low",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 71,
         "value": "static_cast<uint8_t>(last_humidity_raw & 0xFF)"
       }
@@ -3301,7 +5508,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.fuel_raw_high",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 72,
         "value": "static_cast<uint8_t>((last_fuel_raw >> 8) & 0xFF)"
       }
@@ -3311,7 +5518,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.fuel_raw_low",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 73,
         "value": "static_cast<uint8_t>(last_fuel_raw & 0xFF)"
       }
@@ -3321,7 +5528,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.status_flags",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 77,
         "value": "status_flags | 0x80"
       }
@@ -3331,7 +5538,7 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.status_flags",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 78,
         "value": "status_flags"
       }
@@ -3341,33 +5548,9 @@
       "relation": "IMPLEMENTS_HSI",
       "target": "SENSOR_PKT.checksum",
       "metadata": {
-        "file": "Data/firmware/sensors.cpp",
+        "file": "Data\\firmware\\sensors.cpp",
         "line": 89,
         "value": "c"
-      }
-    },
-    {
-      "source": "InterruptController::init",
-      "relation": "BELONGS_TO",
-      "target": "InterruptController",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp"
-      }
-    },
-    {
-      "source": "InterruptController::register_handler",
-      "relation": "BELONGS_TO",
-      "target": "InterruptController",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp"
-      }
-    },
-    {
-      "source": "InterruptController::raise",
-      "relation": "BELONGS_TO",
-      "target": "InterruptController",
-      "metadata": {
-        "file": "Data/firmware/interrupts.cpp"
       }
     },
     {
@@ -3375,7 +5558,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3383,7 +5566,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3391,7 +5574,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3399,7 +5582,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3407,7 +5590,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3415,7 +5598,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3423,55 +5606,7 @@
       "relation": "BELONGS_TO",
       "target": "CANBus",
       "metadata": {
-        "file": "Data/firmware/canbus.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::init",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::on_adc_complete",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_temperature",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::inject_fault_pressure",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::pack_latest",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
-      }
-    },
-    {
-      "source": "SensorManager::set_sampling_rate_hz",
-      "relation": "BELONGS_TO",
-      "target": "SensorManager",
-      "metadata": {
-        "file": "Data/firmware/sensors.cpp"
+        "file": "Data\\firmware\\canbus.cpp"
       }
     },
     {
@@ -3479,7 +5614,7 @@
       "relation": "BELONGS_TO",
       "target": "GPSModule",
       "metadata": {
-        "file": "Data/firmware/gps.cpp"
+        "file": "Data\\firmware\\gps.cpp"
       }
     },
     {
@@ -3487,7 +5622,7 @@
       "relation": "BELONGS_TO",
       "target": "GPSModule",
       "metadata": {
-        "file": "Data/firmware/gps.cpp"
+        "file": "Data\\firmware\\gps.cpp"
       }
     },
     {
@@ -3495,7 +5630,79 @@
       "relation": "BELONGS_TO",
       "target": "GPSModule",
       "metadata": {
-        "file": "Data/firmware/gps.cpp"
+        "file": "Data\\firmware\\gps.cpp"
+      }
+    },
+    {
+      "source": "InterruptController::init",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp"
+      }
+    },
+    {
+      "source": "InterruptController::register_handler",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp"
+      }
+    },
+    {
+      "source": "InterruptController::raise",
+      "relation": "BELONGS_TO",
+      "target": "InterruptController",
+      "metadata": {
+        "file": "Data\\firmware\\interrupts.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::init",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::on_adc_complete",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_temperature",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::inject_fault_pressure",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::pack_latest",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
+      }
+    },
+    {
+      "source": "SensorManager::set_sampling_rate_hz",
+      "relation": "BELONGS_TO",
+      "target": "SensorManager",
+      "metadata": {
+        "file": "Data\\firmware\\sensors.cpp"
       }
     },
     {
@@ -3503,7 +5710,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3511,7 +5718,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3519,7 +5726,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3527,7 +5734,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3535,7 +5742,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3543,7 +5750,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3551,7 +5758,7 @@
       "relation": "BELONGS_TO",
       "target": "Ingestor",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3559,7 +5766,7 @@
       "relation": "BELONGS_TO",
       "target": "RemoteStorageClient",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     },
     {
@@ -3567,7 +5774,7 @@
       "relation": "BELONGS_TO",
       "target": "RemoteStorageClient",
       "metadata": {
-        "file": "Data/cloud/ingest.py"
+        "file": "Data\\cloud\\ingest.py"
       }
     }
   ]

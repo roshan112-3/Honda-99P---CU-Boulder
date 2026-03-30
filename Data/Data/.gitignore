@@ -1,0 +1,10 @@
+.DS_Store
+build/
+*.o
+*.obj
+*.exe
+*.log
+.vscode/
+__pycache__/
+*.pyc
+/.idea/

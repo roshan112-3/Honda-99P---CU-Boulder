@@ -1,0 +1,1317 @@
+{
+  "metadata": {
+    "generated_at": "2026-02-15T19:07:53.670334",
+    "repo": "C:\\Users\\harsh\\Downloads\\Honda-20260215T170701Z-1-001\\Honda",
+    "analyzer": "GitPython Git Metadata Extractor v1.0",
+    "branch": "main",
+    "total_commits_analyzed": 23
+  },
+  "summary": {
+    "total_commits": 23,
+    "total_authors": 3,
+    "files_with_history": 36,
+    "files_with_blame": 5
+  },
+  "file_ownership": {
+    "Data/README.md": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/cloud/ingest.py": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/cloud/utils.py": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/docs/hsi.md": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/canbus.cpp": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/canbus.h": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/gps.cpp": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/gps.h": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/interrupts.cpp": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/interrupts.h": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/main.cpp": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/sensors.cpp": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/firmware/sensors.h": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/scripts/run_demo.sh": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "Data/scripts/run_tests.sh": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 2,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "tools/README.md": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1
+      }
+    },
+    "tools/analyze.py": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1
+      }
+    },
+    "tools/requirements.txt": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1
+      }
+    },
+    "tools/setup_parsers.py": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1
+      }
+    },
+    "README.md": {
+      "primary_author": "OpenCode",
+      "commit_count": 2,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1,
+        "Roshan Muddaluru": 1,
+        "OpenCode": 2
+      }
+    },
+    "parsers/git_parser.py": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "requirements.txt": {
+      "primary_author": "harshithaattantiwebspace",
+      "commit_count": 1,
+      "all_contributors": {
+        "harshithaattantiwebspace": 1,
+        "Roshan Muddaluru": 1
+      }
+    },
+    "firmware/main.cpp": {
+      "primary_author": "OpenCode",
+      "commit_count": 8,
+      "all_contributors": {
+        "OpenCode": 8
+      }
+    },
+    "scripts/run_tests.sh": {
+      "primary_author": "OpenCode",
+      "commit_count": 1,
+      "all_contributors": {
+        "OpenCode": 1
+      }
+    },
+    "docs/hsi.md": {
+      "primary_author": "OpenCode",
+      "commit_count": 12,
+      "all_contributors": {
+        "OpenCode": 12
+      }
+    },
+    "firmware/sensors.cpp": {
+      "primary_author": "OpenCode",
+      "commit_count": 8,
+      "all_contributors": {
+        "OpenCode": 8
+      }
+    },
+    "firmware/sensors.h": {
+      "primary_author": "OpenCode",
+      "commit_count": 4,
+      "all_contributors": {
+        "OpenCode": 4
+      }
+    },
+    "cloud/ingest.py": {
+      "primary_author": "OpenCode",
+      "commit_count": 8,
+      "all_contributors": {
+        "OpenCode": 8
+      }
+    },
+    "firmware/gps.cpp": {
+      "primary_author": "OpenCode",
+      "commit_count": 1,
+      "all_contributors": {
+        "OpenCode": 1
+      }
+    },
+    "firmware/gps.h": {
+      "primary_author": "OpenCode",
+      "commit_count": 1,
+      "all_contributors": {
+        "OpenCode": 1
+      }
+    },
+    "firmware/canbus.cpp": {
+      "primary_author": "OpenCode",
+      "commit_count": 3,
+      "all_contributors": {
+        "OpenCode": 3
+      }
+    },
+    "firmware/canbus.h": {
+      "primary_author": "OpenCode",
+      "commit_count": 3,
+      "all_contributors": {
+        "OpenCode": 3
+      }
+    },
+    "firmware/interrupts.cpp": {
+      "primary_author": "OpenCode",
+      "commit_count": 2,
+      "all_contributors": {
+        "OpenCode": 2
+      }
+    },
+    "firmware/interrupts.h": {
+      "primary_author": "OpenCode",
+      "commit_count": 2,
+      "all_contributors": {
+        "OpenCode": 2
+      }
+    },
+    "cloud/utils.py": {
+      "primary_author": "OpenCode",
+      "commit_count": 1,
+      "all_contributors": {
+        "OpenCode": 1
+      }
+    },
+    "scripts/run_demo.sh": {
+      "primary_author": "OpenCode",
+      "commit_count": 1,
+      "all_contributors": {
+        "OpenCode": 1
+      }
+    }
+  },
+  "file_last_modified": {
+    "Data/README.md": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/cloud/ingest.py": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/cloud/utils.py": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/docs/hsi.md": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/canbus.cpp": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/canbus.h": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/gps.cpp": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/gps.h": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/interrupts.cpp": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/interrupts.h": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/main.cpp": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/sensors.cpp": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/firmware/sensors.h": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/scripts/run_demo.sh": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "Data/scripts/run_tests.sh": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "tools/README.md": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "tools/analyze.py": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "tools/requirements.txt": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "tools/setup_parsers.py": {
+      "timestamp": 1771206141,
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "author": "harshithaattantiwebspace",
+      "message": "Remove duplicate Data folder"
+    },
+    "README.md": {
+      "timestamp": 1771205449,
+      "timestamp_iso": "2026-02-15T18:30:49",
+      "author": "harshithaattantiwebspace",
+      "message": "Merge Honda-99P---CU-Boulder repo"
+    },
+    "parsers/git_parser.py": {
+      "timestamp": 1771205449,
+      "timestamp_iso": "2026-02-15T18:30:49",
+      "author": "harshithaattantiwebspace",
+      "message": "Merge Honda-99P---CU-Boulder repo"
+    },
+    "requirements.txt": {
+      "timestamp": 1771205449,
+      "timestamp_iso": "2026-02-15T18:30:49",
+      "author": "harshithaattantiwebspace",
+      "message": "Merge Honda-99P---CU-Boulder repo"
+    },
+    "firmware/main.cpp": {
+      "timestamp": 1771026977,
+      "timestamp_iso": "2026-02-13T16:56:17",
+      "author": "OpenCode",
+      "message": "Expand main.cpp utilities and add eof marker to reach 200 lines"
+    },
+    "scripts/run_tests.sh": {
+      "timestamp": 1771026950,
+      "timestamp_iso": "2026-02-13T16:55:50",
+      "author": "OpenCode",
+      "message": "Docs/readme update: HSI version history; add basic test script"
+    },
+    "docs/hsi.md": {
+      "timestamp": 1771026940,
+      "timestamp_iso": "2026-02-13T16:55:40",
+      "author": "OpenCode",
+      "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+    },
+    "firmware/sensors.cpp": {
+      "timestamp": 1771026940,
+      "timestamp_iso": "2026-02-13T16:55:40",
+      "author": "OpenCode",
+      "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+    },
+    "firmware/sensors.h": {
+      "timestamp": 1771026940,
+      "timestamp_iso": "2026-02-13T16:55:40",
+      "author": "OpenCode",
+      "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+    },
+    "cloud/ingest.py": {
+      "timestamp": 1771026924,
+      "timestamp_iso": "2026-02-13T16:55:24",
+      "author": "OpenCode",
+      "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+    },
+    "firmware/gps.cpp": {
+      "timestamp": 1771026856,
+      "timestamp_iso": "2026-02-13T16:54:16",
+      "author": "OpenCode",
+      "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+    },
+    "firmware/gps.h": {
+      "timestamp": 1771026856,
+      "timestamp_iso": "2026-02-13T16:54:16",
+      "author": "OpenCode",
+      "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+    },
+    "firmware/canbus.cpp": {
+      "timestamp": 1771026792,
+      "timestamp_iso": "2026-02-13T16:53:12",
+      "author": "OpenCode",
+      "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler"
+    },
+    "firmware/canbus.h": {
+      "timestamp": 1771026792,
+      "timestamp_iso": "2026-02-13T16:53:12",
+      "author": "OpenCode",
+      "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has heartbeat handler"
+    },
+    "firmware/interrupts.cpp": {
+      "timestamp": 1771026754,
+      "timestamp_iso": "2026-02-13T16:52:34",
+      "author": "OpenCode",
+      "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations"
+    },
+    "firmware/interrupts.h": {
+      "timestamp": 1771026754,
+      "timestamp_iso": "2026-02-13T16:52:34",
+      "author": "OpenCode",
+      "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrations"
+    },
+    "cloud/utils.py": {
+      "timestamp": 1771026661,
+      "timestamp_iso": "2026-02-13T16:51:01",
+      "author": "OpenCode",
+      "message": "Initial project scaffolding: firmware, cloud, docs, README"
+    },
+    "scripts/run_demo.sh": {
+      "timestamp": 1771026661,
+      "timestamp_iso": "2026-02-13T16:51:01",
+      "author": "OpenCode",
+      "message": "Initial project scaffolding: firmware, cloud, docs, README"
+    }
+  },
+  "blame_summary": {
+    "firmware/sensors.cpp": {
+      "total_lines": 100,
+      "author_ranges": [
+        {
+          "author": "OpenCode",
+          "lines": "1-100"
+        }
+      ]
+    },
+    "firmware/canbus.cpp": {
+      "total_lines": 58,
+      "author_ranges": [
+        {
+          "author": "OpenCode",
+          "lines": "1-58"
+        }
+      ]
+    },
+    "firmware/gps.cpp": {
+      "total_lines": 39,
+      "author_ranges": [
+        {
+          "author": "OpenCode",
+          "lines": "1-39"
+        }
+      ]
+    },
+    "cloud/ingest.py": {
+      "total_lines": 264,
+      "author_ranges": [
+        {
+          "author": "OpenCode",
+          "lines": "1-264"
+        }
+      ]
+    },
+    "cloud/utils.py": {
+      "total_lines": 6,
+      "author_ranges": [
+        {
+          "author": "OpenCode",
+          "lines": "1-6"
+        }
+      ]
+    }
+  },
+  "recent_commits": [
+    {
+      "sha": "8d1a21a",
+      "author": "harshithaattantiwebspace",
+      "timestamp_iso": "2026-02-15T18:42:21",
+      "message": "Remove duplicate Data folder",
+      "files_changed": 19
+    },
+    {
+      "sha": "ac9c9c0",
+      "author": "harshithaattantiwebspace",
+      "timestamp_iso": "2026-02-15T18:30:49",
+      "message": "Merge Honda-99P---CU-Boulder repo",
+      "files_changed": 18
+    },
+    {
+      "sha": "aba3ae8",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:49:54",
+      "message": "Add Data dataset (automotive firmware codebase)",
+      "files_changed": 15
+    },
+    {
+      "sha": "77e58e7",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:35",
+      "message": "Add project README with overview and getting started",
+      "files_changed": 1
+    },
+    {
+      "sha": "743413c",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:33",
+      "message": "Add GitPython parser for commit, diff, and blame extraction",
+      "files_changed": 1
+    },
+    {
+      "sha": "50520b2",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:46:31",
+      "message": "Add requirements.txt with GitPython dependency",
+      "files_changed": 1
+    },
+    {
+      "sha": "da424f5",
+      "author": "Roshan Muddaluru",
+      "timestamp_iso": "2026-02-15T17:44:52",
+      "message": "Add .gitignore to exclude .DS_Store",
+      "files_changed": 0
+    },
+    {
+      "sha": "b7735b0",
+      "author": "OpenCode",
+      "timestamp_iso": "2026-02-13T16:56:17",
+      "message": "Expand main.cpp utilities and add eof marker to reach 200 lines",
+      "files_changed": 1
+    },
+    {
+      "sha": "ddb3aae",
+      "author": "OpenCode",
+      "timestamp_iso": "2026-02-13T16:55:50",
+      "message": "Docs/readme update: HSI version history; add basic test script",
+      "files_changed": 2
+    },
+    {
+      "sha": "1f6db7c",
+      "author": "OpenCode",
+      "timestamp_iso": "2026-02-13T16:55:40",
+      "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests",
+      "files_changed": 3
+    }
+  ],
+  "change_hotspots": [
+    {
+      "file": "docs/hsi.md",
+      "changes": 12
+    },
+    {
+      "file": "firmware/main.cpp",
+      "changes": 8
+    },
+    {
+      "file": "firmware/sensors.cpp",
+      "changes": 8
+    },
+    {
+      "file": "cloud/ingest.py",
+      "changes": 8
+    },
+    {
+      "file": "README.md",
+      "changes": 4
+    },
+    {
+      "file": "firmware/sensors.h",
+      "changes": 4
+    },
+    {
+      "file": "Data/README.md",
+      "changes": 3
+    },
+    {
+      "file": "Data/cloud/ingest.py",
+      "changes": 3
+    },
+    {
+      "file": "Data/cloud/utils.py",
+      "changes": 3
+    },
+    {
+      "file": "Data/docs/hsi.md",
+      "changes": 3
+    }
+  ],
+  "file_commit_history": {
+    "Data/README.md": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/cloud/ingest.py": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/cloud/utils.py": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/docs/hsi.md": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/canbus.cpp": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/canbus.h": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/gps.cpp": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/gps.h": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/interrupts.cpp": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/interrupts.h": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/main.cpp": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/sensors.cpp": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/firmware/sensors.h": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/scripts/run_demo.sh": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "Data/scripts/run_tests.sh": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      },
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "aba3ae8",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:49:54",
+        "message": "Add Data dataset (automotive firmware codebase)"
+      }
+    ],
+    "tools/README.md": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      }
+    ],
+    "tools/analyze.py": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      }
+    ],
+    "tools/requirements.txt": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      }
+    ],
+    "tools/setup_parsers.py": [
+      {
+        "sha": "8d1a21a",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:42:21",
+        "message": "Remove duplicate Data folder"
+      }
+    ],
+    "README.md": [
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "77e58e7",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:35",
+        "message": "Add project README with overview and getting started"
+      },
+      {
+        "sha": "ddb3aae",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:50",
+        "message": "Docs/readme update: HSI version history; add basic test script"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "parsers/git_parser.py": [
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "743413c",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:33",
+        "message": "Add GitPython parser for commit, diff, and blame extraction"
+      }
+    ],
+    "requirements.txt": [
+      {
+        "sha": "ac9c9c0",
+        "author": "harshithaattantiwebspace",
+        "timestamp_iso": "2026-02-15T18:30:49",
+        "message": "Merge Honda-99P---CU-Boulder repo"
+      },
+      {
+        "sha": "50520b2",
+        "author": "Roshan Muddaluru",
+        "timestamp_iso": "2026-02-15T17:46:31",
+        "message": "Add requirements.txt with GitPython dependency"
+      }
+    ],
+    "firmware/main.cpp": [
+      {
+        "sha": "b7735b0",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:56:17",
+        "message": "Expand main.cpp utilities and add eof marker to reach 200 lines"
+      },
+      {
+        "sha": "c9aa748",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:30",
+        "message": "HSI: upgrade CAN bus speed to 1Mbps; firmware updated"
+      },
+      {
+        "sha": "68464cb",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has h"
+      },
+      {
+        "sha": "d2147ca",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:34",
+        "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrat"
+      },
+      {
+        "sha": "9dfc0f6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:20",
+        "message": "HSI: change CAN ID to 0x200; make CANBus TX id configurable and set default in firmware"
+      }
+    ],
+    "scripts/run_tests.sh": [
+      {
+        "sha": "ddb3aae",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:50",
+        "message": "Docs/readme update: HSI version history; add basic test script"
+      }
+    ],
+    "docs/hsi.md": [
+      {
+        "sha": "1f6db7c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      {
+        "sha": "c9aa748",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:30",
+        "message": "HSI: upgrade CAN bus speed to 1Mbps; firmware updated"
+      },
+      {
+        "sha": "eae83b6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:24",
+        "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+      },
+      {
+        "sha": "99f1208",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:36",
+        "message": "HSI v2.1: switch checksum to CRC-8; firmware and cloud implement CRC-8 validation"
+      },
+      {
+        "sha": "7c0e38c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:22",
+        "message": "HSI: default sampling rate changed to 50Hz; firmware updated"
+      }
+    ],
+    "firmware/sensors.cpp": [
+      {
+        "sha": "1f6db7c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      {
+        "sha": "eae83b6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:24",
+        "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+      },
+      {
+        "sha": "99f1208",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:36",
+        "message": "HSI v2.1: switch checksum to CRC-8; firmware and cloud implement CRC-8 validation"
+      },
+      {
+        "sha": "7c0e38c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:22",
+        "message": "HSI: default sampling rate changed to 50Hz; firmware updated"
+      },
+      {
+        "sha": "eb7efea",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:07",
+        "message": "HSI: add encryption flag in status_flags; firmware supports XOR encryption of payload; cloud detects"
+      }
+    ],
+    "firmware/sensors.h": [
+      {
+        "sha": "1f6db7c",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:40",
+        "message": "Add firmware fault-injection hooks for temperature and pressure to support CI tests"
+      },
+      {
+        "sha": "eae83b6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:24",
+        "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+      },
+      {
+        "sha": "502f0b3",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:35",
+        "message": "HSI v1.1: add humidity (version 2). Firmware and cloud updated to produce/parse v2 packets; diagnost"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "cloud/ingest.py": [
+      {
+        "sha": "eae83b6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:55:24",
+        "message": "HSI v1.2: add fuel_level to SENSOR_PKT (v3); firmware emits v3 packets and cloud parses v3"
+      },
+      {
+        "sha": "99f1208",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:36",
+        "message": "HSI v2.1: switch checksum to CRC-8; firmware and cloud implement CRC-8 validation"
+      },
+      {
+        "sha": "eb7efea",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:07",
+        "message": "HSI: add encryption flag in status_flags; firmware supports XOR encryption of payload; cloud detects"
+      },
+      {
+        "sha": "68464cb",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has h"
+      },
+      {
+        "sha": "8e0b90b",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:50",
+        "message": "HSI: ADC resolution increased to 14 bits; firmware and cloud update temperature scaling"
+      }
+    ],
+    "firmware/gps.cpp": [
+      {
+        "sha": "7e0c8a9",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:16",
+        "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+      }
+    ],
+    "firmware/gps.h": [
+      {
+        "sha": "7e0c8a9",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:54:16",
+        "message": "HSI: add GPS message format; firmware adds GPSModule for NMEA-like fixes"
+      }
+    ],
+    "firmware/canbus.cpp": [
+      {
+        "sha": "68464cb",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has h"
+      },
+      {
+        "sha": "9dfc0f6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:20",
+        "message": "HSI: change CAN ID to 0x200; make CANBus TX id configurable and set default in firmware"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "firmware/canbus.h": [
+      {
+        "sha": "68464cb",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:53:12",
+        "message": "HSI: add HEARTBEAT_PKT; firmware sends heartbeat on 0x300, canbus supports send_with_id; cloud has h"
+      },
+      {
+        "sha": "9dfc0f6",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:20",
+        "message": "HSI: change CAN ID to 0x200; make CANBus TX id configurable and set default in firmware"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "firmware/interrupts.cpp": [
+      {
+        "sha": "d2147ca",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:34",
+        "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrat"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "firmware/interrupts.h": [
+      {
+        "sha": "d2147ca",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:52:34",
+        "message": "HSI: add interrupt priority levels; firmware InterruptController accepts priority and logs registrat"
+      },
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "cloud/utils.py": [
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ],
+    "scripts/run_demo.sh": [
+      {
+        "sha": "45cc359",
+        "author": "OpenCode",
+        "timestamp_iso": "2026-02-13T16:51:01",
+        "message": "Initial project scaffolding: firmware, cloud, docs, README"
+      }
+    ]
+  }
+}

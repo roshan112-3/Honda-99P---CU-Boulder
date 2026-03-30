@@ -98,27 +98,22 @@ class CodeAnalyzer:
         self.byte_assignments: List[ByteAssignment] = []
         self.classes: List[ClassInfo] = []
         self.relationships: List[Relationship] = []
-        
+
     def analyze_all(self):
         """Analyze all source files in the repository."""
         print("\n" + "=" * 70)
         print("TREE-SITTER CODE ANALYSIS")
         print("=" * 70)
-        
-        # Find all source files (dataset lives under Data/)
-        cpp_files = list((self.repo_root / "Data" / "firmware").glob("*.cpp"))
-        cpp_headers = list((self.repo_root / "Data" / "firmware").glob("*.h"))
+
+        # Find all source files — ONLY Python cloud files, skip firmware entirely
         py_files = list((self.repo_root / "Data" / "cloud").glob("*.py"))
-        
-        print(f"\nFound {len(cpp_files)} C++ files, {len(cpp_headers)} headers, {len(py_files)} Python files")
-        
-        # Analyze each file
-        for f in cpp_files + cpp_headers:
-            self._analyze_cpp_file(f)
-            
+
+        print(f"\nFound {len(py_files)} Python files (firmware excluded)")
+
+        # Analyze only Python files
         for f in py_files:
             self._analyze_python_file(f)
-            
+
         # Build relationships
         self._build_relationships()
         
@@ -128,6 +123,36 @@ class CodeAnalyzer:
         print(f"  - {len(self.byte_assignments)} byte assignments")
         print(f"  - {len(self.classes)} classes/structs")
         print(f"  - {len(self.relationships)} relationships")
+            
+    # def analyze_all(self):
+    #     """Analyze all source files in the repository."""
+    #     print("\n" + "=" * 70)
+    #     print("TREE-SITTER CODE ANALYSIS")
+    #     print("=" * 70)
+        
+    #     # Find all source files (dataset lives under Data/)
+    #     cpp_files = list((self.repo_root / "Data" / "firmware").glob("*.cpp"))
+    #     cpp_headers = list((self.repo_root / "Data" / "firmware").glob("*.h"))
+    #     py_files = list((self.repo_root / "Data" / "cloud").glob("*.py"))
+        
+    #     print(f"\nFound {len(cpp_files)} C++ files, {len(cpp_headers)} headers, {len(py_files)} Python files")
+        
+    #     # Analyze each file
+    #     for f in cpp_files + cpp_headers:
+    #         self._analyze_cpp_file(f)
+            
+    #     for f in py_files:
+    #         self._analyze_python_file(f)
+            
+    #     # Build relationships
+    #     self._build_relationships()
+        
+    #     print(f"\n[EXTRACTED]")
+    #     print(f"  - {len(self.functions)} functions")
+    #     print(f"  - {len(self.calls)} function calls")
+    #     print(f"  - {len(self.byte_assignments)} byte assignments")
+    #     print(f"  - {len(self.classes)} classes/structs")
+    #     print(f"  - {len(self.relationships)} relationships")
         
     def _analyze_cpp_file(self, filepath: Path):
         """Parse a C++ file and extract functions, calls, etc."""

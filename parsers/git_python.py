@@ -681,11 +681,6 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
     # Get blame for key source files
     blame_by_file = {}
     source_files = [
-        "Data/firmware/sensors.cpp",
-        "Data/firmware/canbus.cpp",
-        "Data/firmware/gps.cpp",
-        "Data/firmware/main.cpp",
-        "Data/firmware/interrupts.cpp",
         "Data/cloud/ingest.py",
         "Data/cloud/utils.py",
         "Data/cloud/abs_subsystem.py",
@@ -776,7 +771,7 @@ def generate_git_knowledge_base(parser: "GitParser", max_commits: int = 50) -> d
         "file_ownership": file_ownership,
         "file_last_modified": file_last_modified,
         "blame_summary": blame_by_file,
-        "recent_commits": recent_commits,
+        "recent_commits": [],
         "change_hotspots": [{"file": f, "changes": c} for f, c in hotspots],
         "file_commit_history": {
             path: commits_list[:5]  # Last 5 commits per file

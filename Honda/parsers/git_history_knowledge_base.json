@@ -1,0 +1,1235 @@
+{
+  "metadata": {
+    "generated_at": "2026-03-28T23:20:32.941498",
+    "repo": "C:\\Users\\harsh\\Downloads\\Honda-20260215T170701Z-1-001\\Honda\\Data",
+    "analyzer": "Data Scenario Extractor v3.0",
+    "source": "Data/docs/change_risk_scenarios.json",
+    "total_scenario_commits": 16
+  },
+  "summary": {
+    "total_commits": 16,
+    "total_authors": 4,
+    "files_with_history": 12,
+    "files_with_blame": 0,
+    "total_scenarios": 4,
+    "total_labeled_examples": 25
+  },
+  "file_ownership": {
+    "Data/cloud/abs_subsystem.py": {
+      "primary_author": "Harshitha",
+      "commit_count": 1,
+      "all_contributors": {
+        "Harshitha": 1
+      }
+    },
+    "Data/cloud/braking_config.py": {
+      "primary_author": "Roshan",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan": 1
+      }
+    },
+    "Data/cloud/braking_controller.py": {
+      "primary_author": "Shivani",
+      "commit_count": 1,
+      "all_contributors": {
+        "Shivani": 1
+      }
+    },
+    "Data/cloud/trajectory_planner.py": {
+      "primary_author": "Roshan",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan": 1
+      }
+    },
+    "Data/cloud/sensor_config.py": {
+      "primary_author": "Harshitha",
+      "commit_count": 1,
+      "all_contributors": {
+        "Harshitha": 1
+      }
+    },
+    "Data/cloud/thermal_monitor.py": {
+      "primary_author": "Harshitha",
+      "commit_count": 1,
+      "all_contributors": {
+        "Harshitha": 1
+      }
+    },
+    "Data/cloud/ecu_manager.py": {
+      "primary_author": "Shivani",
+      "commit_count": 1,
+      "all_contributors": {
+        "Shivani": 1
+      }
+    },
+    "Data/cloud/drivetrain_config.py": {
+      "primary_author": "Ryan",
+      "commit_count": 1,
+      "all_contributors": {
+        "Ryan": 1
+      }
+    },
+    "Data/cloud/drivetrain_controller.py": {
+      "primary_author": "Roshan",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan": 1
+      }
+    },
+    "Data/cloud/can_interface.py": {
+      "primary_author": "Roshan",
+      "commit_count": 1,
+      "all_contributors": {
+        "Roshan": 1
+      }
+    },
+    "Data/cloud/input_signals.py": {
+      "primary_author": "Harshitha",
+      "commit_count": 3,
+      "all_contributors": {
+        "Harshitha": 3
+      }
+    },
+    "Data/cloud/network_config.py": {
+      "primary_author": "Shivani",
+      "commit_count": 1,
+      "all_contributors": {
+        "Shivani": 1
+      }
+    }
+  },
+  "file_last_modified": {
+    "Data/cloud/abs_subsystem.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Harshitha",
+      "message": "ABS subsystem owner"
+    },
+    "Data/cloud/braking_config.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Roshan",
+      "message": "hardware integration"
+    },
+    "Data/cloud/braking_controller.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Shivani",
+      "message": "feature branch owner"
+    },
+    "Data/cloud/trajectory_planner.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Roshan",
+      "message": "trajectory planner owner"
+    },
+    "Data/cloud/sensor_config.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Harshitha",
+      "message": "LiDAR calibration owner"
+    },
+    "Data/cloud/thermal_monitor.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Harshitha",
+      "message": "thermal subsystem owner"
+    },
+    "Data/cloud/ecu_manager.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Shivani",
+      "message": "integration orchestrator owner"
+    },
+    "Data/cloud/drivetrain_config.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Ryan",
+      "message": "reviewer turned editor"
+    },
+    "Data/cloud/drivetrain_controller.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Roshan",
+      "message": "drivetrain controller owner"
+    },
+    "Data/cloud/can_interface.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Roshan",
+      "message": "CAN interface owner"
+    },
+    "Data/cloud/input_signals.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Harshitha",
+      "message": "input consumer owner"
+    },
+    "Data/cloud/network_config.py": {
+      "timestamp": 0,
+      "timestamp_iso": "2026-03",
+      "author": "Shivani",
+      "message": "network optimization owner"
+    }
+  },
+  "blame_summary": {},
+  "recent_commits": [
+    {
+      "sha": "H-023",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[ABS subsystem owner] apply_ABS_threshold()",
+      "files_changed": 1
+    },
+    {
+      "sha": "R-041",
+      "author": "Roshan",
+      "timestamp_iso": "2026-03",
+      "message": "[hardware integration] braking_config.py",
+      "files_changed": 1
+    },
+    {
+      "sha": "S-078",
+      "author": "Shivani",
+      "timestamp_iso": "2026-03",
+      "message": "[feature branch owner] calculate_brake_distance()",
+      "files_changed": 1
+    },
+    {
+      "sha": "R-019",
+      "author": "Roshan",
+      "timestamp_iso": "2026-03",
+      "message": "[trajectory planner owner] plan_avoidance_trajectory()",
+      "files_changed": 1
+    },
+    {
+      "sha": "H-057",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[LiDAR calibration owner] sensor_config.py",
+      "files_changed": 1
+    },
+    {
+      "sha": "S-092",
+      "author": "Shivani",
+      "timestamp_iso": "2026-03",
+      "message": "[debugging obstacle detection latency] full fusion regression run",
+      "files_changed": 1
+    },
+    {
+      "sha": "S-093",
+      "author": "Shivani",
+      "timestamp_iso": "2026-03",
+      "message": "[revert author] false-root-cause revert",
+      "files_changed": 1
+    },
+    {
+      "sha": "H-009",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[thermal subsystem owner] check_thermal_threshold()",
+      "files_changed": 1
+    },
+    {
+      "sha": "S-031",
+      "author": "Shivani",
+      "timestamp_iso": "2026-03",
+      "message": "[integration orchestrator owner] vehicle_ecu_loop()",
+      "files_changed": 1
+    },
+    {
+      "sha": "RY-011",
+      "author": "Ryan",
+      "timestamp_iso": "2026-03",
+      "message": "[reviewer turned editor] drivetrain_config.py",
+      "files_changed": 1
+    },
+    {
+      "sha": "R-055",
+      "author": "Roshan",
+      "timestamp_iso": "2026-03",
+      "message": "[drivetrain controller owner] apply_torque_request()",
+      "files_changed": 1
+    },
+    {
+      "sha": "R-007",
+      "author": "Roshan",
+      "timestamp_iso": "2026-03",
+      "message": "[CAN interface owner] parse_can_frame()",
+      "files_changed": 1
+    },
+    {
+      "sha": "H-031",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[input consumer owner] read_steering_input()",
+      "files_changed": 1
+    },
+    {
+      "sha": "H-032",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[input consumer owner] read_brake_pedal_signal()",
+      "files_changed": 1
+    },
+    {
+      "sha": "H-033",
+      "author": "Harshitha",
+      "timestamp_iso": "2026-03",
+      "message": "[input consumer owner] read_accelerator_signal()",
+      "files_changed": 1
+    },
+    {
+      "sha": "S-044",
+      "author": "Shivani",
+      "timestamp_iso": "2026-03",
+      "message": "[network optimization owner] network_config.py",
+      "files_changed": 1
+    }
+  ],
+  "change_hotspots": [
+    {
+      "file": "Data/cloud/input_signals.py",
+      "changes": 3
+    },
+    {
+      "file": "Data/cloud/abs_subsystem.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/braking_config.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/braking_controller.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/trajectory_planner.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/sensor_config.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/thermal_monitor.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/ecu_manager.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/drivetrain_config.py",
+      "changes": 1
+    },
+    {
+      "file": "Data/cloud/drivetrain_controller.py",
+      "changes": 1
+    }
+  ],
+  "file_commit_history": {
+    "Data/cloud/abs_subsystem.py": [
+      {
+        "sha": "H-023",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "ABS subsystem owner"
+      }
+    ],
+    "Data/cloud/braking_config.py": [
+      {
+        "sha": "R-041",
+        "author": "Roshan",
+        "timestamp_iso": "2026-03",
+        "message": "hardware integration"
+      }
+    ],
+    "Data/cloud/braking_controller.py": [
+      {
+        "sha": "S-078",
+        "author": "Shivani",
+        "timestamp_iso": "2026-03",
+        "message": "feature branch owner"
+      }
+    ],
+    "Data/cloud/trajectory_planner.py": [
+      {
+        "sha": "R-019",
+        "author": "Roshan",
+        "timestamp_iso": "2026-03",
+        "message": "trajectory planner owner"
+      }
+    ],
+    "Data/cloud/sensor_config.py": [
+      {
+        "sha": "H-057",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "LiDAR calibration owner"
+      }
+    ],
+    "Data/cloud/thermal_monitor.py": [
+      {
+        "sha": "H-009",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "thermal subsystem owner"
+      }
+    ],
+    "Data/cloud/ecu_manager.py": [
+      {
+        "sha": "S-031",
+        "author": "Shivani",
+        "timestamp_iso": "2026-03",
+        "message": "integration orchestrator owner"
+      }
+    ],
+    "Data/cloud/drivetrain_config.py": [
+      {
+        "sha": "RY-011",
+        "author": "Ryan",
+        "timestamp_iso": "2026-03",
+        "message": "reviewer turned editor"
+      }
+    ],
+    "Data/cloud/drivetrain_controller.py": [
+      {
+        "sha": "R-055",
+        "author": "Roshan",
+        "timestamp_iso": "2026-03",
+        "message": "drivetrain controller owner"
+      }
+    ],
+    "Data/cloud/can_interface.py": [
+      {
+        "sha": "R-007",
+        "author": "Roshan",
+        "timestamp_iso": "2026-03",
+        "message": "CAN interface owner"
+      }
+    ],
+    "Data/cloud/input_signals.py": [
+      {
+        "sha": "H-031",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "input consumer owner"
+      },
+      {
+        "sha": "H-032",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "input consumer owner"
+      },
+      {
+        "sha": "H-033",
+        "author": "Harshitha",
+        "timestamp_iso": "2026-03",
+        "message": "input consumer owner"
+      }
+    ],
+    "Data/cloud/network_config.py": [
+      {
+        "sha": "S-044",
+        "author": "Shivani",
+        "timestamp_iso": "2026-03",
+        "message": "network optimization owner"
+      }
+    ]
+  },
+  "scenario_authors": [
+    "Harshitha",
+    "Roshan",
+    "Ryan",
+    "Shivani"
+  ],
+  "scenario_commits": [
+    {
+      "tag": "H-023",
+      "author": "Harshitha",
+      "role": "ABS subsystem owner",
+      "artifact": "apply_ABS_threshold()",
+      "timing": "two weeks before R-041",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "file": "Data/cloud/abs_subsystem.py"
+    },
+    {
+      "tag": "R-041",
+      "author": "Roshan",
+      "role": "hardware integration",
+      "artifact": "braking_config.py",
+      "timing": "day 0",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "file": "Data/cloud/braking_config.py"
+    },
+    {
+      "tag": "S-078",
+      "author": "Shivani",
+      "role": "feature branch owner",
+      "artifact": "calculate_brake_distance()",
+      "timing": "day 3",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "file": "Data/cloud/braking_controller.py"
+    },
+    {
+      "tag": "R-019",
+      "author": "Roshan",
+      "role": "trajectory planner owner",
+      "artifact": "plan_avoidance_trajectory()",
+      "timing": "one month before H-057",
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "file": "Data/cloud/trajectory_planner.py"
+    },
+    {
+      "tag": "H-057",
+      "author": "Harshitha",
+      "role": "LiDAR calibration owner",
+      "artifact": "sensor_config.py",
+      "timing": "day 0",
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "file": "Data/cloud/sensor_config.py"
+    },
+    {
+      "tag": "S-092",
+      "author": "Shivani",
+      "role": "debugging obstacle detection latency",
+      "artifact": "full fusion regression run",
+      "timing": "day 5",
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "file": null
+    },
+    {
+      "tag": "S-093",
+      "author": "Shivani",
+      "role": "revert author",
+      "artifact": "false-root-cause revert",
+      "timing": "day 5",
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "file": null
+    },
+    {
+      "tag": "H-009",
+      "author": "Harshitha",
+      "role": "thermal subsystem owner",
+      "artifact": "check_thermal_threshold()",
+      "timing": "three months before RY-011",
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "file": "Data/cloud/thermal_monitor.py"
+    },
+    {
+      "tag": "S-031",
+      "author": "Shivani",
+      "role": "integration orchestrator owner",
+      "artifact": "vehicle_ecu_loop()",
+      "timing": "before RY-011",
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "file": "Data/cloud/ecu_manager.py"
+    },
+    {
+      "tag": "RY-011",
+      "author": "Ryan",
+      "role": "reviewer turned editor",
+      "artifact": "drivetrain_config.py",
+      "timing": "day 0",
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "file": "Data/cloud/drivetrain_config.py"
+    },
+    {
+      "tag": "R-055",
+      "author": "Roshan",
+      "role": "drivetrain controller owner",
+      "artifact": "apply_torque_request()",
+      "timing": "day 2",
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "file": "Data/cloud/drivetrain_controller.py"
+    },
+    {
+      "tag": "R-007",
+      "author": "Roshan",
+      "role": "CAN interface owner",
+      "artifact": "parse_can_frame()",
+      "timing": "six months before S-044",
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "file": "Data/cloud/can_interface.py"
+    },
+    {
+      "tag": "H-031",
+      "author": "Harshitha",
+      "role": "input consumer owner",
+      "artifact": "read_steering_input()",
+      "timing": "after R-007",
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "file": "Data/cloud/input_signals.py"
+    },
+    {
+      "tag": "H-032",
+      "author": "Harshitha",
+      "role": "input consumer owner",
+      "artifact": "read_brake_pedal_signal()",
+      "timing": "after R-007",
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "file": "Data/cloud/input_signals.py"
+    },
+    {
+      "tag": "H-033",
+      "author": "Harshitha",
+      "role": "input consumer owner",
+      "artifact": "read_accelerator_signal()",
+      "timing": "after R-007",
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "file": "Data/cloud/input_signals.py"
+    },
+    {
+      "tag": "S-044",
+      "author": "Shivani",
+      "role": "network optimization owner",
+      "artifact": "network_config.py",
+      "timing": "day 0",
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "file": "Data/cloud/network_config.py"
+    }
+  ],
+  "author_ownership": {
+    "Harshitha": {
+      "roles": [
+        "ABS subsystem owner",
+        "LiDAR calibration owner",
+        "thermal subsystem owner",
+        "input consumer owner",
+        "input consumer owner",
+        "input consumer owner"
+      ],
+      "artifacts": [
+        "apply_ABS_threshold()",
+        "sensor_config.py",
+        "check_thermal_threshold()",
+        "read_steering_input()",
+        "read_brake_pedal_signal()",
+        "read_accelerator_signal()"
+      ],
+      "commits": [
+        "H-023",
+        "H-057",
+        "H-009",
+        "H-031",
+        "H-032",
+        "H-033"
+      ]
+    },
+    "Roshan": {
+      "roles": [
+        "hardware integration",
+        "trajectory planner owner",
+        "drivetrain controller owner",
+        "CAN interface owner"
+      ],
+      "artifacts": [
+        "braking_config.py",
+        "plan_avoidance_trajectory()",
+        "apply_torque_request()",
+        "parse_can_frame()"
+      ],
+      "commits": [
+        "R-041",
+        "R-019",
+        "R-055",
+        "R-007"
+      ]
+    },
+    "Shivani": {
+      "roles": [
+        "feature branch owner",
+        "debugging obstacle detection latency",
+        "revert author",
+        "integration orchestrator owner",
+        "network optimization owner"
+      ],
+      "artifacts": [
+        "calculate_brake_distance()",
+        "full fusion regression run",
+        "false-root-cause revert",
+        "vehicle_ecu_loop()",
+        "network_config.py"
+      ],
+      "commits": [
+        "S-078",
+        "S-092",
+        "S-093",
+        "S-031",
+        "S-044"
+      ]
+    },
+    "Ryan": {
+      "roles": [
+        "reviewer turned editor"
+      ],
+      "artifacts": [
+        "drivetrain_config.py"
+      ],
+      "commits": [
+        "RY-011"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "id": "situation-1",
+      "title": "Brake actuator response time drifted after a hardware update",
+      "parameter": {
+        "name": "brake_actuator_response_time",
+        "before": "150ms",
+        "after": "200ms",
+        "type": "timing_constant",
+        "param_is_safety_critical": 1
+      },
+      "review": {
+        "reviewer": "Ryan",
+        "reviewer_approved_without_sw_flag": 1,
+        "review_crossed_team_boundary": 1
+      }
+    },
+    {
+      "id": "situation-2",
+      "title": "LiDAR calibration changed without updating the fusion assumptions",
+      "parameter": {
+        "name": "lidar_offset_calibration",
+        "before": 0.02,
+        "after": 0.035,
+        "type": "calibration_constant",
+        "param_is_safety_critical": 1
+      },
+      "review": {
+        "reviewer": "Ryan",
+        "closed_incident_without_dependency_trace": 1,
+        "false_root_cause_assigned": 1
+      }
+    },
+    {
+      "id": "situation-3",
+      "title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter": {
+        "name": "max_motor_torque_nm",
+        "before": 280,
+        "after": 340,
+        "type": "limit_constant",
+        "param_is_safety_critical": 1
+      },
+      "review": {}
+    },
+    {
+      "id": "situation-4",
+      "title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter": {
+        "name": "can_bus_message_interval_ms",
+        "before": "10ms",
+        "after": "15ms",
+        "type": "timing_constant",
+        "param_is_safety_critical": 1
+      },
+      "review": {
+        "reviewer": "Ryan",
+        "commit_tagged_as_no_logic_change": 1,
+        "smoke_only_validation": 1,
+        "regression_delay_days": 7
+      }
+    }
+  ],
+  "labeled_examples": [
+    {
+      "test": "test_brake_distance_nominal",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 4,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_emergency_stop_latency",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 4,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_stopping_force_range",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 4,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_ABS_trigger_threshold",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 4,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_safety_controller_integration",
+      "label": 1,
+      "shortest_path": 3,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_vehicle_dynamics_end_to_end",
+      "label": 1,
+      "shortest_path": 4,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 6,
+      "churn_rate": 2,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_brake_fluid_pressure_sensor",
+      "label": 0,
+      "shortest_path": null,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 0,
+      "churn_rate": 0,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "author_is_hw_team": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_pedal_input_mapping",
+      "label": 0,
+      "shortest_path": null,
+      "hw_sw_sync_lag_days": 3,
+      "downstream_test_count": 0,
+      "churn_rate": 0,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "author_is_hw_team": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "scenario_id": "situation-1",
+      "scenario_title": "Brake actuator response time drifted after a hardware update",
+      "parameter_name": "brake_actuator_response_time",
+      "parameter_before": "150ms",
+      "parameter_after": "200ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_obstacle_detection_accuracy",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 5,
+      "downstream_test_count": 4,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "false_root_cause_assigned": 1,
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "parameter_name": "lidar_offset_calibration",
+      "parameter_before": 0.02,
+      "parameter_after": 0.035,
+      "parameter_type": "calibration_constant"
+    },
+    {
+      "test": "test_collision_margin_nominal",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 5,
+      "downstream_test_count": 4,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "false_root_cause_assigned": 1,
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "parameter_name": "lidar_offset_calibration",
+      "parameter_before": 0.02,
+      "parameter_after": 0.035,
+      "parameter_type": "calibration_constant"
+    },
+    {
+      "test": "test_trajectory_planner_clearance",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 5,
+      "downstream_test_count": 4,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "false_root_cause_assigned": 1,
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "parameter_name": "lidar_offset_calibration",
+      "parameter_before": 0.02,
+      "parameter_after": 0.035,
+      "parameter_type": "calibration_constant"
+    },
+    {
+      "test": "test_sensor_fusion_integration",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 5,
+      "downstream_test_count": 4,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 1,
+      "author_is_hw_team": 1,
+      "param_is_safety_critical": 1,
+      "false_root_cause_assigned": 1,
+      "scenario_id": "situation-2",
+      "scenario_title": "LiDAR calibration changed without updating the fusion assumptions",
+      "parameter_name": "lidar_offset_calibration",
+      "parameter_before": 0.02,
+      "parameter_after": 0.035,
+      "parameter_type": "calibration_constant"
+    },
+    {
+      "test": "test_torque_application_limits",
+      "label": 1,
+      "shortest_path": 3,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 4,
+      "churn_rate": 3,
+      "cofailure_count": 2,
+      "is_cross_boundary_change": 1,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_thermal_cutoff_trigger",
+      "label": 1,
+      "shortest_path": 3,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 4,
+      "churn_rate": 3,
+      "cofailure_count": 2,
+      "is_cross_boundary_change": 1,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_ecu_integration_nominal",
+      "label": 1,
+      "shortest_path": 3,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 4,
+      "churn_rate": 3,
+      "cofailure_count": 2,
+      "is_cross_boundary_change": 1,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_motor_overheat_protection",
+      "label": 1,
+      "shortest_path": 3,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 4,
+      "churn_rate": 3,
+      "cofailure_count": 2,
+      "is_cross_boundary_change": 1,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_battery_charge_cycle",
+      "label": 0,
+      "shortest_path": null,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 0,
+      "churn_rate": 0,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 0,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_regen_braking_efficiency",
+      "label": 0,
+      "shortest_path": null,
+      "hw_sw_sync_lag_days": 2,
+      "downstream_test_count": 0,
+      "churn_rate": 0,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "num_authors_on_path": 0,
+      "scenario_id": "situation-3",
+      "scenario_title": "Motor torque limit was raised without revisiting thermal protection",
+      "parameter_name": "max_motor_torque_nm",
+      "parameter_before": 280,
+      "parameter_after": 340,
+      "parameter_type": "limit_constant"
+    },
+    {
+      "test": "test_can_frame_parse_timing",
+      "label": 1,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 5,
+      "churn_rate": 8,
+      "cofailure_count": 3,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "commit_tagged_as_no_logic_change": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_steering_input_latency",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 5,
+      "churn_rate": 8,
+      "cofailure_count": 3,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "commit_tagged_as_no_logic_change": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_brake_pedal_signal_integrity",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 5,
+      "churn_rate": 8,
+      "cofailure_count": 3,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "commit_tagged_as_no_logic_change": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_accelerator_response_time",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 5,
+      "churn_rate": 8,
+      "cofailure_count": 3,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "commit_tagged_as_no_logic_change": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_diagnostic_health_check_interval",
+      "label": 1,
+      "shortest_path": 2,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 5,
+      "churn_rate": 8,
+      "cofailure_count": 3,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 1,
+      "param_type": "timing_constant",
+      "commit_tagged_as_no_logic_change": 1,
+      "num_authors_on_path": 3,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_can_frame_checksum_validation",
+      "label": 0,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 1,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 0,
+      "param_type": "structural_constant",
+      "commit_tagged_as_no_logic_change": 0,
+      "num_authors_on_path": 1,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    },
+    {
+      "test": "test_can_frame_id_parsing",
+      "label": 0,
+      "shortest_path": 1,
+      "hw_sw_sync_lag_days": 7,
+      "downstream_test_count": 1,
+      "churn_rate": 1,
+      "cofailure_count": 0,
+      "is_cross_boundary_change": 0,
+      "param_is_safety_critical": 0,
+      "param_type": "structural_constant",
+      "commit_tagged_as_no_logic_change": 0,
+      "num_authors_on_path": 1,
+      "scenario_id": "situation-4",
+      "scenario_title": "CAN timing drifted while parser logic still assumed a fixed 10ms cadence",
+      "parameter_name": "can_bus_message_interval_ms",
+      "parameter_before": "10ms",
+      "parameter_after": "15ms",
+      "parameter_type": "timing_constant"
+    }
+  ]
+}

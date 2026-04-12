@@ -2,208 +2,372 @@
   "brake_actuator_response_time": {
     "scored_tests": [
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_brake_distance_nominal",
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py",
+        "test_uid": "Data/cloud/braking_controller.py::calculate_brake_distance",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.75,
         "fanout": 1.0,
-        "priority_score": 0.76,
+        "priority_score": 0.925,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_emergency_stop_latency",
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py",
+        "test_uid": "Data/cloud/abs_subsystem.py::apply_ABS_threshold",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.625,
         "fanout": 1.0,
-        "priority_score": 0.76,
+        "priority_score": 0.8875,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_stopping_force_range",
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py",
+        "test_uid": "Data/cloud/braking_controller.py::estimate_stopping_force",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.625,
         "fanout": 1.0,
-        "priority_score": 0.76,
+        "priority_score": 0.8875,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_ABS_trigger_threshold",
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py",
+        "test_uid": "Data/cloud/braking_config.py::get_brake_actuator_response_time_ms",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.5,
         "fanout": 1.0,
-        "priority_score": 0.76,
+        "priority_score": 0.8500000000000001,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_safety_controller_integration",
-        "shortest_path": 2,
-        "pagerank": 0.2,
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py",
+        "test_uid": "Data/cloud/braking_config.py::get_speed_zone_multiplier",
+        "shortest_path": 1,
+        "pagerank": 0.375,
         "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "test_uid": "Data\\cloud\\test_braking.py::test_vehicle_dynamics_end_to_end",
-        "shortest_path": 3,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.42666666666666664,
-        "risk_tier": "MEDIUM"
+        "priority_score": 0.8125,
+        "risk_tier": "CRITICAL"
       }
     ],
     "safe_tests": [
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py"
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py"
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py"
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py"
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
-      },
-      {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
-      },
-      {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
-      },
-      {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
-      },
-      {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py"
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py"
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py"
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py"
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py"
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py"
       }
     ],
     "ranked": [
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.76,
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.925,
         "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.75,
         "fanout_score": 1.0
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.76,
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.8875,
         "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.625,
         "fanout_score": 1.0
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.76,
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py",
+        "priority_score": 0.8875,
         "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.625,
         "fanout_score": 1.0
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.76,
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py",
+        "priority_score": 0.8500000000000001,
         "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.5,
         "fanout_score": 1.0
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py",
+        "priority_score": 0.8125,
+        "risk_tier": "CRITICAL",
+        "shortest_path": 1,
+        "proximity": 1.0,
+        "centrality": 0.375,
         "fanout_score": 1.0
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.42666666666666664,
-        "risk_tier": "MEDIUM",
-        "shortest_path": 3,
-        "proximity": 0.3333333333333333,
-        "centrality": 0.2,
-        "fanout_score": 1.0
-      },
-      {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -212,8 +376,178 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -223,7 +557,7 @@
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -233,7 +567,7 @@
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -243,7 +577,7 @@
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -253,7 +587,7 @@
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -263,7 +597,7 @@
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -273,7 +607,7 @@
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -283,7 +617,7 @@
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -292,8 +626,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -302,48 +636,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -353,7 +647,7 @@
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -363,7 +657,7 @@
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -373,7 +667,7 @@
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -383,7 +677,337 @@
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -396,274 +1020,574 @@
   "can_bus_message_interval_ms": {
     "scored_tests": [
       {
-        "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_can_frame_parse_timing",
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py",
+        "test_uid": "Data/cloud/can_interface.py::parse_can_frame",
         "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.76,
+        "pagerank": 1.0,
+        "fanout": 0.5,
+        "priority_score": 0.9,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_can_frame_checksum_validation",
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "test_uid": "Data/cloud/network_config.py::get_can_bus_message_interval_ms",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.375,
         "fanout": 1.0,
-        "priority_score": 0.76,
+        "priority_score": 0.8125,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_can_frame_id_parsing",
-        "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.76,
-        "risk_tier": "CRITICAL"
-      },
-      {
-        "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_steering_input_latency",
-        "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_brake_pedal_signal_integrity",
-        "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_accelerator_response_time",
-        "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_diagnostic_health_check_interval",
-        "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_steering_input_latency",
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "test_uid": "Data/cloud/network_config.py::get_can_bus_message_interval_ms",
         "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_brake_pedal_signal_integrity",
-        "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_accelerator_response_time",
-        "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_diagnostic_health_check_interval",
-        "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "test_uid": "Data\\cloud\\test_can_timing.py::test_can_frame_parse_timing",
-        "shortest_path": 2,
-        "pagerank": 0.2,
+        "pagerank": 0.375,
         "fanout": 0.5,
-        "priority_score": 0.41000000000000003,
+        "priority_score": 0.4625,
         "risk_tier": "MEDIUM"
       }
     ],
     "safe_tests": [
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py"
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py"
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py"
+      },
+      {
+        "test_name": "test_can_frame_parse_timing",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_steering_input_latency",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_brake_pedal_signal_integrity",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_accelerator_response_time",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_diagnostic_health_check_interval",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_can_frame_checksum_validation",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "test_can_frame_id_parsing",
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py"
+      },
+      {
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py"
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py"
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py"
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py"
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py"
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py"
       }
     ],
     "ranked": [
       {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.9,
+        "risk_tier": "CRITICAL",
+        "shortest_path": 1,
+        "proximity": 1.0,
+        "centrality": 1.0,
+        "fanout_score": 0.5
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "priority_score": 0.4625,
+        "risk_tier": "MEDIUM",
+        "shortest_path": 2,
+        "proximity": 0.5,
+        "centrality": 0.375,
+        "fanout_score": 0.5
+      },
+      {
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.76,
-        "risk_tier": "CRITICAL",
-        "shortest_path": 1,
-        "proximity": 1.0,
-        "centrality": 0.2,
-        "fanout_score": 1.0
-      },
-      {
-        "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.76,
-        "risk_tier": "CRITICAL",
-        "shortest_path": 1,
-        "proximity": 1.0,
-        "centrality": 0.2,
-        "fanout_score": 1.0
-      },
-      {
-        "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.76,
-        "risk_tier": "CRITICAL",
-        "shortest_path": 1,
-        "proximity": 1.0,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "test_file": "Data/cloud/test_can_timing.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "test_file": "Data/cloud/test_can_timing.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "test_file": "Data/cloud/test_can_timing.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "test_file": "Data/cloud/test_can_timing.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
-      },
-      {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -672,8 +1596,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "test_can_frame_checksum_validation",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -682,8 +1606,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "test_can_frame_id_parsing",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -692,8 +1616,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -702,98 +1626,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -803,7 +1637,7 @@
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -813,7 +1647,7 @@
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -823,7 +1657,7 @@
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -833,7 +1667,357 @@
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -846,176 +2030,340 @@
   "lidar_offset_calibration": {
     "scored_tests": [
       {
-        "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "test_uid": "Data\\cloud\\test_sensor_fusion.py::test_collision_margin_nominal",
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "test_uid": "Data/cloud/sensor_fusion.py::fuse_obstacle_track",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.625,
         "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "test_uid": "Data\\cloud\\test_sensor_fusion.py::test_trajectory_planner_clearance",
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "test_uid": "Data/cloud/trajectory_planner.py::plan_avoidance_trajectory",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.625,
         "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "test_uid": "Data\\cloud\\test_sensor_fusion.py::test_obstacle_detection_accuracy",
-        "shortest_path": 3,
-        "pagerank": 0.2,
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py",
+        "test_uid": "Data/cloud/sensor_config.py::get_lidar_offset_calibration",
+        "shortest_path": 2,
+        "pagerank": 0.375,
         "fanout": 0.5,
-        "priority_score": 0.32666666666666666,
-        "risk_tier": "MEDIUM"
-      },
-      {
-        "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "test_uid": "Data\\cloud\\test_sensor_fusion.py::test_sensor_fusion_integration",
-        "shortest_path": 4,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.28500000000000003,
+        "priority_score": 0.4625,
         "risk_tier": "MEDIUM"
       }
     ],
     "safe_tests": [
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py"
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py"
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
+      },
+      {
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py"
+      },
+      {
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py"
+      },
+      {
+        "test_name": "test_obstacle_detection_accuracy",
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_collision_margin_nominal",
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_trajectory_planner_clearance",
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_sensor_fusion_integration",
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
       },
       {
         "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
       },
       {
         "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
       },
       {
         "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
       },
       {
         "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
       },
       {
         "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py"
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py"
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py"
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py"
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py"
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py"
       }
     ],
     "ranked": [
       {
-        "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "priority_score": 0.66,
-        "risk_tier": "HIGH",
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.625,
         "fanout_score": 0.5
       },
       {
-        "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "priority_score": 0.66,
-        "risk_tier": "HIGH",
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
+        "centrality": 0.625,
         "fanout_score": 0.5
       },
       {
-        "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "priority_score": 0.32666666666666666,
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py",
+        "priority_score": 0.4625,
         "risk_tier": "MEDIUM",
-        "shortest_path": 3,
-        "proximity": 0.3333333333333333,
-        "centrality": 0.2,
+        "shortest_path": 2,
+        "proximity": 0.5,
+        "centrality": 0.375,
         "fanout_score": 0.5
       },
       {
-        "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
-        "priority_score": 0.28500000000000003,
-        "risk_tier": "MEDIUM",
-        "shortest_path": 4,
-        "proximity": 0.25,
-        "centrality": 0.2,
-        "fanout_score": 0.5
-      },
-      {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1024,8 +2372,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1034,8 +2382,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1044,8 +2392,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1054,8 +2402,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1064,8 +2412,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1074,8 +2422,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1084,8 +2432,128 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1095,7 +2563,7 @@
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1105,7 +2573,7 @@
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1115,7 +2583,7 @@
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1125,7 +2593,7 @@
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1135,7 +2603,7 @@
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1145,7 +2613,7 @@
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1155,7 +2623,67 @@
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_obstacle_detection_accuracy",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_collision_margin_nominal",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_trajectory_planner_clearance",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_sensor_fusion_integration",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1165,7 +2693,7 @@
       },
       {
         "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1175,7 +2703,7 @@
       },
       {
         "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1185,7 +2713,7 @@
       },
       {
         "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1195,7 +2723,7 @@
       },
       {
         "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1205,7 +2733,7 @@
       },
       {
         "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1215,7 +2743,287 @@
       },
       {
         "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1228,216 +3036,366 @@
   "max_motor_torque_nm": {
     "scored_tests": [
       {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_torque_application_limits",
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py",
+        "test_uid": "Data/cloud/ecu_manager.py::vehicle_ecu_loop",
         "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.76,
+        "pagerank": 0.875,
+        "fanout": 0.5,
+        "priority_score": 0.8624999999999999,
         "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_thermal_cutoff_trigger",
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "test_uid": "Data/cloud/drivetrain_config.py::get_max_motor_torque_nm",
         "shortest_path": 1,
-        "pagerank": 0.2,
-        "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
+        "pagerank": 0.375,
+        "fanout": 1.0,
+        "priority_score": 0.8125,
+        "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_ecu_integration_nominal",
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py",
+        "test_uid": "Data/cloud/drivetrain_controller.py::apply_torque_request",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.625,
         "fanout": 0.5,
-        "priority_score": 0.66,
-        "risk_tier": "HIGH"
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL"
       },
       {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_motor_overheat_protection",
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py",
+        "test_uid": "Data/cloud/thermal_monitor.py::check_thermal_threshold",
         "shortest_path": 1,
-        "pagerank": 0.2,
+        "pagerank": 0.375,
         "fanout": 0.5,
-        "priority_score": 0.66,
+        "priority_score": 0.7125,
         "risk_tier": "HIGH"
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_thermal_cutoff_trigger",
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "test_uid": "Data/cloud/drivetrain_config.py::get_max_motor_torque_nm",
         "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_ecu_integration_nominal",
-        "shortest_path": 2,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.51,
-        "risk_tier": "HIGH"
-      },
-      {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_motor_overheat_protection",
-        "shortest_path": 3,
-        "pagerank": 0.2,
-        "fanout": 1.0,
-        "priority_score": 0.42666666666666664,
-        "risk_tier": "MEDIUM"
-      },
-      {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "test_uid": "Data\\cloud\\test_drivetrain.py::test_torque_application_limits",
-        "shortest_path": 2,
-        "pagerank": 0.2,
+        "pagerank": 0.375,
         "fanout": 0.5,
-        "priority_score": 0.41000000000000003,
+        "priority_score": 0.4625,
         "risk_tier": "MEDIUM"
       }
     ],
     "safe_tests": [
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py"
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py"
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py"
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py"
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py"
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py"
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py"
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py"
+        "test_file": "Data/cloud/test_can_timing.py"
       },
       {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
-      },
-      {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py"
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py"
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py"
+        "test_file": "Data/cloud/test_sensor_fusion.py"
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py"
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py"
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py"
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py"
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py"
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py"
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py"
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py"
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py"
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py"
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py"
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py"
       }
     ],
     "ranked": [
       {
-        "test_name": "test_torque_application_limits",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.76,
+        "test_name": "vehicle_ecu_loop",
+        "test_file": "Data/cloud/ecu_manager.py",
+        "priority_score": 0.8624999999999999,
         "risk_tier": "CRITICAL",
         "shortest_path": 1,
         "proximity": 1.0,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "centrality": 0.875,
+        "fanout_score": 0.5
       },
       {
-        "test_name": "test_thermal_cutoff_trigger",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.51,
+        "test_name": "apply_torque_request",
+        "test_file": "Data/cloud/drivetrain_controller.py",
+        "priority_score": 0.7875,
+        "risk_tier": "CRITICAL",
+        "shortest_path": 1,
+        "proximity": 1.0,
+        "centrality": 0.625,
+        "fanout_score": 0.5
+      },
+      {
+        "test_name": "check_thermal_threshold",
+        "test_file": "Data/cloud/thermal_monitor.py",
+        "priority_score": 0.7125,
         "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "shortest_path": 1,
+        "proximity": 1.0,
+        "centrality": 0.375,
+        "fanout_score": 0.5
       },
       {
-        "test_name": "test_ecu_integration_nominal",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.51,
-        "risk_tier": "HIGH",
-        "shortest_path": 2,
-        "proximity": 0.5,
-        "centrality": 0.2,
-        "fanout_score": 1.0
-      },
-      {
-        "test_name": "test_motor_overheat_protection",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.42666666666666664,
+        "test_name": "get_max_motor_torque_nm",
+        "test_file": "Data/cloud/drivetrain_config.py",
+        "priority_score": 0.4625,
         "risk_tier": "MEDIUM",
-        "shortest_path": 3,
-        "proximity": 0.3333333333333333,
-        "centrality": 0.2,
-        "fanout_score": 1.0
+        "shortest_path": 2,
+        "proximity": 0.5,
+        "centrality": 0.375,
+        "fanout_score": 0.5
       },
       {
-        "test_name": "test_brake_distance_nominal",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "get_brake_actuator_response_time_ms",
+        "test_file": "Data/cloud/braking_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1446,8 +3404,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_emergency_stop_latency",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "get_speed_zone_multiplier",
+        "test_file": "Data/cloud/braking_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1456,8 +3414,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_stopping_force_range",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1466,8 +3424,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_ABS_trigger_threshold",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "start",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1476,8 +3434,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_safety_controller_integration",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "stop",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1486,8 +3444,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_vehicle_dynamics_end_to_end",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "push_raw",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1496,8 +3454,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_brake_fluid_pressure_sensor",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "_worker",
+        "test_file": "Data/cloud/ingest.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1506,8 +3464,128 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_pedal_input_mapping",
-        "test_file": "Data\\cloud\\test_braking.py",
+        "test_name": "parse_sensor_packet",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "crc8",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "main_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "__init__",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "upload_bulk",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "reliable_upload",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_end_to_end_demo",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "record_heartbeat",
+        "test_file": "Data/cloud/ingest.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_frame",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "validate_can_checksum",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "parse_can_identifier",
+        "test_file": "Data/cloud/can_interface.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "plan_avoidance_trajectory",
+        "test_file": "Data/cloud/trajectory_planner.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "collision_margin_nominal",
+        "test_file": "Data/cloud/trajectory_planner.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1517,7 +3595,7 @@
       },
       {
         "test_name": "test_can_frame_parse_timing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1527,7 +3605,7 @@
       },
       {
         "test_name": "test_steering_input_latency",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1537,7 +3615,7 @@
       },
       {
         "test_name": "test_brake_pedal_signal_integrity",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1547,7 +3625,7 @@
       },
       {
         "test_name": "test_accelerator_response_time",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1557,7 +3635,7 @@
       },
       {
         "test_name": "test_diagnostic_health_check_interval",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1567,7 +3645,7 @@
       },
       {
         "test_name": "test_can_frame_checksum_validation",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1577,7 +3655,7 @@
       },
       {
         "test_name": "test_can_frame_id_parsing",
-        "test_file": "Data\\cloud\\test_can_timing.py",
+        "test_file": "Data/cloud/test_can_timing.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1586,18 +3664,8 @@
         "fanout_score": 0.0
       },
       {
-        "test_name": "test_battery_charge_cycle",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
-        "priority_score": 0.0,
-        "risk_tier": "SAFE",
-        "shortest_path": -1,
-        "proximity": 0.0,
-        "centrality": 0.0,
-        "fanout_score": 0.0
-      },
-      {
-        "test_name": "test_regen_braking_efficiency",
-        "test_file": "Data\\cloud\\test_drivetrain.py",
+        "test_name": "motor_overheat_protection",
+        "test_file": "Data/cloud/ecu_manager.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1607,7 +3675,7 @@
       },
       {
         "test_name": "test_obstacle_detection_accuracy",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1617,7 +3685,7 @@
       },
       {
         "test_name": "test_collision_margin_nominal",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1627,7 +3695,7 @@
       },
       {
         "test_name": "test_trajectory_planner_clearance",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,
@@ -1637,7 +3705,347 @@
       },
       {
         "test_name": "test_sensor_fusion_integration",
-        "test_file": "Data\\cloud\\test_sensor_fusion.py",
+        "test_file": "Data/cloud/test_sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_torque_application_limits",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_thermal_cutoff_trigger",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ecu_integration_nominal",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_motor_overheat_protection",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_battery_charge_cycle",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_regen_braking_efficiency",
+        "test_file": "Data/cloud/test_drivetrain.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_fluid_pressure",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "map_pedal_input",
+        "test_file": "Data/cloud/vehicle_sensors.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_distance_nominal",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_emergency_stop_latency",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_stopping_force_range",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_ABS_trigger_threshold",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_safety_controller_integration",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_vehicle_dynamics_end_to_end",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_brake_fluid_pressure_sensor",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "test_pedal_input_mapping",
+        "test_file": "Data/cloud/test_braking.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "fuse_obstacle_track",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "obstacle_detection_accuracy",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "sensor_fusion_integration",
+        "test_file": "Data/cloud/sensor_fusion.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_can_bus_message_interval_ms",
+        "test_file": "Data/cloud/network_config.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "calculate_brake_distance",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "estimate_stopping_force",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "command_emergency_stop",
+        "test_file": "Data/cloud/braking_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "pack_sensor_packet",
+        "test_file": "Data/cloud/utils.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "apply_ABS_threshold",
+        "test_file": "Data/cloud/abs_subsystem.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "safety_controller_loop",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "run_vehicle_dynamics",
+        "test_file": "Data/cloud/safety_controller.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "battery_charge_cycle",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "regen_braking_efficiency",
+        "test_file": "Data/cloud/energy_management.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_steering_input",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_brake_pedal_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "read_accelerator_signal",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "diagnostic_health_check_interval",
+        "test_file": "Data/cloud/input_signals.py",
+        "priority_score": 0.0,
+        "risk_tier": "SAFE",
+        "shortest_path": -1,
+        "proximity": 0.0,
+        "centrality": 0.0,
+        "fanout_score": 0.0
+      },
+      {
+        "test_name": "get_lidar_offset_calibration",
+        "test_file": "Data/cloud/sensor_config.py",
         "priority_score": 0.0,
         "risk_tier": "SAFE",
         "shortest_path": -1,

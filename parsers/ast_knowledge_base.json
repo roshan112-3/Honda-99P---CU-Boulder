@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-03-30T05:25:53.020609",
+    "generated_at": "2026-04-09T17:46:29.598557",
     "repo": "Honda Automotive Dataset",
     "analyzer": "Tree-sitter Code Analyzer v1.0"
   },
@@ -593,117 +593,117 @@
       "get_speed_zone_multiplier"
     ],
     "Ingestor::__init__": [
-      "__init__",
-      "Queue"
+      "Queue",
+      "__init__"
     ],
     "Ingestor::start": [
-      "Thread",
-      "start"
+      "start",
+      "Thread"
     ],
     "Ingestor::stop": [
       "stop"
     ],
     "Ingestor::push_raw": [
-      "push_raw",
-      "put"
+      "put",
+      "push_raw"
     ],
     "Ingestor::_worker": [
-      "_worker",
       "parse_sensor_packet",
-      "get",
-      "append"
+      "_worker",
+      "append",
+      "get"
     ],
     "Ingestor::parse_sensor_packet": [
-      "parse_sensor_packet",
       "ValueError",
       "v1",
+      "v2",
       "v3",
-      "v2"
+      "parse_sensor_packet"
     ],
     "Ingestor::crc8": [
+      "sum",
       "unpack",
       "bool",
-      "sum",
-      "time",
-      "bytearray",
       "ValueError",
-      "v1",
       "crc8",
-      "support",
-      "v3",
+      "v1",
+      "time",
       "v2",
-      "bytes"
+      "v3",
+      "bytearray",
+      "bytes",
+      "support"
     ],
     "main_demo": [
-      "push_raw",
-      "Ingestor",
       "sum",
-      "start",
-      "stop",
-      "sleep",
-      "uniform",
+      "randint",
       "main_demo",
-      "bytes",
+      "push_raw",
       "pack",
-      "randint"
+      "sleep",
+      "stop",
+      "Ingestor",
+      "start",
+      "bytes",
+      "uniform"
     ],
     "RemoteStorageClient::__init__": [
       "__init__"
     ],
     "RemoteStorageClient::upload_bulk": [
+      "RuntimeError",
       "random",
-      "upload_bulk",
-      "RuntimeError"
+      "upload_bulk"
     ],
     "reliable_upload": [
-      "failed",
       "sleep",
+      "failed",
       "upload_bulk",
       "reliable_upload"
     ],
     "run_end_to_end_demo": [
-      "push_raw",
-      "Ingestor",
-      "append",
       "sum",
-      "reliable_upload",
-      "run_end_to_end_demo",
-      "start",
-      "RemoteStorageClient",
-      "stop",
-      "sleep",
-      "uniform",
-      "bytes",
+      "randint",
+      "push_raw",
       "pack",
-      "randint"
+      "sleep",
+      "stop",
+      "RemoteStorageClient",
+      "Ingestor",
+      "start",
+      "append",
+      "bytes",
+      "uniform",
+      "run_end_to_end_demo",
+      "reliable_upload"
     ],
     "record_heartbeat": [
-      "main_demo",
-      "run_end_to_end_demo",
+      "frame",
       "record_heartbeat",
-      "frame"
+      "run_end_to_end_demo",
+      "main_demo"
     ],
     "apply_torque_request": [
       "get_max_motor_torque_nm",
-      "apply_torque_request",
-      "min"
+      "min",
+      "apply_torque_request"
     ],
     "parse_can_frame": [
       "parse_can_frame",
       "get_can_bus_message_interval_ms"
     ],
     "validate_can_checksum": [
-      "validate_can_checksum",
-      "sum"
+      "sum",
+      "validate_can_checksum"
     ],
     "parse_can_identifier": [
-      "parse_can_identifier",
-      "return"
+      "return",
+      "parse_can_identifier"
     ],
     "plan_avoidance_trajectory": [
+      "fuse_obstacle_track",
       "abs",
-      "plan_avoidance_trajectory",
-      "fuse_obstacle_track"
+      "plan_avoidance_trajectory"
     ],
     "collision_margin_nominal": [
       "collision_margin_nominal",
@@ -718,8 +718,8 @@
       "read_steering_input"
     ],
     "test_brake_pedal_signal_integrity": [
-      "test_brake_pedal_signal_integrity",
-      "read_brake_pedal_signal"
+      "read_brake_pedal_signal",
+      "test_brake_pedal_signal_integrity"
     ],
     "test_accelerator_response_time": [
       "read_accelerator_signal",
@@ -743,20 +743,20 @@
       "apply_torque_request"
     ],
     "motor_overheat_protection": [
-      "vehicle_ecu_loop",
-      "motor_overheat_protection"
+      "motor_overheat_protection",
+      "vehicle_ecu_loop"
     ],
     "test_obstacle_detection_accuracy": [
-      "test_obstacle_detection_accuracy",
-      "obstacle_detection_accuracy"
+      "obstacle_detection_accuracy",
+      "test_obstacle_detection_accuracy"
     ],
     "test_collision_margin_nominal": [
       "collision_margin_nominal",
       "test_collision_margin_nominal"
     ],
     "test_trajectory_planner_clearance": [
-      "test_trajectory_planner_clearance",
-      "plan_avoidance_trajectory"
+      "plan_avoidance_trajectory",
+      "test_trajectory_planner_clearance"
     ],
     "test_sensor_fusion_integration": [
       "sensor_fusion_integration",
@@ -771,32 +771,32 @@
       "test_thermal_cutoff_trigger"
     ],
     "test_ecu_integration_nominal": [
-      "vehicle_ecu_loop",
-      "test_ecu_integration_nominal"
+      "test_ecu_integration_nominal",
+      "vehicle_ecu_loop"
     ],
     "test_motor_overheat_protection": [
-      "motor_overheat_protection",
-      "test_motor_overheat_protection"
+      "test_motor_overheat_protection",
+      "motor_overheat_protection"
     ],
     "test_battery_charge_cycle": [
-      "test_battery_charge_cycle",
-      "battery_charge_cycle"
+      "battery_charge_cycle",
+      "test_battery_charge_cycle"
     ],
     "test_regen_braking_efficiency": [
-      "test_regen_braking_efficiency",
-      "regen_braking_efficiency"
+      "regen_braking_efficiency",
+      "test_regen_braking_efficiency"
     ],
     "read_brake_fluid_pressure": [
       "read_brake_fluid_pressure"
     ],
     "map_pedal_input": [
       "map_pedal_input",
-      "max",
-      "min"
+      "min",
+      "max"
     ],
     "test_brake_distance_nominal": [
-      "calculate_brake_distance",
-      "test_brake_distance_nominal"
+      "test_brake_distance_nominal",
+      "calculate_brake_distance"
     ],
     "test_emergency_stop_latency": [
       "test_emergency_stop_latency",
@@ -811,33 +811,33 @@
       "apply_ABS_threshold"
     ],
     "test_safety_controller_integration": [
-      "safety_controller_loop",
-      "test_safety_controller_integration"
+      "test_safety_controller_integration",
+      "safety_controller_loop"
     ],
     "test_vehicle_dynamics_end_to_end": [
-      "run_vehicle_dynamics",
-      "test_vehicle_dynamics_end_to_end"
+      "test_vehicle_dynamics_end_to_end",
+      "run_vehicle_dynamics"
     ],
     "test_brake_fluid_pressure_sensor": [
       "read_brake_fluid_pressure",
       "test_brake_fluid_pressure_sensor"
     ],
     "test_pedal_input_mapping": [
-      "test_pedal_input_mapping",
-      "map_pedal_input"
+      "map_pedal_input",
+      "test_pedal_input_mapping"
     ],
     "fuse_obstacle_track": [
-      "get_lidar_offset_calibration",
-      "fuse_obstacle_track"
+      "fuse_obstacle_track",
+      "get_lidar_offset_calibration"
     ],
     "obstacle_detection_accuracy": [
-      "abs",
+      "obstacle_detection_accuracy",
       "fuse_obstacle_track",
-      "obstacle_detection_accuracy"
+      "abs"
     ],
     "sensor_fusion_integration": [
-      "sensor_fusion_integration",
-      "obstacle_detection_accuracy"
+      "obstacle_detection_accuracy",
+      "sensor_fusion_integration"
     ],
     "get_can_bus_message_interval_ms": [
       "get_can_bus_message_interval_ms"
@@ -846,39 +846,39 @@
       "check_thermal_threshold"
     ],
     "calculate_brake_distance": [
-      "max",
-      "calculate_brake_distance",
-      "get_speed_zone_multiplier",
       "return",
+      "max",
       "min",
-      "get_brake_actuator_response_time_ms"
+      "get_brake_actuator_response_time_ms",
+      "get_speed_zone_multiplier",
+      "calculate_brake_distance"
     ],
     "estimate_stopping_force": [
       "estimate_stopping_force",
       "apply_ABS_threshold"
     ],
     "command_emergency_stop": [
-      "calculate_brake_distance",
       "estimate_stopping_force",
-      "command_emergency_stop"
+      "command_emergency_stop",
+      "calculate_brake_distance"
     ],
     "pack_sensor_packet": [
-      "pack_sensor_packet",
-      "bytes",
       "pack",
-      "sum"
+      "pack_sensor_packet",
+      "sum",
+      "bytes"
     ],
     "apply_ABS_threshold": [
-      "apply_ABS_threshold",
-      "get_brake_actuator_response_time_ms"
+      "get_brake_actuator_response_time_ms",
+      "apply_ABS_threshold"
     ],
     "safety_controller_loop": [
-      "safety_controller_loop",
-      "command_emergency_stop"
+      "command_emergency_stop",
+      "safety_controller_loop"
     ],
     "run_vehicle_dynamics": [
-      "run_vehicle_dynamics",
-      "safety_controller_loop"
+      "safety_controller_loop",
+      "run_vehicle_dynamics"
     ],
     "battery_charge_cycle": [
       "battery_charge_cycle"
@@ -891,16 +891,16 @@
       "get_max_motor_torque_nm"
     ],
     "read_steering_input": [
-      "read_steering_input",
-      "parse_can_frame"
+      "parse_can_frame",
+      "read_steering_input"
     ],
     "read_brake_pedal_signal": [
       "parse_can_frame",
       "read_brake_pedal_signal"
     ],
     "read_accelerator_signal": [
-      "read_accelerator_signal",
-      "parse_can_frame"
+      "parse_can_frame",
+      "read_accelerator_signal"
     ],
     "diagnostic_health_check_interval": [
       "diagnostic_health_check_interval",

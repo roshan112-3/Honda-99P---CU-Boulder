@@ -182,10 +182,10 @@ MATCH (origin:Function)-[:DEFINED_IN]->(f)
 
 // Find all test functions (functions in test_*.py files)
 MATCH (test:Function)
-WHERE test.file CONTAINS 'test_'
 
 // Find shortest path through CALLS graph (max 4 hops)
-MATCH path = shortestPath((origin)-[:CALLS*..4]-(test))
+MATCH path = shortestPath((origin)-[:CALLS*1..4]->(test))
+WHERE origin <> test
 
 // Gather scores
 WITH test, k,
@@ -232,8 +232,7 @@ ORDER BY priority_score DESC
 QUERY_MARK_SAFE_TESTS = """
 // Find all test functions NOT already scored for this constant
 MATCH (test:Function)
-WHERE test.file CONTAINS 'test_'
-  AND (test.triggered_by IS NULL OR test.triggered_by <> $constant_name)
+WHERE(test.triggered_by IS NULL OR test.triggered_by <> $constant_name)
 SET test.priority_score = 0.0,
     test.risk_tier = 'SAFE',
     test.triggered_by = $constant_name,
@@ -258,8 +257,7 @@ ORDER BY k.name
 
 QUERY_RANKED_RESULTS = """
 MATCH (test:Function)
-WHERE test.file CONTAINS 'test_'
-  AND test.triggered_by = $constant_name
+WHERE test.triggered_by = $constant_name
 RETURN test.name AS test_name,
        test.file AS test_file,
        test.priority_score AS priority_score,
@@ -271,6 +269,53 @@ RETURN test.name AS test_name,
        test.last_scored_at AS scored_at
 ORDER BY test.priority_score DESC
 """
+
+def write_scores_to_nodes(session, constant_name: str):
+    """
+    Persist priority_score + risk_tier permanently on Function nodes
+    and stamp CALLS + AFFECTS edges so Bloom can style them.
+    """
+    # Add bloom_label caption property (e.g. "CRITICAL | 87%")
+    session.run("""
+        MATCH (test:Function)
+        WHERE test.triggered_by = $constant_name
+          AND test.priority_score IS NOT NULL
+        SET test.bloom_label = test.risk_tier + ' | ' + toString(round(test.priority_score * 100)) + '%',
+            test.scored      = true
+    """, constant_name=constant_name)
+
+    # Stamp CALLS edges along the impact path with risk tier
+    session.run("""
+        MATCH (k:Constant {name: $constant_name})-[:AFFECTS]->(f:File)
+        MATCH (origin:Function)-[:DEFINED_IN]->(f)
+        MATCH (origin)-[r:CALLS*..4]->(test:Function)
+        WHERE test.triggered_by = $constant_name
+        UNWIND r AS rel
+        SET rel.triggered_by   = $constant_name,
+            rel.risk_tier      = test.risk_tier,
+            rel.priority_score = test.priority_score
+    """, constant_name=constant_name)
+
+    # Stamp AFFECTS edges from Constant -> File
+    session.run("""
+        MATCH (k:Constant {name: $constant_name})-[r:AFFECTS]->(f:File)
+        SET r.triggered_by   = $constant_name,
+            r.risk_tier      = k.risk_tier,
+            r.priority_score = k.risk_score
+    """, constant_name=constant_name)
+
+
+    session.run("""
+                MATCH (fn:Function)
+                WHERE fn.bloom_label IS NULL
+                SET fn.bloom_label   = 'SAFE | 0%',
+                    fn.risk_tier     = 'SAFE',
+                    fn.priority_score = 0.0,
+                    fn.scored        = true
+                """)
+
+    print(f"  ✓ bloom_label + scored written to Function nodes")
+    print(f"  ✓ CALLS + AFFECTS edges stamped with risk_tier + triggered_by")
 
 
 def score_tests_for_constant(session, constant_name):
@@ -291,6 +336,8 @@ def score_tests_for_constant(session, constant_name):
     safe = [dict(r) for r in result]
 
     print(f"  Unreachable tests marked SAFE: {len(safe)}")
+
+    write_scores_to_nodes(session, constant_name)  
 
     return scored, safe
 

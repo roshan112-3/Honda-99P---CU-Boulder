@@ -179,8 +179,8 @@ The main deliverable. Computes test priority scores using three signals and pers
 - Computes priority score:
 
 ```
-Priority = 0.50 * (1 / shortest_path_hops)    -- Proximity (50%)
-         + 0.30 * normalized_pagerank           -- Centrality (30%)
+Priority = 0.60 * (1 / shortest_path_hops)    -- Proximity (60%)
+         + 0.20 * normalized_pagerank           -- Centrality (20%)
          + 0.20 * normalized_fanout             -- FanOut (20%)
 ```
 
@@ -200,10 +200,10 @@ Each test Function node gets these properties:
 
 | Tier | Score Range | Action |
 |------|-------------|--------|
-| CRITICAL | > 0.75 | Must run immediately |
+| CRITICAL | > 0.70 | Must run immediately |
 | HIGH | > 0.50 | Run in first batch |
-| MEDIUM | > 0.25 | Run in second batch |
-| LOW | <= 0.25 | Can defer |
+| MEDIUM | > 0.28 | Run in second batch |
+| LOW | <= 0.28 | Can defer |
 | SAFE | 0.0 (unreachable) | Safe to skip |
 
 ### Usage

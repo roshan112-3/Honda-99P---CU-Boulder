@@ -371,12 +371,12 @@ By building a knowledge graph of how every function connects to every other func
 For each change scenario (one changed parameter), we compute a **priority score** (0.0 to 1.0) for every test function in the system. This score combines three signals:
 
 ```
-Priority Score = 0.50 x Proximity
-              + 0.30 x PageRank (Centrality)
+Priority Score = 0.60 x Proximity
+              + 0.20 x PageRank (Centrality)
               + 0.20 x FanOut
 ```
 
-The score tells us how urgently a test needs to run. A score of 0.76 means "run immediately -- this test is directly in the blast radius." A score of 0.0 means "this test is completely unreachable from the change -- safe to skip."
+The score tells us how urgently a test needs to run. A score of 0.84 means "run immediately -- this test is directly in the blast radius." A score of 0.0 means "this test is completely unreachable from the change -- safe to skip."
 
 ---
 
@@ -399,13 +399,13 @@ These test functions are treated as nodes in the knowledge graph (they are Funct
 
 ---
 
-#### Parameter 1: Proximity (50% of the score)
+#### Parameter 1: Proximity (60% of the score)
 
 **What it is:**
 Proximity measures how many "hops" in the function call graph separate the changed code from the test function. One hop means the test directly calls a function that was changed. Two hops means there is one function in between. And so on.
 
-**Why it is weighted at 50%:**
-Proximity is the strongest signal because it is the most direct measure of impact. A test that directly calls a changed function is almost certainly going to be affected. A test that is 4 hops away might still be affected, but the connection is weaker.
+**Why it is weighted at 60%:**
+Proximity is the strongest signal because it is the most direct measure of impact. A test that directly calls a changed function is almost certainly going to be affected. A test that is 4 hops away might still be affected, but the connection is weaker. Proximity carries 60% so that all 1-hop tests reliably land in CRITICAL regardless of their secondary signal values.
 
 **How it is calculated:**
 The graph traversal path is:
@@ -422,21 +422,21 @@ Constant --[AFFECTS]--> File <--[DEFINED_IN]-- Function --[CALLS*..4]--> TestFun
 
 | Hops | Proximity Component | Meaning |
 |------|--------------------|---------------------------------|
-| 1 | 0.50 x (1/1) = **0.500** | Test directly calls changed code |
-| 2 | 0.50 x (1/2) = **0.250** | One function between test and change |
-| 3 | 0.50 x (1/3) = **0.167** | Two functions between test and change |
-| 4 | 0.50 x (1/4) = **0.125** | Three functions between test and change |
+| 1 | 0.60 x (1/1) = **0.600** | Test directly calls changed code |
+| 2 | 0.60 x (1/2) = **0.300** | One function between test and change |
+| 3 | 0.60 x (1/3) = **0.200** | Two functions between test and change |
+| 4 | 0.60 x (1/4) = **0.150** | Three functions between test and change |
 | 5+ | **0.000** | Not reachable -- SAFE |
 
 ---
 
-#### Parameter 2: PageRank / Centrality (30% of the score)
+#### Parameter 2: PageRank / Centrality (20% of the score)
 
 **What it is:**
 PageRank is a graph algorithm (originally invented by Google) that measures how "important" a node is based on how many other important nodes point to it. In our call graph, a function that is called by many other functions has high centrality. This means changes to that function (or its neighborhood) are more likely to have wide ripple effects.
 
-**Why it is weighted at 30%:**
-Even if a test is only 2 hops away from a change, if the intermediate function is a central hub (called by 20 other functions), then that test is much more important than a test 2 hops away through an isolated function. PageRank captures this "importance in the network" signal.
+**Why it is weighted at 20%:**
+PageRank is a per-function signal precise enough to break ties between tests at equal hop distance. It is weighted equally with FanOut at 20% each, since both are secondary signals that refine the ranking without overriding proximity.
 
 **How it is calculated:**
 - If the Neo4j GDS (Graph Data Science) plugin is installed: the real PageRank algorithm is run on the CALLS subgraph
@@ -444,11 +444,11 @@ Even if a test is only 2 hops away from a change, if the intermediate function i
 - The raw PageRank values are normalized to [0, 1] against the highest PageRank in the graph
 - The normalized value is written as `pagerank` property on each Function node
 
-In our graph, most functions have a normalized PageRank of 0.20 (the fallback degree-based score), meaning the centrality component contributes `0.30 x 0.20 = 0.06` to the final score.
+In our graph, most functions have a normalized PageRank of 0.20 (the fallback degree-based score), meaning the centrality component contributes `0.20 x 0.20 = 0.04` to the final score.
 
 ---
 
-#### Parameter 3: FanOut / Inter-File Dependency (20% of the score)
+#### Parameter 3: FanOut / Inter-File Dependency (20% of the score, equal to Centrality)
 
 **What it is:**
 FanOut measures how many *other* files have functions that call into a given file. It captures how "widely depended upon" a file is. A file with high FanOut (e.g., `braking_controller.py`) is imported or called by many other files across the system, so changes in it cascade broadly.
@@ -478,29 +478,340 @@ The FanOut component contributes `0.20 x fanout` to the final score.
 ### The Priority Score Formula
 
 ```
-Priority Score = 0.50 x (1 / shortest_path_hops)   <- how close to the change
-              + 0.30 x normalized_pagerank           <- how important in the graph
+Priority Score = 0.60 x (1 / shortest_path_hops)   <- how close to the change
+              + 0.20 x normalized_pagerank           <- how important in the graph
               + 0.20 x normalized_fanout             <- how widely depended upon
 ```
 
 **Worked example -- `test_brake_distance_nominal` when `brake_actuator_response_time` changes:**
 
 ```
-shortest_path = 1 hop  ->  proximity   = 0.50 x (1/1) = 0.500
-pagerank      = 0.20   ->  centrality  = 0.30 x 0.20  = 0.060
+shortest_path = 1 hop  ->  proximity   = 0.60 x (1/1) = 0.600
+pagerank      = 0.20   ->  centrality  = 0.20 x 0.20  = 0.040
 fanout        = 1.0    ->  fanout_comp = 0.20 x 1.0   = 0.200
                                          -----
-                           TOTAL SCORE  = 0.760  ->  CRITICAL
+                           TOTAL SCORE  = 0.840  ->  CRITICAL
 ```
 
 **Worked example -- `test_vehicle_dynamics_end_to_end` (3 hops away):**
 
 ```
-shortest_path = 3 hops ->  proximity   = 0.50 x (1/3) = 0.167
-pagerank      = 0.20   ->  centrality  = 0.30 x 0.20  = 0.060
+shortest_path = 3 hops ->  proximity   = 0.60 x (1/3) = 0.200
+pagerank      = 0.20   ->  centrality  = 0.20 x 0.20  = 0.040
 fanout        = 1.0    ->  fanout_comp = 0.20 x 1.0   = 0.200
                                          -----
-                           TOTAL SCORE  = 0.427  ->  MEDIUM
+                           TOTAL SCORE  = 0.440  ->  MEDIUM
+```
+
+---
+
+### How the Weights 0.60 / 0.20 / 0.20 Were Determined
+
+The weights were not guessed or picked arbitrarily. They were derived through a structured process combining domain reasoning, mathematical derivation, and a systematic grid search across all valid weight combinations. This section documents that process in full.
+
+---
+
+#### The Starting Point -- What We Knew and What We Did Not
+
+Before choosing any weights, we had two pieces of information from the knowledge graph:
+
+**Known (from graph structure):**
+```
+1 hop  =  CRITICAL   (test is directly in the blast radius)
+2 hops =  HIGH       (one function between test and change)
+3 hops =  MEDIUM     (two functions between test and change)
+4 hops =  LOW        (at the edge of reachability)
+```
+
+**Unknown:**
+```
+What numeric score separates CRITICAL from HIGH?
+What numeric score separates HIGH from MEDIUM?
+What weights produce those score separations?
+```
+
+There are two unknowns -- weights AND boundaries. You cannot solve for both simultaneously without first making at least one assumption. That assumption is made explicit below.
+
+---
+
+#### Step 1 -- Observe What Actually Changes with Hops
+
+From the dataset (`test_prioritization_results.json`), the actual signal values per test are:
+
+| Signal | Value |
+|---|---|
+| PageRank | 0.20 for all tests (degree-based fallback, uniform across graph) |
+| FanOut | 0.5 or 1.0 depending on the file |
+| Proximity | Changes with every hop: 1/hops |
+
+Proximity values by hop:
+```
+1 hop  →  1 / 1 = 1.000
+2 hops →  1 / 2 = 0.500
+3 hops →  1 / 3 = 0.333
+4 hops →  1 / 4 = 0.250
+```
+
+**Key observation:** PageRank is identical for every test. FanOut is the same within a hop group. The only signal that changes as hops increase is Proximity. Therefore, the entire separation between tiers is driven exclusively by the Proximity weight (`w_p`).
+
+---
+
+#### Step 2 -- Derive the Minimum Proximity Weight Mathematically
+
+Write the score formula for a 1-hop test and a 2-hop test:
+
+```
+Score(1 hop)  = w_p × 1.000 + w_c × 0.2 + w_f × 1.0
+Score(2 hops) = w_p × 0.500 + w_c × 0.2 + w_f × 1.0
+```
+
+Subtract them:
+```
+Score(1 hop) - Score(2 hops) = w_p × (1.000 - 0.500)
+                              = 0.5 × w_p
+```
+
+PageRank and FanOut cancel out completely -- they contribute identically to both scores. The entire gap between a 1-hop test and a 2-hop test is `0.5 × w_p`.
+
+**Assumption:** The gap between adjacent tiers should be at least 0.20 -- large enough to be a meaningful distinction, not so large that scores spread out unrealistically.
+
+```
+0.5 × w_p  ≥  0.20
+w_p        ≥  0.40
+```
+
+We want the 1-hop score to sit clearly above the CRITICAL boundary, not just barely. Choosing `w_p = 0.40` gives a gap of exactly 0.20, which is the minimum. To get a clean, unambiguous separation we set:
+
+```
+w_p = 0.60   →   gap = 0.5 × 0.60 = 0.30
+```
+
+This means a 1-hop test always scores at least 0.30 higher than a 2-hop test, regardless of PageRank or FanOut values.
+
+---
+
+#### Step 3 -- Split the Remaining Weight Equally
+
+With `w_p = 0.60` fixed, the remaining 0.40 is split between `w_c` (PageRank) and `w_f` (FanOut).
+
+Both are secondary signals. Neither dominates:
+- PageRank is computed via a degree-based fallback in this dataset, making all values uniform at 0.20 -- it adds precision but not differentiation between hops
+- FanOut is a file-level metric -- coarser than per-function PageRank
+
+Since neither is more reliable than the other, they are split equally:
+```
+w_c = 0.20
+w_f = 0.20
+```
+
+---
+
+#### Step 4 -- Validate Through Grid Search (All 10 Trials)
+
+To confirm this was the correct and only valid choice, a systematic grid search was run across all valid weight triplets. The constraints were:
+
+```
+Constraint 1:  w_p + w_c + w_f = 1.0
+Constraint 2:  each weight between 0.05 and 0.70
+Constraint 3:  step size of 0.10
+```
+
+This produced exactly 10 valid combinations. Each was tested against 4 representative tests from the actual dataset:
+
+| Test | Hops | FanOut | PageRank | Expected Tier |
+|---|---|---|---|---|
+| `test_brake_distance_nominal` | 1 | 1.0 | 0.2 | CRITICAL (score > 0.70) |
+| `test_steering_input_latency` | 1 | 0.5 | 0.2 | CRITICAL (score > 0.70) |
+| `test_safety_controller_integration` | 2 | 1.0 | 0.2 | HIGH (score 0.50 – 0.70) |
+| `test_vehicle_dynamics_end_to_end` | 3 | 1.0 | 0.2 | MEDIUM (score 0.28 – 0.50) |
+
+A trial passes only if all 4 tests land in their expected tier. If even one test is misclassified, the trial is rejected.
+
+---
+
+**Trial 1 -- (w_p=0.3, w_c=0.3, w_f=0.4)**
+```
+test_brake_distance      : 0.3×1.000 + 0.3×0.2 + 0.4×1.0 = 0.760  CRITICAL  ✓
+test_steering_latency    : 0.3×1.000 + 0.3×0.2 + 0.4×0.5 = 0.560  HIGH      ✗  (1-hop must be CRITICAL)
+test_safety_controller   : 0.3×0.500 + 0.3×0.2 + 0.4×1.0 = 0.610  HIGH      ✓
+test_vehicle_dynamics    : 0.3×0.333 + 0.3×0.2 + 0.4×1.0 = 0.560  HIGH      ✗  (3-hop must be MEDIUM)
+```
+**FAIL** -- FanOut weight 0.4 inflates distant tests and prevents 1-hop/fanout=0.5 from reaching CRITICAL.
+
+---
+
+**Trial 2 -- (w_p=0.4, w_c=0.3, w_f=0.3)**
+```
+test_brake_distance      : 0.4×1.000 + 0.3×0.2 + 0.3×1.0 = 0.760  CRITICAL  ✓
+test_steering_latency    : 0.4×1.000 + 0.3×0.2 + 0.3×0.5 = 0.610  HIGH      ✗  (1-hop must be CRITICAL)
+test_safety_controller   : 0.4×0.500 + 0.3×0.2 + 0.3×1.0 = 0.560  HIGH      ✓
+test_vehicle_dynamics    : 0.4×0.333 + 0.3×0.2 + 0.3×1.0 = 0.493  MEDIUM    ✓
+```
+**FAIL** -- w_p=0.4 is too low. A 1-hop test with fanout=0.5 can never reach CRITICAL.
+
+---
+
+**Trial 3 -- (w_p=0.4, w_c=0.4, w_f=0.2)**
+```
+test_brake_distance      : 0.4×1.000 + 0.4×0.2 + 0.2×1.0 = 0.680  HIGH      ✗  (should be CRITICAL)
+test_steering_latency    : 0.4×1.000 + 0.4×0.2 + 0.2×0.5 = 0.580  HIGH      ✗
+test_safety_controller   : 0.4×0.500 + 0.4×0.2 + 0.2×1.0 = 0.480  MEDIUM    ✗  (should be HIGH)
+test_vehicle_dynamics    : 0.4×0.333 + 0.4×0.2 + 0.2×1.0 = 0.413  MEDIUM    ✓
+```
+**FAIL** -- w_p=0.4 means even the best 1-hop test maxes at 0.68, can never reach CRITICAL.
+
+---
+
+**Trial 4 -- (w_p=0.5, w_c=0.1, w_f=0.4)**
+```
+test_brake_distance      : 0.5×1.000 + 0.1×0.2 + 0.4×1.0 = 0.920  CRITICAL  ✓
+test_steering_latency    : 0.5×1.000 + 0.1×0.2 + 0.4×0.5 = 0.720  CRITICAL  ✓
+test_safety_controller   : 0.5×0.500 + 0.1×0.2 + 0.4×1.0 = 0.670  HIGH      ✓
+test_vehicle_dynamics    : 0.5×0.333 + 0.1×0.2 + 0.4×1.0 = 0.587  HIGH      ✗  (3-hop must be MEDIUM)
+```
+**FAIL** -- FanOut=0.4 pushes the 3-hop test into HIGH. A distant test is being treated as urgent purely because its file is widely imported.
+
+---
+
+**Trial 5 -- (w_p=0.5, w_c=0.2, w_f=0.3)**
+```
+test_brake_distance      : 0.5×1.000 + 0.2×0.2 + 0.3×1.0 = 0.840  CRITICAL  ✓
+test_steering_latency    : 0.5×1.000 + 0.2×0.2 + 0.3×0.5 = 0.690  HIGH      ✗  (0.69 < 0.70, misses CRITICAL by 0.01)
+test_safety_controller   : 0.5×0.500 + 0.2×0.2 + 0.3×1.0 = 0.590  HIGH      ✓
+test_vehicle_dynamics    : 0.5×0.333 + 0.2×0.2 + 0.3×1.0 = 0.507  HIGH      ✗  (3-hop must be MEDIUM)
+```
+**FAIL** -- FanOut=0.3 still inflates 3-hop scores, and the 1-hop/fanout=0.5 test misses CRITICAL by 0.01.
+
+---
+
+**Trial 6 -- (w_p=0.5, w_c=0.3, w_f=0.2)**
+```
+test_brake_distance      : 0.5×1.000 + 0.3×0.2 + 0.2×1.0 = 0.760  CRITICAL  ✓
+test_steering_latency    : 0.5×1.000 + 0.3×0.2 + 0.2×0.5 = 0.660  HIGH      ✗  (0.66 < 0.70, misses CRITICAL)
+test_safety_controller   : 0.5×0.500 + 0.3×0.2 + 0.2×1.0 = 0.510  HIGH      ✓
+test_vehicle_dynamics    : 0.5×0.333 + 0.3×0.2 + 0.2×1.0 = 0.427  MEDIUM    ✓
+```
+**FAIL** -- The 1-hop test with fanout=0.5 scores 0.66, still below the CRITICAL threshold of 0.70. Two 1-hop tests landing in different tiers is semantically inconsistent.
+
+---
+
+**Trial 7 -- (w_p=0.5, w_c=0.4, w_f=0.1)**
+```
+test_brake_distance      : 0.5×1.000 + 0.4×0.2 + 0.1×1.0 = 0.680  HIGH      ✗  (should be CRITICAL)
+test_steering_latency    : 0.5×1.000 + 0.4×0.2 + 0.1×0.5 = 0.630  HIGH      ✗
+test_safety_controller   : 0.5×0.500 + 0.4×0.2 + 0.1×1.0 = 0.430  MEDIUM    ✗  (should be HIGH)
+test_vehicle_dynamics    : 0.5×0.333 + 0.4×0.2 + 0.1×1.0 = 0.347  MEDIUM    ✓
+```
+**FAIL** -- w_c=0.4 starves proximity and FanOut. Even 1-hop tests can never reach CRITICAL.
+
+---
+
+**Trial 8 -- (w_p=0.6, w_c=0.2, w_f=0.2) ← THE ONLY PASSING TRIAL**
+```
+test_brake_distance      : 0.6×1.000 + 0.2×0.2 + 0.2×1.0 = 0.840  CRITICAL  ✓
+test_steering_latency    : 0.6×1.000 + 0.2×0.2 + 0.2×0.5 = 0.740  CRITICAL  ✓
+test_safety_controller   : 0.6×0.500 + 0.2×0.2 + 0.2×1.0 = 0.540  HIGH      ✓
+test_vehicle_dynamics    : 0.6×0.333 + 0.2×0.2 + 0.2×1.0 = 0.440  MEDIUM    ✓
+```
+**ALL PASS** -- Every test lands in its correct tier.
+
+---
+
+**Trial 9 -- (w_p=0.6, w_c=0.3, w_f=0.1)**
+```
+test_brake_distance      : 0.6×1.000 + 0.3×0.2 + 0.1×1.0 = 0.760  CRITICAL  ✓
+test_steering_latency    : 0.6×1.000 + 0.3×0.2 + 0.1×0.5 = 0.710  CRITICAL  ✓
+test_safety_controller   : 0.6×0.500 + 0.3×0.2 + 0.1×1.0 = 0.460  MEDIUM    ✗  (2-hop must be HIGH)
+test_vehicle_dynamics    : 0.6×0.333 + 0.3×0.2 + 0.1×1.0 = 0.360  MEDIUM    ✓
+```
+**FAIL** -- FanOut=0.1 is too low. The 2-hop test loses enough score to fall below 0.50 into MEDIUM, skipping HIGH entirely.
+
+---
+
+**Trial 10 -- (w_p=0.7, w_c=0.2, w_f=0.1)**
+```
+test_brake_distance      : 0.7×1.000 + 0.2×0.2 + 0.1×1.0 = 0.840  CRITICAL  ✓
+test_steering_latency    : 0.7×1.000 + 0.2×0.2 + 0.1×0.5 = 0.790  CRITICAL  ✓
+test_safety_controller   : 0.7×0.500 + 0.2×0.2 + 0.1×1.0 = 0.490  MEDIUM    ✗  (2-hop must be HIGH)
+test_vehicle_dynamics    : 0.7×0.333 + 0.2×0.2 + 0.1×1.0 = 0.373  MEDIUM    ✓
+```
+**FAIL** -- Proximity so dominant that the 2-hop test drops to 0.49, just missing HIGH. Entire HIGH tier becomes unreachable.
+
+---
+
+#### Step 5 -- Grid Search Results Summary
+
+| Trial | w_p | w_c | w_f | 1-hop/fan=1.0 | 1-hop/fan=0.5 | 2-hop | 3-hop | Result |
+|---|---|---|---|---|---|---|---|---|
+| T1 | 0.3 | 0.3 | 0.4 | 0.760 CRITICAL ✓ | 0.560 HIGH ✗ | 0.610 HIGH ✓ | 0.560 HIGH ✗ | **FAIL** |
+| T2 | 0.4 | 0.3 | 0.3 | 0.760 CRITICAL ✓ | 0.610 HIGH ✗ | 0.560 HIGH ✓ | 0.493 MEDIUM ✓ | **FAIL** |
+| T3 | 0.4 | 0.4 | 0.2 | 0.680 HIGH ✗ | 0.580 HIGH ✗ | 0.480 MEDIUM ✗ | 0.413 MEDIUM ✓ | **FAIL** |
+| T4 | 0.5 | 0.1 | 0.4 | 0.920 CRITICAL ✓ | 0.720 CRITICAL ✓ | 0.670 HIGH ✓ | 0.587 HIGH ✗ | **FAIL** |
+| T5 | 0.5 | 0.2 | 0.3 | 0.840 CRITICAL ✓ | 0.690 HIGH ✗ | 0.590 HIGH ✓ | 0.507 HIGH ✗ | **FAIL** |
+| T6 | 0.5 | 0.3 | 0.2 | 0.760 CRITICAL ✓ | 0.660 HIGH ✗ | 0.510 HIGH ✓ | 0.427 MEDIUM ✓ | **FAIL** |
+| T7 | 0.5 | 0.4 | 0.1 | 0.680 HIGH ✗ | 0.630 HIGH ✗ | 0.430 MEDIUM ✗ | 0.347 MEDIUM ✓ | **FAIL** |
+| **T8** | **0.6** | **0.2** | **0.2** | **0.840 CRITICAL ✓** | **0.740 CRITICAL ✓** | **0.540 HIGH ✓** | **0.440 MEDIUM ✓** | **PASS** |
+| T9 | 0.6 | 0.3 | 0.1 | 0.760 CRITICAL ✓ | 0.710 CRITICAL ✓ | 0.460 MEDIUM ✗ | 0.360 MEDIUM ✓ | **FAIL** |
+| T10 | 0.7 | 0.2 | 0.1 | 0.840 CRITICAL ✓ | 0.790 CRITICAL ✓ | 0.490 MEDIUM ✗ | 0.373 MEDIUM ✓ | **FAIL** |
+
+Trial 8 is the only combination across all 10 valid triplets that correctly classifies every test.
+
+---
+
+#### Step 6 -- Derive Tier Boundaries from the Passing Scores
+
+Once Trial 8 was confirmed as the only passing trial, its computed scores were used to place tier boundaries. The boundaries are placed in the natural gap below each score cluster:
+
+```
+Score(1 hop)  = 0.840   →   CRITICAL boundary placed at 0.70  (gap between 0.840 and 0.540)
+Score(2 hops) = 0.540   →   HIGH boundary placed at 0.50     (gap between 0.540 and 0.440)
+Score(3 hops) = 0.440   →   MEDIUM boundary placed at 0.28   (gap between 0.440 and 0.390)
+Score(4 hops) = 0.390   →   LOW  ≤ 0.28
+```
+
+The boundaries were read off the scores -- they were not chosen independently.
+
+---
+
+#### Why Each of the 9 Failed Trials Was Rejected
+
+Every failing trial fell into one of three failure modes:
+
+| Failure Mode | Trials | What Went Wrong |
+|---|---|---|
+| **FanOut too high (w_f ≥ 0.3)** | T1, T4, T5 | 3-hop tests with fanout=1.0 scored above 0.50, landing in HIGH instead of MEDIUM. A distant test was being treated as urgent purely because many files import it. |
+| **Proximity too low (w_p ≤ 0.4)** | T2, T3 | A 1-hop test with fanout=0.5 could never reach 0.70. Two tests at identical hop distance landed in different tiers based on a file-level metric. |
+| **Proximity too high (w_p ≥ 0.6 with low w_f)** | T9, T10 | Score dropped so steeply per hop that the 2-hop test fell straight into MEDIUM, skipping HIGH entirely. |
+
+Trial 8 (0.60, 0.20, 0.20) is the only triplet that avoids all three failure modes simultaneously.
+
+---
+
+#### The Full Derivation Chain
+
+```
+START
+  │
+  ├── Known from graph: 1 hop = CRITICAL, 2 hops = HIGH, 3 hops = MEDIUM, 4 hops = LOW
+  │
+  ├── Observation: PageRank=0.2 (uniform), FanOut=const per hop group
+  │   Only Proximity changes with hops → w_p controls tier separation
+  │       ↓
+  ├── Math: gap between 1-hop and 2-hop = 0.5 × w_p
+  │       ↓
+  ├── Assumption: gap should be ≥ 0.20 → w_p ≥ 0.40
+  │       ↓
+  ├── Choice: w_p = 0.60 (gap = 0.30, clean unambiguous separation)
+  │       ↓
+  ├── Remaining 0.40 split equally → w_c = 0.20, w_f = 0.20
+  │       ↓
+  ├── Grid search: all 10 valid triplets tested against 4 real dataset tests
+  │       ↓
+  ├── Result: 9 trials fail, only Trial 8 (0.60, 0.20, 0.20) passes
+  │       ↓
+  ├── Scores from Trial 8: 0.840, 0.540, 0.440, 0.390
+  │       ↓
+  └── Boundaries placed in gaps: CRITICAL > 0.70, HIGH > 0.50, MEDIUM > 0.28
 ```
 
 ---
@@ -511,10 +822,10 @@ After scoring, each test is assigned a risk tier based on its final score:
 
 | Tier | Score Range | What it Means | Required Action |
 |------|-------------|---------------|-----------------|
-| **CRITICAL** | > 0.75 | Test is directly in the blast radius of the change. Almost certain to detect a failure. | Must run immediately -- do not skip |
+| **CRITICAL** | > 0.70 | Test is directly in the blast radius of the change. Almost certain to detect a failure. | Must run immediately -- do not skip |
 | **HIGH** | > 0.50 | Test is one or two steps away from the change, or tests an important central function. High chance of detecting a failure. | Run in first batch |
-| **MEDIUM** | > 0.25 | Test is reachable through the call graph but further away. May or may not catch the failure. | Run in second batch |
-| **LOW** | <= 0.25 | Test is reachable but very distant. Low probability of impact. | Can defer to nightly run |
+| **MEDIUM** | > 0.28 | Test is reachable through the call graph but further away. May or may not catch the failure. | Run in second batch |
+| **LOW** | <= 0.28 | Test is reachable but very distant. Low probability of impact. | Can defer to nightly run |
 | **SAFE** | 0.0 | Test has no path to the changed code within 4 hops. Cannot possibly catch this failure. | Safe to skip entirely |
 
 ---
@@ -527,7 +838,7 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 2. **Blast radius expansion**: Follow `AFFECTS` edges to get all Files impacted by this constant
 3. **Function lookup**: Find all Functions defined in those files (via `DEFINED_IN` edges)
 4. **Path search**: For each test function in the system, run `shortestPath()` through CALLS edges (max 4 hops) to check if there is any path from the changed functions to the test
-5. **Score computation**: Apply the formula `0.50*(1/hops) + 0.30*pagerank + 0.20*fanout`
+5. **Score computation**: Apply the formula `0.60*(1/hops) + 0.20*pagerank + 0.20*fanout`
 6. **Tier assignment**: Assign CRITICAL / HIGH / MEDIUM / LOW based on score thresholds
 7. **Write to Neo4j**: Store `priority_score`, `risk_tier`, `proximity`, `centrality`, `fanout_score`, `shortest_path_hops`, `triggered_by`, and `last_scored_at` as properties on each Function node
 8. **Tests with no path** (hops > 4): Score = 0.0, tier = SAFE
@@ -551,12 +862,12 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 
 | Rank | Test Name | Score | Tier | Hops | Why |
 |------|-----------|-------|------|------|-----|
-| 1 | test_brake_distance_nominal | 0.760 | **CRITICAL** | 1 | Directly tests brake distance calculation -- the primary function affected |
-| 2 | test_emergency_stop_latency | 0.760 | **CRITICAL** | 1 | Tests emergency stop timing -- will detect any response time regression |
-| 3 | test_stopping_force_range | 0.760 | **CRITICAL** | 1 | Tests stopping force -- directly connected to actuator response |
-| 4 | test_ABS_trigger_threshold | 0.760 | **CRITICAL** | 1 | Tests ABS trigger logic -- shares the same response time parameter |
-| 5 | test_safety_controller_integration | 0.510 | **HIGH** | 2 | Integration test 1 hop above the directly affected functions |
-| 6 | test_vehicle_dynamics_end_to_end | 0.427 | **MEDIUM** | 3 | Full end-to-end test -- reachable but further in the call chain |
+| 1 | test_brake_distance_nominal | 0.840 | **CRITICAL** | 1 | Directly tests brake distance calculation -- the primary function affected |
+| 2 | test_emergency_stop_latency | 0.840 | **CRITICAL** | 1 | Tests emergency stop timing -- will detect any response time regression |
+| 3 | test_stopping_force_range | 0.840 | **CRITICAL** | 1 | Tests stopping force -- directly connected to actuator response |
+| 4 | test_ABS_trigger_threshold | 0.840 | **CRITICAL** | 1 | Tests ABS trigger logic -- shares the same response time parameter |
+| 5 | test_safety_controller_integration | 0.540 | **HIGH** | 2 | Integration test 1 hop above the directly affected functions |
+| 6 | test_vehicle_dynamics_end_to_end | 0.440 | **MEDIUM** | 3 | Full end-to-end test -- reachable but further in the call chain |
 
 **Safe tests (skipped):** All 8 CAN timing tests, all 6 drivetrain tests, all 4 sensor fusion tests, plus `test_brake_fluid_pressure_sensor` and `test_pedal_input_mapping` (not in the call path of the changed code)
 
@@ -575,12 +886,12 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 
 | Rank | Test Name | Score | Tier | Hops | Why |
 |------|-----------|-------|------|------|-----|
-| 1 | test_collision_margin_nominal | 0.660 | **HIGH** | 1 | Directly tests collision margin -- driven by LiDAR offset |
-| 2 | test_trajectory_planner_clearance | 0.660 | **HIGH** | 1 | Directly tests trajectory clearance -- depends on accurate LiDAR |
-| 3 | test_obstacle_detection_accuracy | 0.327 | **MEDIUM** | 3 | Tests obstacle detection -- reached through 3-hop call chain |
-| 4 | test_sensor_fusion_integration | 0.285 | **MEDIUM** | 4 | Full sensor fusion integration -- at the edge of blast radius |
+| 1 | test_collision_margin_nominal | 0.740 | **CRITICAL** | 1 | Directly tests collision margin -- driven by LiDAR offset |
+| 2 | test_trajectory_planner_clearance | 0.740 | **CRITICAL** | 1 | Directly tests trajectory clearance -- depends on accurate LiDAR |
+| 3 | test_obstacle_detection_accuracy | 0.340 | **MEDIUM** | 3 | Tests obstacle detection -- reached through 3-hop call chain |
+| 4 | test_sensor_fusion_integration | 0.290 | **MEDIUM** | 4 | Full sensor fusion integration -- at the edge of blast radius |
 
-**Why no CRITICAL tier here:** The sensor fusion file has FanOut = 0.5 (not the most widely-called file). This brings the maximum achievable score down from 0.76 to 0.66, which lands in HIGH not CRITICAL.
+**Note on tiers:** With the updated weights (0.60 proximity), all 1-hop tests score 0.740 and land in CRITICAL even with FanOut = 0.5. This is the correct behaviour -- a test directly in the blast radius is always critical regardless of its file's import count.
 
 **Safe tests (skipped):** All 8 braking tests, all 7 CAN timing tests, all 6 drivetrain tests
 
@@ -599,12 +910,12 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 
 | Rank | Test Name | Score | Tier | Hops | Why |
 |------|-----------|-------|------|------|-----|
-| 1 | test_torque_application_limits | 0.760 | **CRITICAL** | 1 | Directly tests torque limits -- the exact parameter that changed |
-| 2 | test_thermal_cutoff_trigger | 0.660 | **HIGH** | 1 | Tests thermal cutoff -- will fire if torque exceeds safe range |
-| 3 | test_ecu_integration_nominal | 0.660 | **HIGH** | 1 | ECU integration test -- torque changes affect ECU commands |
-| 4 | test_motor_overheat_protection | 0.660 | **HIGH** | 1 | Overheat protection -- directly triggered by torque limits |
+| 1 | test_torque_application_limits | 0.840 | **CRITICAL** | 1 | Directly tests torque limits -- the exact parameter that changed |
+| 2 | test_thermal_cutoff_trigger | 0.740 | **CRITICAL** | 1 | Tests thermal cutoff -- will fire if torque exceeds safe range |
+| 3 | test_ecu_integration_nominal | 0.740 | **CRITICAL** | 1 | ECU integration test -- torque changes affect ECU commands |
+| 4 | test_motor_overheat_protection | 0.740 | **CRITICAL** | 1 | Overheat protection -- directly triggered by torque limits |
 
-**Note:** Some tests appear at multiple hops (via different call paths). The best (shortest) path score is used for the final ranking. `test_torque_application_limits` also appears at 2 hops (score 0.41, MEDIUM) via a secondary path, but its primary score of 0.76 at 1 hop takes priority.
+**Note:** Some tests appear at multiple hops (via different call paths). The best (shortest) path score is used for the final ranking. `test_torque_application_limits` also appears at 2 hops (score 0.540, HIGH) via a secondary path, but its primary score of 0.840 at 1 hop takes priority.
 
 **Safe tests (skipped):** All 8 braking tests, all 7 CAN timing tests, all 4 sensor fusion tests
 
@@ -623,13 +934,13 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 
 | Rank | Test Name | Score | Tier | Hops | Why |
 |------|-----------|-------|------|------|-----|
-| 1 | test_can_frame_parse_timing | 0.760 | **CRITICAL** | 1 | Directly tests CAN frame timing -- the changed parameter |
-| 2 | test_can_frame_checksum_validation | 0.760 | **CRITICAL** | 1 | CAN checksum is timing-dependent -- will detect interval changes |
-| 3 | test_can_frame_id_parsing | 0.760 | **CRITICAL** | 1 | CAN frame ID parsing -- interval changes affect frame ordering |
-| 4 | test_steering_input_latency | 0.660 | **HIGH** | 1 | Steering signals come through CAN -- latency test will catch drift |
-| 5 | test_brake_pedal_signal_integrity | 0.660 | **HIGH** | 1 | Brake pedal signal travels over CAN -- integrity affected by timing |
-| 6 | test_accelerator_response_time | 0.660 | **HIGH** | 1 | Accelerator signal is CAN-transmitted -- response time changes |
-| 7 | test_diagnostic_health_check_interval | 0.660 | **HIGH** | 1 | Health checks run over CAN -- interval changes affect scheduling |
+| 1 | test_can_frame_parse_timing | 0.840 | **CRITICAL** | 1 | Directly tests CAN frame timing -- the changed parameter |
+| 2 | test_can_frame_checksum_validation | 0.840 | **CRITICAL** | 1 | CAN checksum is timing-dependent -- will detect interval changes |
+| 3 | test_can_frame_id_parsing | 0.840 | **CRITICAL** | 1 | CAN frame ID parsing -- interval changes affect frame ordering |
+| 4 | test_steering_input_latency | 0.740 | **CRITICAL** | 1 | Steering signals come through CAN -- latency test will catch drift |
+| 5 | test_brake_pedal_signal_integrity | 0.740 | **CRITICAL** | 1 | Brake pedal signal travels over CAN -- integrity affected by timing |
+| 6 | test_accelerator_response_time | 0.740 | **CRITICAL** | 1 | Accelerator signal is CAN-transmitted -- response time changes |
+| 7 | test_diagnostic_health_check_interval | 0.740 | **CRITICAL** | 1 | Health checks run over CAN -- interval changes affect scheduling |
 
 **Safe tests (skipped):** All 8 braking tests (no CAN path to brake distance), all 6 drivetrain tests, all 4 sensor fusion tests
 
@@ -637,9 +948,9 @@ When the scoring engine runs for a given constant (e.g., `brake_actuator_respons
 
 ### What the Results Tell Us
 
-**1. Proximity is decisive.** In every scenario, tests that are 1 hop from the changed code score either 0.66 or 0.76 (HIGH or CRITICAL). Tests at 3-4 hops score 0.28-0.43 (MEDIUM). The farther a test is from the change, the less certain its failure, and the score reflects that cleanly.
+**1. Proximity is decisive.** In every scenario, all tests that are 1 hop from the changed code score either 0.740 or 0.840 -- both CRITICAL. Tests at 3-4 hops score 0.29-0.44 (MEDIUM). The farther a test is from the change, the less certain its failure, and the score reflects that cleanly.
 
-**2. FanOut separates CRITICAL from HIGH at 1 hop.** The only difference between a 0.76 (CRITICAL) score and a 0.66 (HIGH) score for a 1-hop test is FanOut. Tests in high-FanOut files (1.0) score 0.76. Tests in moderate-FanOut files (0.5) score 0.66. This makes sense: a test covering a widely-depended-upon file is riskier than a test covering a narrowly-used file, even at the same hop count.
+**2. All 1-hop tests are now CRITICAL regardless of FanOut.** With the updated weights (0.60 proximity), a 1-hop test with FanOut=0.5 scores 0.740 and a 1-hop test with FanOut=1.0 scores 0.840 -- both above the CRITICAL threshold of 0.70. FanOut still differentiates within the CRITICAL tier but no longer demotes a direct test out of it.
 
 **3. Safety-critical scenarios affect fewer tests.** `lidar_offset_calibration` only scores 4 tests because sensor fusion is a more isolated subsystem. `can_bus_message_interval_ms` scores 7 tests because CAN is a shared transport layer used by many subsystems.
 

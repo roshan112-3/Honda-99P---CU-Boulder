@@ -636,8 +636,8 @@ Running all 25 tests every time is wasteful. The scoring engine uses the knowled
 ### Priority Score Formula
 
 ```
-Priority Score = 0.50 x (1 / shortest_path_hops)    <- Proximity   (50%)
-               + 0.30 x normalized_pagerank           <- Centrality  (30%)
+Priority Score = 0.60 x (1 / shortest_path_hops)    <- Proximity   (60%)
+               + 0.20 x normalized_pagerank           <- Centrality  (20%)
                + 0.20 x normalized_fanout             <- FanOut      (20%)
 ```
 
@@ -652,56 +652,56 @@ Proximity hops:
 
 | Tier | Score Range | Action |
 |------|-------------|--------|
-| CRITICAL | 0.65 - 1.00 | Run first, block merge if failing |
-| HIGH | 0.45 - 0.64 | Run second, flag for review |
-| MEDIUM | 0.25 - 0.44 | Run if time permits |
-| LOW | 0.10 - 0.24 | Defer to nightly |
-| SAFE | 0.00 - 0.09 | Skip entirely |
+| CRITICAL | > 0.70 | Run first, block merge if failing |
+| HIGH | > 0.50 | Run second, flag for review |
+| MEDIUM | > 0.28 | Run if time permits |
+| LOW | <= 0.28 | Defer to nightly |
+| SAFE | 0.00 | Skip entirely |
 
 ### S1: Brake Actuator Response Drift (150ms -> 200ms)
 
 | Priority | Test | Score | Why |
 |----------|------|-------|-----|
-| CRITICAL | test_brake_distance_nominal | 0.76 | Direct call, max-fanout file |
-| CRITICAL | test_emergency_stop_latency | 0.74 | Direct call to command_emergency_stop |
-| CRITICAL | test_ABS_trigger_threshold | 0.71 | Direct call to apply_ABS_threshold |
-| CRITICAL | test_stopping_force_range | 0.69 | Direct call to estimate_stopping_force |
-| HIGH | test_safety_ctrl_integration | 0.58 | 2 hops via safety_controller_loop |
-| HIGH | test_vehicle_dynamics_e2e | 0.52 | 3 hops end-to-end |
-| SAFE | test_brake_fluid_pressure | 0.04 | Isolated sensor read |
-| SAFE | test_pedal_input_mapping | 0.03 | Pure input mapping |
+| CRITICAL | test_brake_distance_nominal | 0.840 | Direct call, max-fanout file |
+| CRITICAL | test_emergency_stop_latency | 0.840 | Direct call to command_emergency_stop |
+| CRITICAL | test_stopping_force_range | 0.840 | Direct call to estimate_stopping_force |
+| CRITICAL | test_ABS_trigger_threshold | 0.840 | Direct call to apply_ABS_threshold |
+| HIGH | test_safety_ctrl_integration | 0.540 | 2 hops via safety_controller_loop |
+| MEDIUM | test_vehicle_dynamics_e2e | 0.440 | 3 hops end-to-end |
+| SAFE | test_brake_fluid_pressure | 0.00 | Isolated sensor read |
+| SAFE | test_pedal_input_mapping | 0.00 | Pure input mapping |
 
 ### S2: LiDAR Calibration Mismatch (0.02 -> 0.035)
 
 | Priority | Test | Score | Why |
 |----------|------|-------|-----|
-| CRITICAL | test_obstacle_detection_acc | 0.78 | Direct: fuse_obstacle_track reads lidar calib |
-| CRITICAL | test_collision_margin_nominal | 0.72 | Direct: collision_margin -> plan_avoidance |
-| HIGH | test_trajectory_planner_clr | 0.61 | Direct: plan_avoidance_trajectory |
-| HIGH | test_sensor_fusion_integration | 0.55 | 2 hops via sensor_fusion_integration |
+| CRITICAL | test_obstacle_detection_acc | 0.740 | Direct: fuse_obstacle_track reads lidar calib |
+| CRITICAL | test_collision_margin_nominal | 0.740 | Direct: collision_margin -> plan_avoidance |
+| MEDIUM | test_trajectory_planner_clr | 0.340 | 3 hops via plan_avoidance_trajectory |
+| MEDIUM | test_sensor_fusion_integration | 0.290 | 4 hops via sensor_fusion_integration |
 
 ### S3: Motor Torque Limit Raised (280 -> 340 Nm)
 
 | Priority | Test | Score | Why |
 |----------|------|-------|-----|
-| CRITICAL | test_torque_application_limits | 0.80 | Direct: apply_torque_request reads config |
-| CRITICAL | test_thermal_cutoff_trigger | 0.73 | Direct: check_thermal_threshold |
-| HIGH | test_ecu_integration_nominal | 0.62 | 2 hops via vehicle_ecu_loop |
-| HIGH | test_motor_overheat_protection | 0.59 | 2 hops via motor_overheat_protection |
-| SAFE | test_battery_charge_cycle | 0.05 | Independent energy path |
-| SAFE | test_regen_braking_efficiency | 0.04 | Independent regen path |
+| CRITICAL | test_torque_application_limits | 0.840 | Direct: apply_torque_request reads config |
+| CRITICAL | test_thermal_cutoff_trigger | 0.740 | Direct: check_thermal_threshold |
+| CRITICAL | test_ecu_integration_nominal | 0.740 | Direct: vehicle_ecu_loop reads torque config |
+| CRITICAL | test_motor_overheat_protection | 0.740 | Direct: motor_overheat_protection |
+| SAFE | test_battery_charge_cycle | 0.00 | Independent energy path |
+| SAFE | test_regen_braking_efficiency | 0.00 | Independent regen path |
 
 ### S4: CAN Timing Drift (10ms -> 15ms)
 
 | Priority | Test | Score | Why |
 |----------|------|-------|-----|
-| CRITICAL | test_can_frame_parse_timing | 0.77 | Direct: parse_can_frame reads interval |
-| CRITICAL | test_steering_input_latency | 0.74 | Direct: read_steering_input -> parse_can |
-| CRITICAL | test_brake_pedal_signal | 0.71 | Direct: read_brake_pedal -> parse_can |
-| HIGH | test_accelerator_response | 0.63 | Direct: read_accelerator -> parse_can |
-| HIGH | test_diagnostic_health_check | 0.58 | Direct: diagnostic_health -> parse_can |
-| SAFE | test_can_frame_checksum | 0.06 | Validates bytes, not timing |
-| SAFE | test_can_frame_id_parsing | 0.05 | Validates ID bits, not timing |
+| CRITICAL | test_can_frame_parse_timing | 0.840 | Direct: parse_can_frame reads interval |
+| CRITICAL | test_can_frame_checksum_validation | 0.840 | Direct: CAN checksum is timing-dependent |
+| CRITICAL | test_can_frame_id_parsing | 0.840 | Direct: CAN ID parsing, interval-dependent |
+| CRITICAL | test_steering_input_latency | 0.740 | Direct: read_steering_input -> parse_can |
+| CRITICAL | test_brake_pedal_signal | 0.740 | Direct: read_brake_pedal -> parse_can |
+| CRITICAL | test_accelerator_response | 0.740 | Direct: read_accelerator -> parse_can |
+| CRITICAL | test_diagnostic_health_check | 0.740 | Direct: diagnostic_health -> parse_can |
 
 ---
 

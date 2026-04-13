@@ -9,15 +9,15 @@ After Neo4j ingestion, computes test priority scores using three signals:
   3. Proximity (hop distance) -- shortest CALLS path from changed constant to test
 
 Formula:
-  Priority = 0.50 * (1 / shortest_path)
-           + 0.30 * normalized_pagerank
+  Priority = 0.60 * (1 / shortest_path)
+           + 0.20 * normalized_pagerank
            + 0.20 * normalized_fanout
 
 Risk tiers:
-  CRITICAL  >  0.75
+  CRITICAL  >  0.70
   HIGH      >  0.50
-  MEDIUM    >  0.25
-  LOW       <= 0.25
+  MEDIUM    >  0.28
+  LOW       <= 0.28
   SAFE      =  not reachable within 4 hops (score 0)
 
 Scores are persisted on Function nodes as:
@@ -195,16 +195,16 @@ WITH test, k,
 
 // Compute priority score
 WITH test, k, shortest_path, fanout, pagerank,
-     0.50 * (1.0 / toFloat(shortest_path))
-     + 0.30 * pagerank
+     0.60 * (1.0 / toFloat(shortest_path))
+     + 0.20 * pagerank
      + 0.20 * COALESCE(fanout, 0.0) AS priority_score
 
 // Assign risk tier
 WITH test, k, shortest_path, fanout, pagerank, priority_score,
      CASE
-       WHEN priority_score > 0.75 THEN 'CRITICAL'
+       WHEN priority_score > 0.70 THEN 'CRITICAL'
        WHEN priority_score > 0.50 THEN 'HIGH'
-       WHEN priority_score > 0.25 THEN 'MEDIUM'
+       WHEN priority_score > 0.28 THEN 'MEDIUM'
        ELSE 'LOW'
      END AS risk_tier
 
